@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on zhangtao Blog</title>
-    <link>https://&lt;username&gt;.github.io/post/</link>
+    <link>https://zntzhang.github.io/post/</link>
     <description>Recent content in Posts on zhangtao Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 10 Mar 2020 22:09:54 +0000</lastBuildDate><atom:link href="https://<username>.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 10 Mar 2020 22:09:54 +0000</lastBuildDate><atom:link href="https://zntzhang.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>懒人如何用爬虫批量把CSDN的博客导出成markdown文件</title>
-      <link>https://&lt;username&gt;.github.io/post/2020-03-10-%E6%87%92%E4%BA%BA%E5%A6%82%E4%BD%95%E7%94%A8%E7%88%AC%E8%99%AB%E6%89%B9%E9%87%8F%E6%8A%8Acsdn%E7%9A%84%E5%8D%9A%E5%AE%A2%E5%AF%BC%E5%87%BA%E6%88%90markdown%E6%96%87%E4%BB%B6/</link>
+      <link>https://zntzhang.github.io/post/2020-03-10-%E6%87%92%E4%BA%BA%E5%A6%82%E4%BD%95%E7%94%A8%E7%88%AC%E8%99%AB%E6%89%B9%E9%87%8F%E6%8A%8Acsdn%E7%9A%84%E5%8D%9A%E5%AE%A2%E5%AF%BC%E5%87%BA%E6%88%90markdown%E6%96%87%E4%BB%B6/</link>
       <pubDate>Tue, 10 Mar 2020 22:09:54 +0000</pubDate>
       
-      <guid>https://&lt;username&gt;.github.io/post/2020-03-10-%E6%87%92%E4%BA%BA%E5%A6%82%E4%BD%95%E7%94%A8%E7%88%AC%E8%99%AB%E6%89%B9%E9%87%8F%E6%8A%8Acsdn%E7%9A%84%E5%8D%9A%E5%AE%A2%E5%AF%BC%E5%87%BA%E6%88%90markdown%E6%96%87%E4%BB%B6/</guid>
+      <guid>https://zntzhang.github.io/post/2020-03-10-%E6%87%92%E4%BA%BA%E5%A6%82%E4%BD%95%E7%94%A8%E7%88%AC%E8%99%AB%E6%89%B9%E9%87%8F%E6%8A%8Acsdn%E7%9A%84%E5%8D%9A%E5%AE%A2%E5%AF%BC%E5%87%BA%E6%88%90markdown%E6%96%87%E4%BB%B6/</guid>
       <description>最近博主搞了一个博客网站，但是遇到一个头疼的事情，就是要把以前写在csdn上的博客批量导出成markdown文件，但是csdn上只支持单个导</description>
     </item>
     
     <item>
       <title>Welcome to zhangtao Blog</title>
-      <link>https://&lt;username&gt;.github.io/2017/11/03/hello-world/</link>
+      <link>https://zntzhang.github.io/2017/11/03/hello-world/</link>
       <pubDate>Sat, 04 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://&lt;username&gt;.github.io/2017/11/03/hello-world/</guid>
+      <guid>https://zntzhang.github.io/2017/11/03/hello-world/</guid>
       <description>“Yeah It&amp;rsquo;s on. ” Hello World!</description>
     </item>
     
