@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on zhangtao Blog</title>
+    <link>https://&lt;username&gt;.github.io/tags/</link>
+    <description>Recent content in Tags on zhangtao Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 10 Mar 2020 22:09:54 +0000</lastBuildDate><atom:link href="https://<username>.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>爬虫</title>
+      <link>https://&lt;username&gt;.github.io/tags/%E7%88%AC%E8%99%AB/</link>
+      <pubDate>Tue, 10 Mar 2020 22:09:54 +0000</pubDate>
+      
+      <guid>https://&lt;username&gt;.github.io/tags/%E7%88%AC%E8%99%AB/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
