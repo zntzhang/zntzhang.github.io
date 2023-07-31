@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="zhangtao&#39;s Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="/img/post-bg-unix-linux.jpg">
+    <meta property="twitter:image" content="/img/post-bg-unix-linux.jpg" />
+    
+
+    
+    <meta name="title" content="用Java给女友自动提交工作内容的自动化脚本" />
+    <meta property="og:title" content="用Java给女友自动提交工作内容的自动化脚本" />
+    <meta property="twitter:title" content="用Java给女友自动提交工作内容的自动化脚本" />
+    
+
+    
+    <meta name="description" content="张涛，Java程序员, 爱好吉他，游泳，骑车 | 这里是 张涛的博客，与你一起发现更大的世界。">
+    <meta property="og:description" content="张涛，Java程序员, 爱好吉他，游泳，骑车 | 这里是 张涛的博客，与你一起发现更大的世界。" />
+    <meta property="twitter:description" content="张涛，Java程序员, 爱好吉他，游泳，骑车 | 这里是 张涛的博客，与你一起发现更大的世界。" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="张涛，Java程序员, 爱好吉他，游泳，骑车 | 这里是 张涛的博客，与你一起发现更大的世界。">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>用Java给女友自动提交工作内容的自动化脚本 | 张涛的博客 | zhangtao Blog</title>
+
+    <link rel="canonical" href="/post/2022-02-06-%E7%94%A8java%E7%BB%99%E5%A5%B3%E5%8F%8B%E8%87%AA%E5%8A%A8%E6%8F%90%E4%BA%A4%E5%B7%A5%E4%BD%9C%E5%86%85%E5%AE%B9%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">zhangtao&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/life/">life</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/work/">work</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/archive//">ARCHIVE</a></li>
+                    
+                        <li><a href="/notes//">NOTES</a></li>
+                    
+                        <li><a href="/about//">ABOUT</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/post-bg-unix-linux.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/java" title="java">
+                            java
+                        </a>
+                        
+                        <a class="tag" href="/tags/java" title="java">
+                            java
+                        </a>
+                        
+                        <a class="tag" href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96" title="自动化">
+                            自动化
+                        </a>
+                        
+                        <a class="tag" href="/tags/spring-boot" title="spring boot">
+                            spring boot
+                        </a>
+                        
+                    </div>
+                    <h1>用Java给女友自动提交工作内容的自动化脚本</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                zhangtao
+                             
+                            on 
+                            Sunday, February 6, 2022
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <p><em>女朋友每天早上都需要登录某工作网站提交一项内容，其实在程序员看来，这些都是可以用代码自动化解决的，于是我开始加班加点搞了起来。</em></p>
+<h2 id="整理需求">整理需求</h2>
+<p>首先她需要早上登录某网站，然后进入某一目录，点击提交。如果能每天不用自己点网站，自动化帮我做好这件事情，那就最好了</p>
+<h2 id="技术选型-功能设计">技术选型&amp;&amp; 功能设计</h2>
+<p>首先需要挑选框架，我这边用的是springboot,因为这个搭建和部署都比较方便</p>
+<p>然后发起登录请求网站获得cookie,然后再发起提交请求。我这边用的是httpclient的工具来做的，因为这个我比较熟悉</p>
+<p>其次，需要用定时任务框架来每天定时执行代码，我这边用的是spring的@Scheduled,因为这个使用起来比较简单，并且符合需求</p>
+<p>最后的一个附加需求，就是我需要知道每天这个定时任务是执行失败了还是成功的，于是我使用了钉钉机器人来每天通知</p>
+<h2 id="code">code</h2>
+<p>1、我们通过idea创建项目，使用阿里的springboot脚手架会比较方便</p>
+<p>2、使用httpclient传入账号密码请求登录请求，使用CookieStore来获取并存储cookie。登录成功后，调用提交请求</p>
+<p>3、在方法上加上@Scheduled注解，并将这个类加上@Component注解注册到spring，最后在springboot启动类上加上@EnableScheduling注解就可以</p>
+<p>4、钉钉机器人通知，引入alibaba-dingtalk-service-sdk的sdk jar包,然后钉钉机器人需要在钉钉群（把女朋友和你拉进去，面对面建群）里添加，然后保存它token。钉钉开发文档上的例子可以直接拿来复制，调整下就可以使用。</p>
+<h2 id="部署">部署</h2>
+<p>我是部署在阿里云服务器上的，首先我们把项目mvn clean package打包成jar包，然后上传到服务器上（这里可以使用一些小工具来自动化部署），最后输入</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>nohup java <span style="color:#ff79c6">-</span>jar jiajiawork<span style="color:#ff79c6">-</span><span style="color:#bd93f9">0.0.1</span><span style="color:#ff79c6">-</span>SNAPSHOT<span style="color:#ff79c6">.</span><span style="color:#50fa7b">jar</span>  <span style="color:#ff79c6">&gt;</span>jiajiawork<span style="color:#ff79c6">.</span><span style="color:#50fa7b">log</span> <span style="color:#bd93f9">2</span><span style="color:#ff79c6">&gt;&amp;</span><span style="color:#bd93f9">1</span> <span style="color:#ff79c6">&amp;;</span>
+</span></span></code></pre></div><p>指令启动springboot服务器（nohup是让springboot后台启动，&gt;jiajiawork.log 2&gt;&amp;1 &amp;是将日志输入到log文件中）</p>
+<p>最后，代码就不粘贴了，涉及到一些隐私，主要讲了整体的一个思路</p>
+<p><em>参考文献</em></p>
+<p><a href="https://www.cnblogs.com/xfyuao/p/12762684.html">IDEA 2020.1 创建springboot项目（国内脚手架）安装lombok</a></p>
+<p><a href="https://blog.csdn.net/riemann_/article/details/90539829">java实现调用http请求的几种常见方式</a></p>
+<p><a href="https://blog.csdn.net/wsrfljygracie/article/details/89181318">CloseableHttpClient学习笔记(获取cookies+携带获取的cookies访问post接口)</a></p>
+<p><a href="https://blog.csdn.net/qq_42570879/article/details/99642615">Idea+springboot+schedule定时任务的简单使用</a></p>
+<p><a href="https://open.dingtalk.com/document/robots/customize-robot-security-settings">钉钉开放平台</a></p>
+<p><a href="https://blog.csdn.net/qq_39848608/article/details/105475546">springboot项目打包jar文件在linux后台启动</a></p>
+
+
+                
+                
+<div class="entry-shang text-center">
+    
+	    <p>「真诚赞赏，手留余香」</p>
+	
+	<button class="zs show-zs btn btn-bred">赞赏支持</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+	<div class="zs-modal-head">
+		<button type="button" class="close">×</button>
+		<span class="author"><a href="https://zntzhang.github.io/"><img src="/img/favicon.png" />zhangtao&#39;s Blog</a></span>
+        
+	        <p class="tip"><i></i><span>真诚赞赏，手留余香</span></p>
+		
+ 
+	</div>
+	<div class="zs-modal-body">
+		<div class="zs-modal-btns">
+			<button class="btn btn-blink" data-num="2">2元</button>
+			<button class="btn btn-blink" data-num="5">5元</button>
+			<button class="btn btn-blink" data-num="10">10元</button>
+			<button class="btn btn-blink" data-num="50">50元</button>
+			<button class="btn btn-blink" data-num="100">100元</button>
+			<button class="btn btn-blink" data-num="1">任意金额</button>
+		</div>
+		<div class="zs-modal-pay">
+			<button class="btn btn-bred" id="pay-text">2元</button>
+			<p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+			<img src="/img/reward/wechat-2.png"  id="pay-image"/>
+		</div>
+	</div>
+	<div class="zs-modal-footer">
+		<label><input type="radio" name="zs-type" value="wechat" class="zs-type" checked="checked"><span ><span class="zs-wechat"><img src="/img/reward/wechat-btn.png"/></span></label>
+		<label><input type="radio" name="zs-type" value="alipay" class="zs-type" class="zs-alipay"><img src="/img/reward/alipay-btn.png"/></span></label>
+	</div>
+</div>
+<script type="text/javascript" src="/js/reward.js"></script>
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/2021-12-21-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95--mockito&#43;junit/" data-toggle="tooltip" data-placement="top" title="单元测试--Mockito&#43;JUnit">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/post/2022-04-15-%E5%85%AC%E5%8F%B8open-api%E5%AF%B9%E6%8E%A5%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" data-toggle="tooltip" data-placement="top" title="公司open api对接遇到的问题解决">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/elasticsearch" title="elasticsearch">
+                            elasticsearch
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/es" title="es">
+                            es
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/java" title="java">
+                            java
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/jquery/js" title="jquery/js">
+                            jquery/js
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/linux" title="linux">
+                            linux
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/mq" title="mq">
+                            mq
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/mysql" title="mysql">
+                            mysql
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/netty" title="netty">
+                            netty
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/spring" title="spring">
+                            spring
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E4%BC%98%E5%8C%96" title="优化">
+                            优化
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E5%B9%B6%E5%8F%91" title="并发">
+                            并发
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93" title="数据库">
+                            数据库
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8" title="服务器">
+                            服务器
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F" title="设计模式">
+                            设计模式
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E9%94%81" title="锁">
+                            锁
+                        </a>
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="https://blog.csdn.net/qq_37221991">装睡的小5郎</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:zt931634776@163.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    <li>
+                        <a target="_blank" href="/18368494496">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/zntzhang">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; zhangtao&#39;s Blog 2023
+                   
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="zhangtao&#39;s Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="/img/post-bg-unix-linux.jpg">
+    <meta property="twitter:image" content="/img/post-bg-unix-linux.jpg" />
+    
+
+    
+    <meta name="title" content="Java并发编程（原子性、可见性、有序性、synchronized、CAS、volatile、ThreadLocal）笔记" />
+    <meta property="og:title" content="Java并发编程（原子性、可见性、有序性、synchronized、CAS、volatile、ThreadLocal）笔记" />
+    <meta property="twitter:title" content="Java并发编程（原子性、可见性、有序性、synchronized、CAS、volatile、ThreadLocal）笔记" />
+    
+
+    
+    <meta name="description" content="张涛，Java程序员, 爱好吉他，游泳，骑车 | 这里是 张涛的博客，与你一起发现更大的世界。">
+    <meta property="og:description" content="张涛，Java程序员, 爱好吉他，游泳，骑车 | 这里是 张涛的博客，与你一起发现更大的世界。" />
+    <meta property="twitter:description" content="张涛，Java程序员, 爱好吉他，游泳，骑车 | 这里是 张涛的博客，与你一起发现更大的世界。" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="张涛，Java程序员, 爱好吉他，游泳，骑车 | 这里是 张涛的博客，与你一起发现更大的世界。">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>Java并发编程（原子性、可见性、有序性、synchronized、CAS、volatile、ThreadLocal）笔记 | 张涛的博客 | zhangtao Blog</title>
+
+    <link rel="canonical" href="/post/2019-07-14-java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%8E%9F%E5%AD%90%E6%80%A7%E5%8F%AF%E8%A7%81%E6%80%A7%E6%9C%89%E5%BA%8F%E6%80%A7synchronizedcasvolatilethreadlocal%E7%AC%94%E8%AE%B0/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">zhangtao&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/life/">life</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/work/">work</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/archive//">ARCHIVE</a></li>
+                    
+                        <li><a href="/notes//">NOTES</a></li>
+                    
+                        <li><a href="/about//">ABOUT</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/post-bg-unix-linux.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/%E5%B9%B6%E5%8F%91" title="并发">
+                            并发
+                        </a>
+                        
+                        <a class="tag" href="/tags/java" title="java">
+                            java
+                        </a>
+                        
+                        <a class="tag" href="/tags/%E9%94%81" title="锁">
+                            锁
+                        </a>
+                        
+                        <a class="tag" href="/tags/%E5%B9%B6%E5%8F%91" title="并发">
+                            并发
+                        </a>
+                        
+                        <a class="tag" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B" title="多线程">
+                            多线程
+                        </a>
+                        
+                        <a class="tag" href="/tags/java" title="Java">
+                            Java
+                        </a>
+                        
+                    </div>
+                    <h1>Java并发编程（原子性、可见性、有序性、synchronized、CAS、volatile、ThreadLocal）笔记</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                zhangtao
+                             
+                            on 
+                            Sunday, July 14, 2019
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <p><em>自己网上总结了一些多线程并发的一些文章，如有错误请指教！</em></p>
+<h2 id="多线程的三大特性">多线程的三大特性</h2>
+<h4 id="一原子性">一、原子性</h4>
+<p>原子是世界上的最小单位，具有不可分割性。比如 a=0；（a非long和double类型） 这个操作是不可分割的，那么我们说这个操作时原子操作。</p>
+<h5 id="线程切换带来的原子性问题">线程切换带来的原子性问题</h5>
+<p>Java中的一条语句，在翻译为机器码之后，可能对应的是多个指令。</p>
+<p>比如：**i++**这个操作至少需要3条指令；</p>
+<ul>
+<li>把 i 的值从内存=加载到寄存器；</li>
+<li>执行+1操作；</li>
+<li>把值写入内存；</li>
+</ul>
+<p>假如 i=0，两个线程同时执行该操作，可能线程1执行完第一步，就切换到线程2执行，本来两个线程各执行一次后 i 的值应该为 2 ，此时就出现 两次递增操作后值为 1 的现象；</p>
+<p>在 Java 中 <strong>synchronized</strong> 和在 <strong>lock、unlock</strong> 和一些concurrent包下提供了一些<strong>原子类</strong>（AtomicInteger、AtomicLong、AtomicReference等）中操作保证原子性。</p>
+<h4 id="二可见性">二、可见性</h4>
+<p>JMM规定多线程之间的共享变量存储在主存中，每个线程单独拥有一个本地内存（逻辑概念），本地内存存储线程操作的共享变量副本； 
+  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjIxOTkx,size_16,color_FFFFFF,t_70.jpeg" alt="img">
+
+ 可见性，是指线程之间的可见性，一个线程修改的状态对另一个线程是可见的。也就是一个线程修改的结果。另一个线程马上就能看到。当线程1对共享变量A进行修改之后，线程2的工作内存中A可能还不是最新的值。这时候线程1的操作对线程2就不具有可见性。</p>
+<h5 id="缓存导致的可见性问题">缓存导致的可见性问题</h5>
+<blockquote>
+<p>Java内存模型规定所有的变量存储在主内存中。每个线程都有自己的工作内存，线程在工作内存中保存了使用到的主内存中变量的副本拷贝，线程对变量的操作必须在工作内存中进行，不能直接读写主内存中的变量。不同线程之间无法访问对方工作内存的变量。线程之间共享变量值的传递均需要通过主内存来完成。通常，<!-- raw HTML omitted -->我们无法确保执行读操作的线程能适时地看到其他线程写入的值<!-- raw HTML omitted -->，有时甚至是根本不可能的事情。为了确保多个线程之间对内存写入操作的可见性，必须使用同步机制。</p>
+</blockquote>
+<p>在 Java 中 <strong>volatile、synchronized 和 final</strong> 实现可见性。</p>
+<h4 id="三有序性">三、有序性</h4>
+<p>Java程序中，如果在本线程中观察，所有的操作都是有序的；如果在另一个线程观察，所有的操作都是无序的。前半句指的是线程内表现为串行的语义，后半句指的是指令重排序和主内存和工作内存同步延迟的问题。</p>
+<h5 id="编译优化带来的有序性问题">编译优化带来的有序性问题</h5>
+<p>为了充分利用处理器的性能，处理器会对输入的代码进行乱序执行。在计算之后将乱序执行的结果重组，并保证该结果和顺序执行的结果一致，但是并不保证程序中各个语句的计算顺序和输入代码的顺序一致。Java虚拟机也有类似的指令重排序优化。</p>
+<p>比如：Object obj = new Object()，</p>
+<p>这条语句对应的指令为：</p>
+<ul>
+<li>分配一块内存M；</li>
+<li>在M上初始化 Object 对象；</li>
+<li>将M的地址赋值给 obj；</li>
+</ul>
+<p>计算机经过优化后可能先执行第三步，再第二步，如果执行完第三步后切换到别的线程，若此时访问该变量则会发生空指针异常；</p>
+<p>Java 语言提供了 volatile 和 synchronized 两个关键字来保证线程之间操作的有序性。</p>
+<h2 id="一-如何保证操作的原子性">一、 如何保证操作的原子性</h2>
+<p>内置锁(同步关键字)：synchronized;</p>
+<p>显示锁：Lock;</p>
+<p>阻塞的策略，<strong>性能不太好</strong>，但是由于操作上的优势，只需要简单的声明一下即可，而且被它声明的代码块也是具有操作的原子性。 最后需要注意的是<strong>synchronized是同步机制中最安全的一种方式</strong>，其他的任何方式都是有风险的，当然付出的代价也是最大的。</p>
+<p>自旋锁：CAS（ABA问题）；</p>
+<p>Atomic</p>
+<p>具体原理见  <a href="https://www.jianshu.com/p/aaf3e933dbeb">并发编程之ThreadLocal、Volatile、Synchronized、Atomic关键字</a> 。</p>
+<h2 id="二如何保证操作的可见性">二、如何保证操作的可见性</h2>
+<h4 id="1volatile">1.volatile</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Example</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd">boolean</span> stop <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span><span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">execute</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span><span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#ff79c6">.</span><span style="color:#50fa7b">out</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">println</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;thread1 start loop.&#34;</span><span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">while</span><span style="color:#ff79c6">(!</span>getStop<span style="color:#ff79c6">())</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>            i<span style="color:#ff79c6">++;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#ff79c6">.</span><span style="color:#50fa7b">out</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">println</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;thread1 finish loop,i=&#34;</span> <span style="color:#ff79c6">+</span> i<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">boolean</span> <span style="color:#50fa7b">getStop</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> stop<span style="color:#ff79c6">;</span> <span style="color:#6272a4">// 对普通变量的读
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">setStop</span><span style="color:#ff79c6">(</span><span style="color:#8be9fd">boolean</span> flag<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">this</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">stop</span> <span style="color:#ff79c6">=</span> flag<span style="color:#ff79c6">;</span> <span style="color:#6272a4">// 对普通变量的写
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">VolatileExample</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span><span style="color:#ff79c6">(</span>String<span style="color:#ff79c6">[]</span> args<span style="color:#ff79c6">)</span> <span style="color:#8be9fd;font-style:italic">throws</span> Exception <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">final</span> Example example <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Example<span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span>        Thread t1 <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Thread<span style="color:#ff79c6">(</span><span style="color:#ff79c6">new</span> Runnable<span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>            @Override
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">run</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>                example<span style="color:#ff79c6">.</span><span style="color:#50fa7b">execute</span><span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">});</span>
+</span></span><span style="display:flex;"><span>        t1<span style="color:#ff79c6">.</span><span style="color:#50fa7b">start</span><span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Thread<span style="color:#ff79c6">.</span><span style="color:#50fa7b">sleep</span><span style="color:#ff79c6">(</span><span style="color:#bd93f9">1000</span><span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#ff79c6">.</span><span style="color:#50fa7b">out</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">println</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;主线程即将置stop值为true...&#34;</span><span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>        example<span style="color:#ff79c6">.</span><span style="color:#50fa7b">setStop</span><span style="color:#ff79c6">(</span><span style="color:#ff79c6">true</span><span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#ff79c6">.</span><span style="color:#50fa7b">out</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">println</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;主线程已将stop值为：&#34;</span> <span style="color:#ff79c6">+</span> example<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getStop</span><span style="color:#ff79c6">());</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#ff79c6">.</span><span style="color:#50fa7b">out</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">println</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;主线程等待线程1执行完...&#34;</span><span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        t1<span style="color:#ff79c6">.</span><span style="color:#50fa7b">join</span><span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#ff79c6">.</span><span style="color:#50fa7b">out</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">println</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;线程1已执行完毕，整个流程结束...&#34;</span><span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span></code></pre></div><p>上面程序的意思是：让线程1先执行然后主（main）线程修改标志看是否能让子线程跳出循环。执行程序后发现程序并没有执行完，而是在等待线程1执行完毕。这就说明主线程修改stop变量并不对线程1可见，所以普通变量是不保证可见性的。 
+  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjIxOTkx,size_16,color_FFFFFF,t_70-20230731201519399.png" alt="img">
+
+ 当你把变量stop用volatile修饰时，主线程修改stop变量会立马对线程1可见并终止程序，这就证明volatile变量是具有可见性特性的。下面修改后的结果。 
+  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjIxOTkx,size_16,color_FFFFFF,t_70-20230731201525269.png" alt="img">
+
+ 当写一个 volatile 变量时，JMM 会把该线程对应的本地内存中的共享变量值刷新到主内存。</p>
+<p>当读一个 volatile 变量时，JMM 会把该线程对应的本地内存置为无效。线程接下来将从主内存中读取共享变量。</p>
+<p>以上面VolatileExample程序为例进行简单说明，当主线程对stop进行修改后且子线程尚未对stop进行读时，主线程已经把stop的值刷新到了主内存。其示意图如下：</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjIxOTkx,size_16,color_FFFFFF,t_70-20230731201530298.png" alt="img">
+
+ 当子线程进行读取时，会把本地内存置为无效直接去主内存中读取。（这里的主线程和子线程可以了解为两个普通线程没有父子关系）其示意图如下： 
+  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjIxOTkx,size_16,color_FFFFFF,t_70-20230731201534954.png" alt="img">
+
+</p>
+<h4 id="2synchronized加各种锁实现可见性">2.synchronized（加各种锁）实现可见性</h4>
+<p>JMM关于synchronized的两条规定：</p>
+<p>1）线程解锁前，必须把共享变量的最新值刷新到主内存中</p>
+<p>2）线程加锁时，将清空工作内存中共享变量的值，从而使用共享变量时需要从主内存中重新获取最新的值</p>
+<p>（注意：加锁与解锁需要是同一把锁） 通过以上两点，可以看到synchronized能够实现可见性。同时，由于synchronized具有同步锁，所以它也具有原子性</p>
+<h2 id="三如何保证操作的有序性">三、如何保证操作的有序性</h2>
+<h4 id="1volatile-是因为其本身包含禁止指令重排序的语义">1.volatile 是因为其本身包含“禁止指令重排序”的语义</h4>
+<h4 id="2synchronized-是由一个变量在同一个时刻只允许一条线程对其进行-lock-操作这条规则获得的此规则决定了持有同一个对象锁的两个同步块只能串行执行">2.synchronized 是由“一个变量在同一个时刻只允许一条线程对其进行 lock 操作”这条规则获得的，此规则决定了持有同一个对象锁的两个同步块只能串行执行。</h4>
+<h2 id="四threadlocal">四、ThreadLocal</h2>
+<p>ThreadLocal是一个工具类，它的作用是操作每个线程特有的一个ThreadLocalMap。 当我们把对象存到ThreadLocalMap，那么我们就可以在这个线程中不管在哪个方法都能获取到这个对象。</p>
+<blockquote>
+<p>ThreadLocal的设计，并不是解决资源共享的问题，而是用来提供线程内的局部变量，这样每个线程都自己管理自己的局部变量，别的线程操作的数据不会对我产生影响，互不影响，所以不存在解决资源共享这么一说，如果是解决资源共享，那么其它线程操作的结果必然我需要获取到，而ThreadLocal则是自己管理自己的，相当于封装在Thread内部了，供线程自己管理，这样做其实就是以空间换时间的方式(与synchronized相反)，以耗费内存为代价，单大大减少了线程同步(如synchronized)所带来性能消耗以及减少了线程并发控制的复杂度。</p>
+</blockquote>
+<p>ThreadLocal实例通常来说都是private static类型的，用于关联线程和线程的上下文 一般使用ThreadLocal，官方建议我们定义为private static ，至于为什么要定义成静态的，这和内存泄露有关，以后再讨论。 它有三个暴露的方法，set、get、remove。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">TestThreadLocal</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>	    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">final</span> ThreadLocal<span style="color:#ff79c6">&lt;</span>Integer<span style="color:#ff79c6">&gt;</span> value <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> ThreadLocal<span style="color:#ff79c6">&lt;</span>Integer<span style="color:#ff79c6">&gt;()</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>	        @Override
+</span></span><span style="display:flex;"><span>	        <span style="color:#8be9fd;font-style:italic">protected</span> Integer <span style="color:#50fa7b">initialValue</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>	            <span style="color:#ff79c6">return</span> <span style="color:#bd93f9">0</span><span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>	        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>	    <span style="color:#ff79c6">};</span>
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span><span style="color:#ff79c6">(</span>String<span style="color:#ff79c6">[]</span> args<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>	        <span style="color:#ff79c6">for</span> <span style="color:#ff79c6">(</span><span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span><span style="color:#ff79c6">;</span> i <span style="color:#ff79c6">&lt;</span> <span style="color:#bd93f9">5</span><span style="color:#ff79c6">;</span> i<span style="color:#ff79c6">++)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>	            <span style="color:#ff79c6">new</span> Thread<span style="color:#ff79c6">(</span><span style="color:#ff79c6">new</span> MyThread<span style="color:#ff79c6">(</span>i<span style="color:#ff79c6">)).</span><span style="color:#50fa7b">start</span><span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span>	        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>	    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	    <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">MyThread</span> <span style="color:#8be9fd;font-style:italic">implements</span> Runnable <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>	        <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd">int</span> index<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#50fa7b">MyThread</span><span style="color:#ff79c6">(</span><span style="color:#8be9fd">int</span> index<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>	            <span style="color:#ff79c6">this</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">index</span> <span style="color:#ff79c6">=</span> index<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>	        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">run</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>	            System<span style="color:#ff79c6">.</span><span style="color:#50fa7b">out</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">println</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;线程&#34;</span> <span style="color:#ff79c6">+</span> index <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34;的初始value:&#34;</span> <span style="color:#ff79c6">+</span> value<span style="color:#ff79c6">.</span><span style="color:#50fa7b">get</span><span style="color:#ff79c6">());</span>
+</span></span><span style="display:flex;"><span>	            <span style="color:#ff79c6">for</span> <span style="color:#ff79c6">(</span><span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span><span style="color:#ff79c6">;</span> i <span style="color:#ff79c6">&lt;</span> <span style="color:#bd93f9">10</span><span style="color:#ff79c6">;</span> i<span style="color:#ff79c6">++)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>	                value<span style="color:#ff79c6">.</span><span style="color:#50fa7b">set</span><span style="color:#ff79c6">(</span>value<span style="color:#ff79c6">.</span><span style="color:#50fa7b">get</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">+</span> i<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>	            <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>	            System<span style="color:#ff79c6">.</span><span style="color:#50fa7b">out</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">println</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;线程&#34;</span> <span style="color:#ff79c6">+</span> index <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34;的累加value:&#34;</span> <span style="color:#ff79c6">+</span> value<span style="color:#ff79c6">.</span><span style="color:#50fa7b">get</span><span style="color:#ff79c6">());</span>
+</span></span><span style="display:flex;"><span>	        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>	    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">}</span>
+</span></span></code></pre></div><p>运行结果如下，这些ThreadLocal变量属于线程内部管理的，互不影响：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>线程<span style="color:#bd93f9">0</span>的初始value<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span>线程<span style="color:#bd93f9">3</span>的初始value<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span>线程<span style="color:#bd93f9">2</span>的初始value<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span>线程<span style="color:#bd93f9">2</span>的累加value<span style="color:#ff79c6">:</span><span style="color:#bd93f9">45</span>
+</span></span><span style="display:flex;"><span>线程<span style="color:#bd93f9">1</span>的初始value<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span>线程<span style="color:#bd93f9">3</span>的累加value<span style="color:#ff79c6">:</span><span style="color:#bd93f9">45</span>
+</span></span><span style="display:flex;"><span>线程<span style="color:#bd93f9">0</span>的累加value<span style="color:#ff79c6">:</span><span style="color:#bd93f9">45</span>
+</span></span><span style="display:flex;"><span>线程<span style="color:#bd93f9">1</span>的累加value<span style="color:#ff79c6">:</span><span style="color:#bd93f9">45</span>
+</span></span><span style="display:flex;"><span>线程<span style="color:#bd93f9">4</span>的初始value<span style="color:#ff79c6">:</span><span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span>线程<span style="color:#bd93f9">4</span>的累加value<span style="color:#ff79c6">:</span><span style="color:#bd93f9">45</span>
+</span></span></code></pre></div><p>我在ThreadLocal上遇到的坑  <a href="https://blog.csdn.net/qq_37221991/article/details/93922136">ThreadLocal笔记</a></p>
+
+
+                
+                
+<div class="entry-shang text-center">
+    
+	    <p>「真诚赞赏，手留余香」</p>
+	
+	<button class="zs show-zs btn btn-bred">赞赏支持</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+	<div class="zs-modal-head">
+		<button type="button" class="close">×</button>
+		<span class="author"><a href="https://zntzhang.github.io/"><img src="/img/favicon.png" />zhangtao&#39;s Blog</a></span>
+        
+	        <p class="tip"><i></i><span>真诚赞赏，手留余香</span></p>
+		
+ 
+	</div>
+	<div class="zs-modal-body">
+		<div class="zs-modal-btns">
+			<button class="btn btn-blink" data-num="2">2元</button>
+			<button class="btn btn-blink" data-num="5">5元</button>
+			<button class="btn btn-blink" data-num="10">10元</button>
+			<button class="btn btn-blink" data-num="50">50元</button>
+			<button class="btn btn-blink" data-num="100">100元</button>
+			<button class="btn btn-blink" data-num="1">任意金额</button>
+		</div>
+		<div class="zs-modal-pay">
+			<button class="btn btn-bred" id="pay-text">2元</button>
+			<p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+			<img src="/img/reward/wechat-2.png"  id="pay-image"/>
+		</div>
+	</div>
+	<div class="zs-modal-footer">
+		<label><input type="radio" name="zs-type" value="wechat" class="zs-type" checked="checked"><span ><span class="zs-wechat"><img src="/img/reward/wechat-btn.png"/></span></label>
+		<label><input type="radio" name="zs-type" value="alipay" class="zs-type" class="zs-alipay"><img src="/img/reward/alipay-btn.png"/></span></label>
+	</div>
+</div>
+<script type="text/javascript" src="/js/reward.js"></script>
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/2019-06-27-pagehelper%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84threadlocal%E5%B0%8F%E5%9D%91/" data-toggle="tooltip" data-placement="top" title="PageHelper中遇到的ThreadLocal小坑">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/post/2020-02-14-%E4%BD%BF%E7%94%A8%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%90%8E%E5%BC%95%E5%8F%91%E7%9A%84%E8%A1%80%E6%A1%88/" data-toggle="tooltip" data-placement="top" title="使用消息队列后引发的血案">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/elasticsearch" title="elasticsearch">
+                            elasticsearch
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/es" title="es">
+                            es
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/java" title="java">
+                            java
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/jquery/js" title="jquery/js">
+                            jquery/js
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/linux" title="linux">
+                            linux
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/mq" title="mq">
+                            mq
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/mysql" title="mysql">
+                            mysql
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/netty" title="netty">
+                            netty
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/spring" title="spring">
+                            spring
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E4%BC%98%E5%8C%96" title="优化">
+                            优化
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E5%B9%B6%E5%8F%91" title="并发">
+                            并发
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93" title="数据库">
+                            数据库
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8" title="服务器">
+                            服务器
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F" title="设计模式">
+                            设计模式
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E9%94%81" title="锁">
+                            锁
+                        </a>
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="https://blog.csdn.net/qq_37221991">装睡的小5郎</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:zt931634776@163.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    <li>
+                        <a target="_blank" href="/18368494496">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/zntzhang">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; zhangtao&#39;s Blog 2023
+                   
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

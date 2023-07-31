@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>开发语言 on zhangtao&#39;s Blog</title>
+    <link>https://zntzhang.github.io/tags/%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80/</link>
+    <description>Recent content in 开发语言 on zhangtao&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 04 Aug 2020 16:48:41 +0000</lastBuildDate><atom:link href="https://zntzhang.github.io/tags/%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>匿名内部类使用</title>
+      <link>https://zntzhang.github.io/post/2020-08-04-%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Tue, 04 Aug 2020 16:48:41 +0000</pubDate>
+      
+      <guid>https://zntzhang.github.io/post/2020-08-04-%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB%E4%BD%BF%E7%94%A8/</guid>
+      <description>在我们开发中，匿名内部类用的还是比较多的，笔者有点忘了一些细节，所以今天带大家复习一下匿名内部类 匿名内部类既没有名字的内部类 正因为没有名字，</description>
+    </item>
+    
+  </channel>
+</rss>

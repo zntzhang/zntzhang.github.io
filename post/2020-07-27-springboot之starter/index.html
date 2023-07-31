@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="zhangtao&#39;s Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="/img/post-bg-unix-linux.jpg">
+    <meta property="twitter:image" content="/img/post-bg-unix-linux.jpg" />
+    
+
+    
+    <meta name="title" content="SpringBoot之Starter" />
+    <meta property="og:title" content="SpringBoot之Starter" />
+    <meta property="twitter:title" content="SpringBoot之Starter" />
+    
+
+    
+    <meta name="description" content="张涛，Java程序员, 爱好吉他，游泳，骑车 | 这里是 张涛的博客，与你一起发现更大的世界。">
+    <meta property="og:description" content="张涛，Java程序员, 爱好吉他，游泳，骑车 | 这里是 张涛的博客，与你一起发现更大的世界。" />
+    <meta property="twitter:description" content="张涛，Java程序员, 爱好吉他，游泳，骑车 | 这里是 张涛的博客，与你一起发现更大的世界。" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="张涛，Java程序员, 爱好吉他，游泳，骑车 | 这里是 张涛的博客，与你一起发现更大的世界。">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>SpringBoot之Starter | 张涛的博客 | zhangtao Blog</title>
+
+    <link rel="canonical" href="/post/2020-07-27-springboot%E4%B9%8Bstarter/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">zhangtao&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/life/">life</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/work/">work</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/archive//">ARCHIVE</a></li>
+                    
+                        <li><a href="/notes//">NOTES</a></li>
+                    
+                        <li><a href="/about//">ABOUT</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/post-bg-unix-linux.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/java" title="java">
+                            java
+                        </a>
+                        
+                        <a class="tag" href="/tags/spring" title="spring">
+                            spring
+                        </a>
+                        
+                    </div>
+                    <h1>SpringBoot之Starter</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                zhangtao
+                             
+                            on 
+                            Monday, July 27, 2020
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <p><em>SpringBoot之所以流行，是因为Spring Starter模式的提出。Spring Starter的出现，可以让模块开发更加独立化，相互间依赖更加松散以及可以更加方便地集成。</em></p>
+<p>SpringBoot中的starter是一种非常重要的机制，能够抛弃以前繁杂的配置，将其统一集成进starter，应用者只需要在maven中引入starter依赖，SpringBoot就能自动扫描到要加载的信息并启动相应的默认配置，发现需要的Bean，并注册进IOC容器。</p>
+<p>SpringBoot提供了针对日常企业应用研发各种场景的spring-boot-starter依赖模块</p>
+<p>Starter极大的简化我们的工程配置，我们可以跟以前的SSM框架进行一个对比。</p>
+<p>比如我们需要集成RocketMq框架，按照以前的做法我们需要做到下面几步。</p>
+<ul>
+<li>引入相关的Maven依赖（可能不止一个依赖）</li>
+<li>在配置文件xml中，添加相关的bean以便加入容器中，并且配置mq需要的配置信息（如ip、端口、组名等）</li>
+</ul>
+<p>并且，当我们重新搭建一个项目时，这些配置又得重新拷一遍过去。</p>
+<p>当我们用了Spring Starter之后会有什么不同呢？</p>
+<ul>
+<li>引入Mq的Starter依赖</li>
+<li>在配置文件里添加我们需要自定义的配置信息（有默认值）</li>
+</ul>
+<p>跟上面比是不是简单了很多，Maven上就有现成的Starter我们可以直接使用，或者我们可以自定义一些Starter来给其他工程使用，非常的方便。</p>
+<p>虽然不同的starter实现起来各有差异，但是他们基本上都会使用到两个相同的内容：</p>
+<ul>
+<li>ConfigurationProperties 因为Spring Boot坚信约定大于配置这一理念，所以我们使用ConfigurationProperties来保存我们的配置，并且这些配置都可以有一个默认值，即在我们没有主动覆写原始配置的情况下，默认值就会生效，这在很多情况下是非常有用的。除此之外，starter的ConfigurationProperties还使得所有的配置属性被聚集到一个文件中（一般在resources目录下的application.properties），这样我们就告别了Spring项目中XML地狱</li>
+<li>AutoConfiguration AutoConfiguration中我们实现了自己要求：创建我们需要的bean，并且我们把properties中参数赋给了该bean。</li>
+</ul>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/format,png-20230731201216880.png" alt="img">
+
+</p>
+<p>我们可以给任意一个现有的组件创建一个starter来让别人在使用这个组件的时候更加的简单方便。</p>
+<p>比如我们要集成一个RocketMq框架，我们发现网上没有现成可用的Starter项目，所以我们就把这个封装成一个Starter项目，来给其他工程使用。</p>
+<h2 id="a-创建starter工程并且引入maven依赖">a. 创建Starter工程，并且引入Maven依赖</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#ff79c6">&lt;!--</span> RocketMQ的dependency <span style="color:#ff79c6">--&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;</span>dependency<span style="color:#ff79c6">&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">&lt;</span>groupId<span style="color:#ff79c6">&gt;</span>org<span style="color:#ff79c6">.</span><span style="color:#50fa7b">apache</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">rocketmq</span><span style="color:#ff79c6">&lt;/</span>groupId<span style="color:#ff79c6">&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">&lt;</span>artifactId<span style="color:#ff79c6">&gt;</span>rocketmq<span style="color:#ff79c6">-</span>client<span style="color:#ff79c6">&lt;/</span>artifactId<span style="color:#ff79c6">&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">&lt;</span>version<span style="color:#ff79c6">&gt;</span><span style="color:#bd93f9">4.3.0</span><span style="color:#ff79c6">&lt;/</span>version<span style="color:#ff79c6">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;/</span>dependency<span style="color:#ff79c6">&gt;</span>
+</span></span></code></pre></div><h2 id="b-创建一个configurationproperties用于保存你的配置信息">b. 创建一个ConfigurationProperties用于保存你的配置信息</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#6272a4">// 自动获取配置文件中前缀为rocketmq的属性，把值传入对象参数
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>@ConfigurationProperties<span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;rocketmq&#34;</span><span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span>@Data
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">RocketMqConfigProperties</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 消费者GROUP
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">private</span> String consumerGroup <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;pushConsumer&#34;</span><span style="color:#ff79c6">;</span><span style="color:#6272a4">// 如果配置文件中配置了下面属性，则该默认属性会被覆盖
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// NameServer 地址
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">private</span> String namesrvAddr <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;127.0.0.1:9876&#34;</span><span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// topic
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">private</span> String topic <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;default&#34;</span><span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 生产者的组名
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">private</span> String producerGroup <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;default&#34;</span><span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span></code></pre></div><h2 id="c-创建一个autoconfiguration引用定义好的配置信息在autoconfiguration中实现所有starter应该完成的操作">c. 创建一个AutoConfiguration，引用定义好的配置信息；在AutoConfiguration中实现所有starter应该完成的操作</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>@Configuration
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// 使用RocketMqConfigProperties配置
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>@EnableConfigurationProperties<span style="color:#ff79c6">(</span>RocketMqConfigProperties<span style="color:#ff79c6">.</span><span style="color:#50fa7b">class</span><span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">RocketMqConfig</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    @Autowired
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> RocketMqConfigProperties rocketMqConfigProperties<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    @Bean
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 在该bean不存在的情况下此方法才会执行
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    @ConditionalOnMissingBean
+</span></span><span style="display:flex;"><span>    DefaultMQPushConsumer <span style="color:#50fa7b">getConsumer</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 创建bean
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#6272a4">// 赋值...
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">return</span> consumer<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    @Bean
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 在该bean不存在的情况下此方法才会执行
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    @ConditionalOnMissingBean
+</span></span><span style="display:flex;"><span>    MyMqProducer <span style="color:#50fa7b">getProducer</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 创建bean
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#6272a4">// 赋值...
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">return</span> producer<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span></code></pre></div><h2 id="d-暴露configuration">d. 暴露Configuration</h2>
+<p>这里有两种方式，一种是自动暴露，当其他工程集成该Starter后，可以直接使用Starter里的bean；还有一种是手动暴露，我们需要添加注解才能使用Starter里的bean</p>
+<h3 id="springfactories-自动暴露">spring.factories 自动暴露</h3>
+<p>在 resources 文件夹下新建目录 META-INF，在目录中新建 spring.factories 文件，并且在 spring.factories 中配置AutoConfiguration：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>org<span style="color:#ff79c6">.</span><span style="color:#50fa7b">springframework</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">boot</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">autoconfigure</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">EnableAutoConfiguration</span><span style="color:#ff79c6">=</span>com<span style="color:#ff79c6">.</span><span style="color:#50fa7b">springboot</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">conf</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">RocketMqConfig</span>
+</span></span></code></pre></div><p>用到了SPI机制，SpringBoot的SpringFactoriesLoader会加载spring.factories文件来发现对应的Configuration这些类注入到 IOC 容器中。</p>
+<p>使用这种方式，当其他工程集成该Starter后，可以直接使用Starter里的bean</p>
+<h3 id="import-手动暴露">@Import 手动暴露</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>@Target<span style="color:#ff79c6">(</span>ElementType<span style="color:#ff79c6">.</span><span style="color:#50fa7b">TYPE</span><span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span>@Retention<span style="color:#ff79c6">(</span>RetentionPolicy<span style="color:#ff79c6">.</span><span style="color:#50fa7b">RUNTIME</span><span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span>@Documented
+</span></span><span style="display:flex;"><span>@Import<span style="color:#ff79c6">(</span>RocketMqConfig<span style="color:#ff79c6">.</span><span style="color:#50fa7b">class</span><span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> @interface EnableRocketMq <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span></code></pre></div><p>@Import注解用来导入一个或多个class，这些类会注入到spring容器中，或者配置类，配置类里面定义的bean都会被spring容器托管。</p>
+<p>使用这种方式，当其他工程集成该Starter后，需要在启动时添加@EnableRocketMq，才能够使用Starter里的bean</p>
+<ol>
+<li>Spring Boot在启动时扫描项目所依赖的JAR包，</li>
+<li>寻找包含spring.factories文件的JAR包</li>
+<li>根据spring.factories配置加载AutoConfigure类</li>
+<li>自动配置并将Bean注入容器</li>
+</ol>
+<p><em>代码地址：</em></p>
+<p><a href="https://github.com/zntzhang/rocketmq-spring-boot-starter.git">https://github.com/zntzhang/rocketmq-spring-boot-starter.git</a></p>
+<p><em>参考文章：</em></p>
+<p><a href="https://zhuanlan.zhihu.com/p/150839717">springboot之自定义starter</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/151410665">springboot之自定义Enable注解</a></p>
+<p><a href="https://www.cnblogs.com/tjudzj/p/8758391.html">Spring Boot Starters是什么？</a></p>
+
+
+                
+                
+<div class="entry-shang text-center">
+    
+	    <p>「真诚赞赏，手留余香」</p>
+	
+	<button class="zs show-zs btn btn-bred">赞赏支持</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+	<div class="zs-modal-head">
+		<button type="button" class="close">×</button>
+		<span class="author"><a href="https://zntzhang.github.io/"><img src="/img/favicon.png" />zhangtao&#39;s Blog</a></span>
+        
+	        <p class="tip"><i></i><span>真诚赞赏，手留余香</span></p>
+		
+ 
+	</div>
+	<div class="zs-modal-body">
+		<div class="zs-modal-btns">
+			<button class="btn btn-blink" data-num="2">2元</button>
+			<button class="btn btn-blink" data-num="5">5元</button>
+			<button class="btn btn-blink" data-num="10">10元</button>
+			<button class="btn btn-blink" data-num="50">50元</button>
+			<button class="btn btn-blink" data-num="100">100元</button>
+			<button class="btn btn-blink" data-num="1">任意金额</button>
+		</div>
+		<div class="zs-modal-pay">
+			<button class="btn btn-bred" id="pay-text">2元</button>
+			<p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+			<img src="/img/reward/wechat-2.png"  id="pay-image"/>
+		</div>
+	</div>
+	<div class="zs-modal-footer">
+		<label><input type="radio" name="zs-type" value="wechat" class="zs-type" checked="checked"><span ><span class="zs-wechat"><img src="/img/reward/wechat-btn.png"/></span></label>
+		<label><input type="radio" name="zs-type" value="alipay" class="zs-type" class="zs-alipay"><img src="/img/reward/alipay-btn.png"/></span></label>
+	</div>
+</div>
+<script type="text/javascript" src="/js/reward.js"></script>
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/2020-07-27-%E6%80%BB%E7%BB%93%E8%87%AA%E5%B7%B1%E5%B8%B8%E7%94%A8%E7%9A%84jdk8%E5%86%99%E6%B3%95streamfunctionoptional/" data-toggle="tooltip" data-placement="top" title="总结自己常用的JDK8写法（stream,function,optional）">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/post/2020-08-03-jvm%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" data-toggle="tooltip" data-placement="top" title="JVM相关知识点总结">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/elasticsearch" title="elasticsearch">
+                            elasticsearch
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/es" title="es">
+                            es
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/java" title="java">
+                            java
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/jquery/js" title="jquery/js">
+                            jquery/js
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/linux" title="linux">
+                            linux
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/mq" title="mq">
+                            mq
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/mysql" title="mysql">
+                            mysql
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/netty" title="netty">
+                            netty
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/spring" title="spring">
+                            spring
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E4%BC%98%E5%8C%96" title="优化">
+                            优化
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E5%B9%B6%E5%8F%91" title="并发">
+                            并发
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93" title="数据库">
+                            数据库
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8" title="服务器">
+                            服务器
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F" title="设计模式">
+                            设计模式
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E9%94%81" title="锁">
+                            锁
+                        </a>
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="https://blog.csdn.net/qq_37221991">装睡的小5郎</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:zt931634776@163.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    <li>
+                        <a target="_blank" href="/18368494496">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/zntzhang">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; zhangtao&#39;s Blog 2023
+                   
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

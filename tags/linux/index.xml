@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>linux on zhangtao&#39;s Blog</title>
+    <link>https://zntzhang.github.io/tags/linux/</link>
+    <description>Recent content in linux on zhangtao&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 20 May 2022 15:07:28 +0000</lastBuildDate><atom:link href="https://zntzhang.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>github action使用</title>
+      <link>https://zntzhang.github.io/post/2022-05-20-github-action%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Fri, 20 May 2022 15:07:28 +0000</pubDate>
+      
+      <guid>https://zntzhang.github.io/post/2022-05-20-github-action%E4%BD%BF%E7%94%A8/</guid>
+      <description>当我们需要发布服务时，往往是怎么操作的？最古老的方法无非是本地打包，然后ssh到服务器上，上传新包，删除老包，执行脚本启动。这个过程自己操作</description>
+    </item>
+    
+    <item>
+      <title>高可用方案和一致性hash</title>
+      <link>https://zntzhang.github.io/post/2020-07-27-%E9%AB%98%E5%8F%AF%E7%94%A8%E6%96%B9%E6%A1%88%E5%92%8C%E4%B8%80%E8%87%B4%E6%80%A7hash/</link>
+      <pubDate>Mon, 27 Jul 2020 09:56:16 +0000</pubDate>
+      
+      <guid>https://zntzhang.github.io/post/2020-07-27-%E9%AB%98%E5%8F%AF%E7%94%A8%E6%96%B9%E6%A1%88%E5%92%8C%E4%B8%80%E8%87%B4%E6%80%A7hash/</guid>
+      <description>其实大部分中间件都逃不过这两种模式 这种模式的特点是有一Master多slave，一般采用读写分离的方式，只从master中写，然后同步给sl</description>
+    </item>
+    
+    <item>
+      <title>OOM、CPU飙升、Java进程被杀 线上故障分析</title>
+      <link>https://zntzhang.github.io/post/2020-07-27-oomcpu%E9%A3%99%E5%8D%87java%E8%BF%9B%E7%A8%8B%E8%A2%AB%E6%9D%80-%E7%BA%BF%E4%B8%8A%E6%95%85%E9%9A%9C%E5%88%86%E6%9E%90/</link>
+      <pubDate>Mon, 27 Jul 2020 09:55:11 +0000</pubDate>
+      
+      <guid>https://zntzhang.github.io/post/2020-07-27-oomcpu%E9%A3%99%E5%8D%87java%E8%BF%9B%E7%A8%8B%E8%A2%AB%E6%9D%80-%E7%BA%BF%E4%B8%8A%E6%95%85%E9%9A%9C%E5%88%86%E6%9E%90/</guid>
+      <description>关于OOM出现的情况，一般可以猜想是内存泄露，或者是加载了过多class或者创建了过多对象，给JVM分配的内存不够导致 dump分析 首先登陆机</description>
+    </item>
+    
+    <item>
+      <title>超详细，从零开始搭建阿里云服务器（centos7）第六章 安装Maven和RocketMq</title>
+      <link>https://zntzhang.github.io/post/2020-07-23-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%AE%89%E8%A3%85maven%E5%92%8Crocketmq/</link>
+      <pubDate>Thu, 23 Jul 2020 09:45:10 +0000</pubDate>
+      
+      <guid>https://zntzhang.github.io/post/2020-07-23-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%AE%89%E8%A3%85maven%E5%92%8Crocketmq/</guid>
+      <description>RocketMq是真的难搭，废了好多功夫才搭建完，碰到了好多坑，下面我把我吃到的坑记录下来 1. 安装Maven 1.1 下载maven wget http://mirrors.shu.edu.cn/apache/maven/maven-3/3.6.0/source/apache-maven-3.6.0-src.tar.gz 解压maven</description>
+    </item>
+    
+    <item>
+      <title>超详细，从零开始搭建阿里云服务器（centos7）第五章 安装mysql</title>
+      <link>https://zntzhang.github.io/post/2019-02-17-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E4%BA%94%E7%AB%A0-%E5%AE%89%E8%A3%85mysql/</link>
+      <pubDate>Sun, 17 Feb 2019 15:21:25 +0000</pubDate>
+      
+      <guid>https://zntzhang.github.io/post/2019-02-17-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E4%BA%94%E7%AB%A0-%E5%AE%89%E8%A3%85mysql/</guid>
+      <description>1.下载MySQL源安装包 wget http://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm 安装MySql源 yum -y install mysql57-community-release-el7-11.noarch.rpm 查看一下安装效果 yum repolist enabled | grep mysql.* 2.安装MySQL服务器 yum install mysql-community-server 中间会弹出是与否的选择，选择</description>
+    </item>
+    
+    <item>
+      <title>超详细，从零开始搭建阿里云服务器（centos7）第四章 安装tomcat</title>
+      <link>https://zntzhang.github.io/post/2019-02-13-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%AE%89%E8%A3%85tomcat/</link>
+      <pubDate>Wed, 13 Feb 2019 15:42:15 +0000</pubDate>
+      
+      <guid>https://zntzhang.github.io/post/2019-02-13-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%AE%89%E8%A3%85tomcat/</guid>
+      <description>下面到了最关键的一步，安装tomcat过程中也是不断地爬坑。。 1.下载并上传tomcat压缩包 跟上一章类似，不细说了，我安装在了/home/</description>
+    </item>
+    
+    <item>
+      <title>超详细，从零开始搭建阿里云服务器（centos7）第三章 安装jdk</title>
+      <link>https://zntzhang.github.io/post/2019-02-13-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AE%89%E8%A3%85jdk/</link>
+      <pubDate>Wed, 13 Feb 2019 13:56:09 +0000</pubDate>
+      
+      <guid>https://zntzhang.github.io/post/2019-02-13-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AE%89%E8%A3%85jdk/</guid>
+      <description>1.下载jdk 首先去oracle官网下载你所需要版本的jdk，我下的是jdk1.8 https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html 2.上传jdk到云服务器 上传文件的方式有很多，这里不细说</description>
+    </item>
+    
+    <item>
+      <title>超详细，从零开始搭建阿里云服务器（centos7）第二章 创建用户</title>
+      <link>https://zntzhang.github.io/post/2019-02-12-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7/</link>
+      <pubDate>Tue, 12 Feb 2019 17:31:14 +0000</pubDate>
+      
+      <guid>https://zntzhang.github.io/post/2019-02-12-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7/</guid>
+      <description>1.创建用户 远程连接完后而第一件事就是创建自己的用户，因为root用户是最高权限的超级管理员，生产上不可能使用它， adduser zntzhang 创建用户 passwd zntzhang 设置密码 这</description>
+    </item>
+    
+    <item>
+      <title>超详细，从零开始搭建阿里云服务器（centos7）第一章 远程连接</title>
+      <link>https://zntzhang.github.io/post/2019-02-12-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/</link>
+      <pubDate>Tue, 12 Feb 2019 16:57:54 +0000</pubDate>
+      
+      <guid>https://zntzhang.github.io/post/2019-02-12-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/</guid>
+      <description>博主前两天买了3年最低配的阿里云玩玩，这次写一个笔记记录下自己搭服务器所遇到的坑。 1.购买阿里云 首先在阿里云官网 https://www.al</description>
+    </item>
+    
+  </channel>
+</rss>

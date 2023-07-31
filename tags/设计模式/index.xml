@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>设计模式 on zhangtao&#39;s Blog</title>
+    <link>https://zntzhang.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+    <description>Recent content in 设计模式 on zhangtao&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 16 Aug 2022 21:04:57 +0000</lastBuildDate><atom:link href="https://zntzhang.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>设计模式之观察者模式</title>
+      <link>https://zntzhang.github.io/post/2022-08-16-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Tue, 16 Aug 2022 21:04:57 +0000</pubDate>
+      
+      <guid>https://zntzhang.github.io/post/2022-08-16-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</guid>
+      <description>观察者模式是我现在公司用的很广泛的一种设计模式，同时也十分好用，下面我推荐给大家 首先我们要明白为什么需要观察者模式，我们举个例子分析。比如我</description>
+    </item>
+    
+    <item>
+      <title>设计模式之单例模式</title>
+      <link>https://zntzhang.github.io/post/2020-02-25-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Tue, 25 Feb 2020 10:50:43 +0000</pubDate>
+      
+      <guid>https://zntzhang.github.io/post/2020-02-25-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</guid>
+      <description>1.定义 单例模式是Java中比较常见的创建型设计模式，他的核心是确保一个类在任何情况下都绝对只有一个实例，并提供一个全局访问点。 如何确保一个</description>
+    </item>
+    
+    <item>
+      <title>设计模式之简单工厂模式</title>
+      <link>https://zntzhang.github.io/post/2020-02-25-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Tue, 25 Feb 2020 10:49:49 +0000</pubDate>
+      
+      <guid>https://zntzhang.github.io/post/2020-02-25-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</guid>
+      <description>1.定义 属于类创建型模式。在简单工厂模式中，可以根据参数的不同返回不同类的实例。简单工厂模式专门定义一个类来负责创建其他类的实例，被创建的实</description>
+    </item>
+    
+  </channel>
+</rss>

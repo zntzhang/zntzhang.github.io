@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="zhangtao&#39;s Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="/img/post-bg-unix-linux.jpg">
+    <meta property="twitter:image" content="/img/post-bg-unix-linux.jpg" />
+    
+
+    
+    <meta name="title" content="从位运算理解位图，位掩码" />
+    <meta property="og:title" content="从位运算理解位图，位掩码" />
+    <meta property="twitter:title" content="从位运算理解位图，位掩码" />
+    
+
+    
+    <meta name="description" content="张涛，Java程序员, 爱好吉他，游泳，骑车 | 这里是 张涛的博客，与你一起发现更大的世界。">
+    <meta property="og:description" content="张涛，Java程序员, 爱好吉他，游泳，骑车 | 这里是 张涛的博客，与你一起发现更大的世界。" />
+    <meta property="twitter:description" content="张涛，Java程序员, 爱好吉他，游泳，骑车 | 这里是 张涛的博客，与你一起发现更大的世界。" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="张涛，Java程序员, 爱好吉他，游泳，骑车 | 这里是 张涛的博客，与你一起发现更大的世界。">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>从位运算理解位图，位掩码 | 张涛的博客 | zhangtao Blog</title>
+
+    <link rel="canonical" href="/post/2023-03-22-%E4%BB%8E%E4%BD%8D%E8%BF%90%E7%AE%97%E7%90%86%E8%A7%A3%E4%BD%8D%E5%9B%BE%E4%BD%8D%E6%8E%A9%E7%A0%81/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">zhangtao&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/life/">life</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/work/">work</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/archive//">ARCHIVE</a></li>
+                    
+                        <li><a href="/notes//">NOTES</a></li>
+                    
+                        <li><a href="/about//">ABOUT</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/post-bg-unix-linux.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/java" title="java">
+                            java
+                        </a>
+                        
+                        <a class="tag" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84" title="数据结构">
+                            数据结构
+                        </a>
+                        
+                        <a class="tag" href="/tags/java" title="java">
+                            java
+                        </a>
+                        
+                        <a class="tag" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84" title="数据结构">
+                            数据结构
+                        </a>
+                        
+                    </div>
+                    <h1>从位运算理解位图，位掩码</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                zhangtao
+                             
+                            on 
+                            Wednesday, March 22, 2023
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <p><em>位图是一种较难理解的数据结构，想了解位图，我需要先温习一下基础，复习下一些二进制的知识</em></p>
+<p>1个字节=8个二进制位</p>
+<p>二进制每逢二进一，下面是二进制对应的十进制转换方式</p>
+<h2 id="左移">左移</h2>
+<p>每个二进制位都向左移动一位 1 &lt;&lt; 1 移动前 0000 0001 移动后 0000 0010</p>
+<h2 id="右移">右移</h2>
+<p>每个二进制位都向右移动一位 1 &gt;&gt; 1 移动前 0000 0001 移动后 0000 0000</p>
+<h2 id="与运算">与运算</h2>
+<p>两个位都是1，结果为1。否则为0</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#bd93f9">0000</span> <span style="color:#bd93f9">0010</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ff79c6">&amp;</span><span style="color:#bd93f9">0000</span> <span style="color:#bd93f9">0011</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">=</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#bd93f9">0000</span> <span style="color:#bd93f9">0010</span>
+</span></span></code></pre></div><h2 id="或运算">或运算</h2>
+<p>两个位有一个以上是1，结果为1。否则为0</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#bd93f9">0000</span> <span style="color:#bd93f9">0010</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#ff79c6">|</span><span style="color:#bd93f9">0000</span> <span style="color:#bd93f9">0011</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#ff79c6">=</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#bd93f9">0000</span> <span style="color:#bd93f9">0011</span>
+</span></span></code></pre></div><p>位图的思想用利用每个二进制位的值来存储数据，优点是可以极大的节省空间</p>
+<p>我们举个例子。有 1 千万个整数，整数的范围在 1 到 1 亿之间。如何快速查找某个整数是否在这 1 千万个整数中呢？</p>
+<p>我们需要存储1000w个整数范围1-1亿之前的整数，用做已经使用过的数据。那么我们会选择怎么存储？我们可以使用hashSet来存储着1000w个数据，但是这样这个hashSet占据了4byte*1000w=<strong>40mb</strong></p>
+<p>我们试试用位图，假设我们用一亿个二进制位的数组表示位图，然后把每个数字放入位图。怎么放入呢，比如我们要放入4这个整数，那个我们就把数组第4个下标的值设置成1，以此类推。当我们要判断4是否存在，那么我们只需要取出下标为4的值判断是否为1，为1则存在了。</p>
+<p>例如 [0，0，0，0，1，1，0，0]，表示位图存储了2和3两个整数，这样我们只需要1亿个bit=<strong>12mb</strong>的内存</p>
+<p>我们还可以用另一种类似位图的理念，就是位掩码</p>
+<p>我们举一个场景，订单有各种异常状态，大概有几十个。如果我们把订单的各种异常都存储成各个字段的话，那么整个订单表异常的字段会变得非常多。</p>
+<p>我们可以使用一个long型运用位图的思想来存储。首先我们先约定各个异常对应的位图的位置，比如缺货异常是1，退款异常是2。如果一个订单标记了缺货和退款两个异常，那我们怎么来存储。首先没有异常情况是，这个字段二进制是0000(简写了，实际是64个二进制位)，</p>
+<p>这里有个数学公式，我们想要在第n位上标记成1，我们可以使用或运算 原值 | （1&lt;&lt;n） 的公式</p>
+<p>然后我们需要标记缺货异常，只需要0|1&lt;&lt;1 00000 | 0010 = 0010 (既 0 | 1&lt;&lt;1 = 0 | 2 = 2) 这样第一个位置就变成1了，然后我们要标记退款异常， 0010 | 0100 = 0110 (既 2 | 1&lt;&lt;2 = 2 | 4 = 6) 这样第二个位置也变成了1</p>
+<p>这样我们在订单表只需要存储一个字段，并存储为6就可以了</p>
+<p>这样存储怎么查询呢，如果我要查询有缺货异常的订单。我们已知缺货异常对应的二进制位数是1，我们只需要使用与运算</p>
+<p>例如 0110 &amp;&amp; 0010 = 0010 （既 6&amp;(1&lt;&lt;1)= 2）大于0则表示第一位是1，既有缺货异常</p>
+<p>0100 &amp;&amp; 0010 = 0000 （既 4&amp;(1&lt;&lt;1)= 0）=0表示第一位是0，既没有缺货异常</p>
+<p>我们会发现位图的大小会随着范围的变大而变大，回到之前的题目，如果有 1 千万个整数，整数的范围在 1 到 1 0亿之间。如何快速查找某个整数是否在这 1 千万个整数中呢？</p>
+<p>如果我们在使用位图就会发现我们需要使用一个10亿的二进制位来存储，那么则<strong>需要120mb</strong>的内存，内存占用反而比hashSet还要大。那么我们应该怎么办呢？</p>
+<p>不知道大家有没有了解过布隆过滤器这个数据结构。布隆过滤器正是为了解决上述的问题，它是位图的一种改进版。</p>
+<p>我们仍仅使用1亿个二进制位数组作为存储结构，然后对存储的值进行hash运算，运算后再对位图的大小进行取模，将对应位置设置为1。如果只有一个hash函数，那么冲突的概率还是很大的，比如1和1亿零1 对1亿取模都等于1，所以布隆过滤器会进行多个hash函数取模运算，并将这些位置都设置为1。经过多个hash函数的运算，hash冲突的概率会小很多。</p>
+<!-- raw HTML omitted -->
+<p>布隆过滤器会存在一定的误判率，当我们判断某个整数是否在这 1 千万个整数中，同样会对这个数字进行多次hash取模运算，如果这些位置上都是1，那么可以判断这个整数<strong>可能存在</strong>。<strong>如果这些位置上有0，但是可以判断这个整数肯定不存在</strong></p>
+
+
+                
+                
+<div class="entry-shang text-center">
+    
+	    <p>「真诚赞赏，手留余香」</p>
+	
+	<button class="zs show-zs btn btn-bred">赞赏支持</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+	<div class="zs-modal-head">
+		<button type="button" class="close">×</button>
+		<span class="author"><a href="https://zntzhang.github.io/"><img src="/img/favicon.png" />zhangtao&#39;s Blog</a></span>
+        
+	        <p class="tip"><i></i><span>真诚赞赏，手留余香</span></p>
+		
+ 
+	</div>
+	<div class="zs-modal-body">
+		<div class="zs-modal-btns">
+			<button class="btn btn-blink" data-num="2">2元</button>
+			<button class="btn btn-blink" data-num="5">5元</button>
+			<button class="btn btn-blink" data-num="10">10元</button>
+			<button class="btn btn-blink" data-num="50">50元</button>
+			<button class="btn btn-blink" data-num="100">100元</button>
+			<button class="btn btn-blink" data-num="1">任意金额</button>
+		</div>
+		<div class="zs-modal-pay">
+			<button class="btn btn-bred" id="pay-text">2元</button>
+			<p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+			<img src="/img/reward/wechat-2.png"  id="pay-image"/>
+		</div>
+	</div>
+	<div class="zs-modal-footer">
+		<label><input type="radio" name="zs-type" value="wechat" class="zs-type" checked="checked"><span ><span class="zs-wechat"><img src="/img/reward/wechat-btn.png"/></span></label>
+		<label><input type="radio" name="zs-type" value="alipay" class="zs-type" class="zs-alipay"><img src="/img/reward/alipay-btn.png"/></span></label>
+	</div>
+</div>
+<script type="text/javascript" src="/js/reward.js"></script>
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/2022-12-23-%E4%BC%98%E9%9B%85%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5--canal%E5%AE%9E%E7%8E%B0mysql%E5%90%8C%E6%AD%A5demo/" data-toggle="tooltip" data-placement="top" title="优雅数据同步--canal实现mysql同步demo">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/post/2023-04-25-%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Aoom%E6%8E%92%E6%9F%A5%E8%BF%87%E7%A8%8B/" data-toggle="tooltip" data-placement="top" title="记一次线上oom排查过程">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/elasticsearch" title="elasticsearch">
+                            elasticsearch
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/es" title="es">
+                            es
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/java" title="java">
+                            java
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/jquery/js" title="jquery/js">
+                            jquery/js
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/linux" title="linux">
+                            linux
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/mq" title="mq">
+                            mq
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/mysql" title="mysql">
+                            mysql
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/netty" title="netty">
+                            netty
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/spring" title="spring">
+                            spring
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E4%BC%98%E5%8C%96" title="优化">
+                            优化
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E5%B9%B6%E5%8F%91" title="并发">
+                            并发
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93" title="数据库">
+                            数据库
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8" title="服务器">
+                            服务器
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F" title="设计模式">
+                            设计模式
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E9%94%81" title="锁">
+                            锁
+                        </a>
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="https://blog.csdn.net/qq_37221991">装睡的小5郎</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:zt931634776@163.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    <li>
+                        <a target="_blank" href="/18368494496">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/zntzhang">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; zhangtao&#39;s Blog 2023
+                   
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

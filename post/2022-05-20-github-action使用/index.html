@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="zhangtao&#39;s Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="/img/post-bg-unix-linux.jpg">
+    <meta property="twitter:image" content="/img/post-bg-unix-linux.jpg" />
+    
+
+    
+    <meta name="title" content="github action使用" />
+    <meta property="og:title" content="github action使用" />
+    <meta property="twitter:title" content="github action使用" />
+    
+
+    
+    <meta name="description" content="张涛，Java程序员, 爱好吉他，游泳，骑车 | 这里是 张涛的博客，与你一起发现更大的世界。">
+    <meta property="og:description" content="张涛，Java程序员, 爱好吉他，游泳，骑车 | 这里是 张涛的博客，与你一起发现更大的世界。" />
+    <meta property="twitter:description" content="张涛，Java程序员, 爱好吉他，游泳，骑车 | 这里是 张涛的博客，与你一起发现更大的世界。" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="张涛，Java程序员, 爱好吉他，游泳，骑车 | 这里是 张涛的博客，与你一起发现更大的世界。">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>github action使用 | 张涛的博客 | zhangtao Blog</title>
+
+    <link rel="canonical" href="/post/2022-05-20-github-action%E4%BD%BF%E7%94%A8/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">zhangtao&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/life/">life</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/work/">work</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/archive//">ARCHIVE</a></li>
+                    
+                        <li><a href="/notes//">NOTES</a></li>
+                    
+                        <li><a href="/about//">ABOUT</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/post-bg-unix-linux.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/linux" title="linux">
+                            linux
+                        </a>
+                        
+                        <a class="tag" href="/tags/github" title="github">
+                            github
+                        </a>
+                        
+                        <a class="tag" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8" title="服务器">
+                            服务器
+                        </a>
+                        
+                        <a class="tag" href="/tags/ssh" title="ssh">
+                            ssh
+                        </a>
+                        
+                    </div>
+                    <h1>github action使用</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                zhangtao
+                             
+                            on 
+                            Friday, May 20, 2022
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <p><em>当我们需要发布服务时，往往是怎么操作的？最古老的方法无非是本地打包，然后ssh到服务器上，上传新包，删除老包，执行脚本启动。这个过程自己操作起来十分复杂，而且容易出错。 后来我们了解到，可以通过一些持续集成工具比如Jekins来运行脚本进行打包上传到服务器。但是还是不够便捷，有什么方法可以更便捷？</em></p>
+<p>下面就引出这次使用的新工具，github的action工具。它的功能十分强大，我这边只介绍它的一部分功能来帮我实现CICD。当我提交代码合并到某个分支后，github action就可以自动帮我拉下代码打包，上传新包，删除老包，执行脚本启动。所有操作都不需要我来做，action的脚本自动帮我搞定，是不是很强大</p>
+<p>下面我贴一段脚本，大部分语句相信大家都看得懂，其中${</p>
+<!-- raw HTML omitted -->
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">on:</span>
+</span></span><span style="display:flex;"><span>  push<span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>    branches<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">[</span> master <span style="color:#ff79c6">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">jobs:</span>
+</span></span><span style="display:flex;"><span>  build<span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>    runs<span style="color:#ff79c6">-</span>on<span style="color:#ff79c6">:</span> ubuntu<span style="color:#ff79c6">-</span>latest
+</span></span><span style="display:flex;"><span>    steps<span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">-</span> uses<span style="color:#ff79c6">:</span> actions<span style="color:#ff79c6">/</span>checkout@v2
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">-</span> name<span style="color:#ff79c6">:</span> Set up JDK <span style="color:#bd93f9">1.8</span>
+</span></span><span style="display:flex;"><span>        # 这里使用java11的环境<span style="color:#ff79c6">,</span> 其他项目在github action中找到对应的语言环境就行
+</span></span><span style="display:flex;"><span>        uses<span style="color:#ff79c6">:</span> actions<span style="color:#ff79c6">/</span>setup<span style="color:#ff79c6">-</span>java@v1
+</span></span><span style="display:flex;"><span>        with<span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>          java<span style="color:#ff79c6">-</span>version<span style="color:#ff79c6">:</span> <span style="color:#bd93f9">1.8</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">-</span> name<span style="color:#ff79c6">:</span> Build with Maven
+</span></span><span style="display:flex;"><span>        # 这里maven的打包命令<span style="color:#ff79c6">,</span> 其他项目修改为对应的打包命令
+</span></span><span style="display:flex;"><span>        run<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">|</span>
+</span></span><span style="display:flex;"><span>          mvn <span style="color:#ff79c6">package</span>
+</span></span><span style="display:flex;"><span>      - name<span style="color:#ff79c6">:</span> scp jar upload cloud server
+</span></span><span style="display:flex;"><span>        uses<span style="color:#ff79c6">:</span> kostya<span style="color:#ff79c6">-</span>ten<span style="color:#ff79c6">/</span>ssh<span style="color:#ff79c6">-</span>server<span style="color:#ff79c6">-</span>deploy@v4
+</span></span><span style="display:flex;"><span>        with<span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>          scp_source<span style="color:#ff79c6">:</span> target<span style="color:#ff79c6">/</span>jiajiawork3<span style="color:#ff79c6">-</span><span style="color:#bd93f9">0.0.1</span><span style="color:#ff79c6">-</span>SNAPSHOT<span style="color:#ff79c6">.</span><span style="color:#50fa7b">jar</span>
+</span></span><span style="display:flex;"><span>          scp_target<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">/</span>home<span style="color:#ff79c6">/</span>zntzhang
+</span></span><span style="display:flex;"><span>          host<span style="color:#ff79c6">:</span> $<span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#ff79c6">{</span>secrets<span style="color:#ff79c6">.</span><span style="color:#50fa7b">SERVER_IP</span><span style="color:#ff79c6">}}</span>
+</span></span><span style="display:flex;"><span>          username<span style="color:#ff79c6">:</span> zntzhang
+</span></span><span style="display:flex;"><span>          password<span style="color:#ff79c6">:</span> $<span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#ff79c6">{</span>secrets<span style="color:#ff79c6">.</span><span style="color:#50fa7b">SERVER_PWD</span><span style="color:#ff79c6">}}</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">-</span> name<span style="color:#ff79c6">:</span> Deploy to cloud server
+</span></span><span style="display:flex;"><span>        uses<span style="color:#ff79c6">:</span> appleboy<span style="color:#ff79c6">/</span>ssh<span style="color:#ff79c6">-</span>action@master
+</span></span><span style="display:flex;"><span>        with<span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>          host<span style="color:#ff79c6">:</span> $<span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#ff79c6">{</span>secrets<span style="color:#ff79c6">.</span><span style="color:#50fa7b">SERVER_IP</span><span style="color:#ff79c6">}}</span>
+</span></span><span style="display:flex;"><span>          username<span style="color:#ff79c6">:</span> zntzhang
+</span></span><span style="display:flex;"><span>          password<span style="color:#ff79c6">:</span> $<span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#ff79c6">{</span>secrets<span style="color:#ff79c6">.</span><span style="color:#50fa7b">SERVER_PWD</span><span style="color:#ff79c6">}}</span>
+</span></span><span style="display:flex;"><span>          port<span style="color:#ff79c6">:</span> <span style="color:#bd93f9">22</span>
+</span></span><span style="display:flex;"><span>          script<span style="color:#ff79c6">:</span> cd <span style="color:#ff79c6">/</span>home<span style="color:#ff79c6">/</span>zntzhang<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>                  ps <span style="color:#ff79c6">-</span>ef <span style="color:#ff79c6">|</span> grep jiajiawork3<span style="color:#ff79c6">-</span><span style="color:#bd93f9">0.0.1</span><span style="color:#ff79c6">-</span>SNAPSHOT<span style="color:#ff79c6">.</span><span style="color:#50fa7b">jar</span> <span style="color:#ff79c6">|</span> grep <span style="color:#ff79c6">-</span>v grep <span style="color:#ff79c6">|</span> awk &#39;<span style="color:#ff79c6">{</span>print $2<span style="color:#ff79c6">}</span>&#39; <span style="color:#ff79c6">|</span> xargs kill <span style="color:#ff79c6">-</span><span style="color:#bd93f9">9</span><span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>                  source <span style="color:#ff79c6">/</span>etc<span style="color:#ff79c6">/</span>profile<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>                  nohup java <span style="color:#ff79c6">-</span>jar jiajiawork3<span style="color:#ff79c6">-</span><span style="color:#bd93f9">0.0.1</span><span style="color:#ff79c6">-</span>SNAPSHOT<span style="color:#ff79c6">.</span><span style="color:#50fa7b">jar</span> <span style="color:#ff79c6">&gt;</span> jiajiawork3<span style="color:#ff79c6">.</span><span style="color:#50fa7b">log</span> <span style="color:#bd93f9">2</span><span style="color:#ff79c6">&gt;&amp;</span><span style="color:#bd93f9">1</span> <span style="color:#ff79c6">&amp;</span>
+</span></span></code></pre></div>
+
+                
+                
+<div class="entry-shang text-center">
+    
+	    <p>「真诚赞赏，手留余香」</p>
+	
+	<button class="zs show-zs btn btn-bred">赞赏支持</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+	<div class="zs-modal-head">
+		<button type="button" class="close">×</button>
+		<span class="author"><a href="https://zntzhang.github.io/"><img src="/img/favicon.png" />zhangtao&#39;s Blog</a></span>
+        
+	        <p class="tip"><i></i><span>真诚赞赏，手留余香</span></p>
+		
+ 
+	</div>
+	<div class="zs-modal-body">
+		<div class="zs-modal-btns">
+			<button class="btn btn-blink" data-num="2">2元</button>
+			<button class="btn btn-blink" data-num="5">5元</button>
+			<button class="btn btn-blink" data-num="10">10元</button>
+			<button class="btn btn-blink" data-num="50">50元</button>
+			<button class="btn btn-blink" data-num="100">100元</button>
+			<button class="btn btn-blink" data-num="1">任意金额</button>
+		</div>
+		<div class="zs-modal-pay">
+			<button class="btn btn-bred" id="pay-text">2元</button>
+			<p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+			<img src="/img/reward/wechat-2.png"  id="pay-image"/>
+		</div>
+	</div>
+	<div class="zs-modal-footer">
+		<label><input type="radio" name="zs-type" value="wechat" class="zs-type" checked="checked"><span ><span class="zs-wechat"><img src="/img/reward/wechat-btn.png"/></span></label>
+		<label><input type="radio" name="zs-type" value="alipay" class="zs-type" class="zs-alipay"><img src="/img/reward/alipay-btn.png"/></span></label>
+	</div>
+</div>
+<script type="text/javascript" src="/js/reward.js"></script>
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/2022-04-15-%E5%85%AC%E5%8F%B8open-api%E5%AF%B9%E6%8E%A5%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" data-toggle="tooltip" data-placement="top" title="公司open api对接遇到的问题解决">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/post/2022-06-08-threadlocal%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E6%88%98/" data-toggle="tooltip" data-placement="top" title="ThreadLocal原理与实战">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/elasticsearch" title="elasticsearch">
+                            elasticsearch
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/es" title="es">
+                            es
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/java" title="java">
+                            java
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/jquery/js" title="jquery/js">
+                            jquery/js
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/linux" title="linux">
+                            linux
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/mq" title="mq">
+                            mq
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/mysql" title="mysql">
+                            mysql
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/netty" title="netty">
+                            netty
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/spring" title="spring">
+                            spring
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E4%BC%98%E5%8C%96" title="优化">
+                            优化
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E5%B9%B6%E5%8F%91" title="并发">
+                            并发
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93" title="数据库">
+                            数据库
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8" title="服务器">
+                            服务器
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F" title="设计模式">
+                            设计模式
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E9%94%81" title="锁">
+                            锁
+                        </a>
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="https://blog.csdn.net/qq_37221991">装睡的小5郎</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:zt931634776@163.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    <li>
+                        <a target="_blank" href="/18368494496">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/zntzhang">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; zhangtao&#39;s Blog 2023
+                   
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="zhangtao&#39;s Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="/img/post-bg-unix-linux.jpg">
+    <meta property="twitter:image" content="/img/post-bg-unix-linux.jpg" />
+    
+
+    
+    <meta name="title" content="ThreadLocal原理与实战" />
+    <meta property="og:title" content="ThreadLocal原理与实战" />
+    <meta property="twitter:title" content="ThreadLocal原理与实战" />
+    
+
+    
+    <meta name="description" content="张涛，Java程序员, 爱好吉他，游泳，骑车 | 这里是 张涛的博客，与你一起发现更大的世界。">
+    <meta property="og:description" content="张涛，Java程序员, 爱好吉他，游泳，骑车 | 这里是 张涛的博客，与你一起发现更大的世界。" />
+    <meta property="twitter:description" content="张涛，Java程序员, 爱好吉他，游泳，骑车 | 这里是 张涛的博客，与你一起发现更大的世界。" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="张涛，Java程序员, 爱好吉他，游泳，骑车 | 这里是 张涛的博客，与你一起发现更大的世界。">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>ThreadLocal原理与实战 | 张涛的博客 | zhangtao Blog</title>
+
+    <link rel="canonical" href="/post/2022-06-08-threadlocal%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E6%88%98/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">zhangtao&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/life/">life</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/work/">work</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/archive//">ARCHIVE</a></li>
+                    
+                        <li><a href="/notes//">NOTES</a></li>
+                    
+                        <li><a href="/about//">ABOUT</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/post-bg-unix-linux.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/java" title="java">
+                            java
+                        </a>
+                        
+                        <a class="tag" href="/tags/java" title="java">
+                            java
+                        </a>
+                        
+                    </div>
+                    <h1>ThreadLocal原理与实战</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                zhangtao
+                             
+                            on 
+                            Wednesday, June 8, 2022
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <p><em>ThreadLocal我会将其解释为线程上下文变量，当我们想要在方法间传递参数，又不想很挫的将每个方法都参数列表都加上这个参数时，可以使用它来帮助我们隐式传递参数</em></p>
+<p>每个线程Thread都有一个ThreadLocalMap，ThreadLocal是这个Map的工具类。当我们通过ThreadLocal存放数据时，这个Map会添加一条记录。这条记录的key存放的是这个ThreadLocal的引用,value存的是缓存的数据（多个ThreadLocal存储不同的数据，这样这个Map就会有很多记录）</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/6f174e215d2e4931b8ccd2a3823d8695.jpeg" alt="img">
+
+</p>
+<p>我们来看下ThreadLocal的源码</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">ThreadLocal</span><span style="color:#ff79c6">&lt;</span>T<span style="color:#ff79c6">&gt;</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// ThreadLocal#set
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">set</span><span style="color:#ff79c6">(</span>T value<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>            Thread t <span style="color:#ff79c6">=</span> Thread<span style="color:#ff79c6">.</span><span style="color:#50fa7b">currentThread</span><span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 获取当前线程的ThreadLocalMap
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>            ThreadLocalMap map <span style="color:#ff79c6">=</span> getMap<span style="color:#ff79c6">(</span>t<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> <span style="color:#ff79c6">(</span>map <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span><span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 调用ThreadLocalMap#set,如果ThreadLocalMap不会空，则设置值，key为当前的ThreadLocal对象
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                map<span style="color:#ff79c6">.</span><span style="color:#50fa7b">set</span><span style="color:#ff79c6">(</span><span style="color:#ff79c6">this</span><span style="color:#ff79c6">,</span> value<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">else</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// ThreadLocalMap为空，则初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                createMap<span style="color:#ff79c6">(</span>t<span style="color:#ff79c6">,</span> value<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>         <span style="color:#6272a4">// ThreadLocal#get
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#8be9fd;font-style:italic">public</span> T <span style="color:#50fa7b">get</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>            Thread t <span style="color:#ff79c6">=</span> Thread<span style="color:#ff79c6">.</span><span style="color:#50fa7b">currentThread</span><span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 获取当前线程的ThreadLocalMap
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>            ThreadLocalMap map <span style="color:#ff79c6">=</span> getMap<span style="color:#ff79c6">(</span>t<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> <span style="color:#ff79c6">(</span>map <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span><span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 调用ThreadLocalMap#getEntry,this即当前的ThreadLocal对象，返回vlue
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                ThreadLocalMap<span style="color:#ff79c6">.</span><span style="color:#50fa7b">Entry</span> e <span style="color:#ff79c6">=</span> map<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getEntry</span><span style="color:#ff79c6">(</span><span style="color:#ff79c6">this</span><span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">if</span> <span style="color:#ff79c6">(</span>e <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span><span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>                    @SuppressWarnings<span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;unchecked&#34;</span><span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span>                    T result <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">(</span>T<span style="color:#ff79c6">)</span>e<span style="color:#ff79c6">.</span><span style="color:#50fa7b">value</span><span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">return</span> result<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 如果获取不到值，会调用初始化方法
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>            <span style="color:#ff79c6">return</span> setInitialValue<span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// ThreadLocalMap 每个Thread对象中都包含了一个ThreadLocalMap 
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>         <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">ThreadLocalMap</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// key是弱引用（指向当前ThreadLocal对象）如果这个ThreadLocal对象除了entry中的这个弱引用之外，没有其他强引用的话(e.g threadLocal == null)，
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>            <span style="color:#6272a4">// 这个ThreadLocal对象仍然可以回收，避免了无法回收。回收之后这个entry中的key为null,后续通过调用get/remove方法清除entry
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>			<span style="color:#6272a4">// 但是基本上我们threadLocal都是静态变量修饰的，不会出现没有其他引用的情况，所以很鸡肋
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>            <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Entry</span> <span style="color:#8be9fd;font-style:italic">extends</span> WeakReference<span style="color:#ff79c6">&lt;</span>ThreadLocal<span style="color:#ff79c6">&lt;?&gt;&gt;</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>                Object value<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                Entry<span style="color:#ff79c6">(</span>ThreadLocal<span style="color:#ff79c6">&lt;?&gt;</span> k<span style="color:#ff79c6">,</span> Object v<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>                    <span style="color:#8be9fd;font-style:italic">super</span><span style="color:#ff79c6">(</span>k<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>                    value <span style="color:#ff79c6">=</span> v<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 数组
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>            <span style="color:#8be9fd;font-style:italic">private</span> Entry<span style="color:#ff79c6">[]</span> table<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// ThreadLocalMap#set
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>            <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">set</span><span style="color:#ff79c6">(</span>ThreadLocal<span style="color:#ff79c6">&lt;?&gt;</span> key<span style="color:#ff79c6">,</span> Object value<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                Entry<span style="color:#ff79c6">[]</span> tab <span style="color:#ff79c6">=</span> table<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd">int</span> len <span style="color:#ff79c6">=</span> tab<span style="color:#ff79c6">.</span><span style="color:#50fa7b">length</span><span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 计算hash值取模，既数组中的位置    &amp; (table.length - 1) 相当于 %table.length 
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                <span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> key<span style="color:#ff79c6">.</span><span style="color:#50fa7b">threadLocalHashCode</span> <span style="color:#ff79c6">&amp;</span> <span style="color:#ff79c6">(</span>len<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span><span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">for</span> <span style="color:#ff79c6">(</span>Entry e <span style="color:#ff79c6">=</span> tab<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">];</span>
+</span></span><span style="display:flex;"><span>                    e <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span><span style="color:#ff79c6">;</span> <span style="color:#6272a4">// for循环，当数组这个位置没有entry值时，跳出循环
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                    e <span style="color:#ff79c6">=</span> tab<span style="color:#ff79c6">[</span>i <span style="color:#ff79c6">=</span> nextIndex<span style="color:#ff79c6">(</span>i<span style="color:#ff79c6">,</span> len<span style="color:#ff79c6">)])</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 如果有值，说明可能出现两种情况（1、与entry中的key相同，直接覆盖 2、不相同，说明hash冲突了，则继续遍历下一个位置）
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                    ThreadLocal<span style="color:#ff79c6">&lt;?&gt;</span> k <span style="color:#ff79c6">=</span> e<span style="color:#ff79c6">.</span><span style="color:#50fa7b">get</span><span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#6272a4">// entry中的key相同，直接覆盖
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                    <span style="color:#ff79c6">if</span> <span style="color:#ff79c6">(</span>k <span style="color:#ff79c6">==</span> key<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>                        e<span style="color:#ff79c6">.</span><span style="color:#50fa7b">value</span> <span style="color:#ff79c6">=</span> value<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#ff79c6">return</span><span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">if</span> <span style="color:#ff79c6">(</span>k <span style="color:#ff79c6">==</span> <span style="color:#ff79c6">null</span><span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>                        replaceStaleEntry<span style="color:#ff79c6">(</span>key<span style="color:#ff79c6">,</span> value<span style="color:#ff79c6">,</span> i<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#ff79c6">return</span><span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 当数组这个位置没有entry值时,把key,value封装成entry放入数组中
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                tab<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Entry<span style="color:#ff79c6">(</span>key<span style="color:#ff79c6">,</span> value<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 数组size+1
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                <span style="color:#8be9fd">int</span> sz <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">++</span>size<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">if</span> <span style="color:#ff79c6">(!</span>cleanSomeSlots<span style="color:#ff79c6">(</span>i<span style="color:#ff79c6">,</span> sz<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">&amp;&amp;</span> sz <span style="color:#ff79c6">&gt;=</span> threshold<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span>                    rehash<span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// ThreadLocalMap#getEntry
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>            <span style="color:#8be9fd;font-style:italic">private</span> Entry <span style="color:#50fa7b">getEntry</span><span style="color:#ff79c6">(</span>ThreadLocal<span style="color:#ff79c6">&lt;?&gt;</span> key<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 计算hash值取模，既数组中的位置
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                <span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> key<span style="color:#ff79c6">.</span><span style="color:#50fa7b">threadLocalHashCode</span> <span style="color:#ff79c6">&amp;</span> <span style="color:#ff79c6">(</span>table<span style="color:#ff79c6">.</span><span style="color:#50fa7b">length</span> <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">1</span><span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>                Entry e <span style="color:#ff79c6">=</span> table<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">];</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 如果这个键值对的key不等于空（没有被回收）,则返回这个键值对
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                <span style="color:#ff79c6">if</span> <span style="color:#ff79c6">(</span>e <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span> <span style="color:#ff79c6">&amp;&amp;</span> e<span style="color:#ff79c6">.</span><span style="color:#50fa7b">get</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">==</span> key<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">return</span> e<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">else</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#6272a4">// key等于空(key被回收了)则会对entry进行回收
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                    <span style="color:#ff79c6">return</span> getEntryAfterMiss<span style="color:#ff79c6">(</span>key<span style="color:#ff79c6">,</span> i<span style="color:#ff79c6">,</span> e<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
+</span></span></code></pre></div><ul>
+<li>
+<p>内存泄漏 使用线程池时，线程不会销毁，threadLocal中的值仍然存在</p>
+</li>
+<li>
+<p>数据污染 使用线程池时，这个线程被重复利用。上一次的值没有清，导致这一次会取到上一次的结果</p>
+</li>
+<li>
+<p>不支持父子线程之间使用</p>
+</li>
+<li>
+<p>使用完调用remove方法，且尽量在try-finally块中回收</p>
+</li>
+<li>
+<p>支持父子线程的ThreadLocal InheritableThreadLocal 阿里ttl</p>
+</li>
+<li>
+<p>用户信息</p>
+</li>
+<li>
+<p>链路id</p>
+</li>
+<li>
+<p>业务方法上下文共用的一些参数</p>
+</li>
+</ul>
+<p>下面我记录下我使用threadLocal用过的场景和碰到过的坑</p>
+<h5 id="接口优化">接口优化</h5>
+<p>我在公司项目中用threadLocal做过一个优化，在优化后置打印订单这个接口时发现，整个接口上下文有多次重复根据id去数据库查询订单的代码，于是我使用threadLocal缓存订单数据进行复用,跨方法进行传递这些对象会比较方便</p>
+<p>我是这么设计的，首先我们来定义这个ThreadLocal对象具体存放的值，理论上这个值就是我们需要缓存的订单，但是为了避免出现ThreadLocal串数据的情况（双保险，为了避免没有remove的情况），我定义了一个map，key是订单的id。后续从threadlocal中拿订单时，是根据id来捞，如果串数据了，那么查到的数据则为空（空的话需要从数据库查一次），这样就能尽量避免使用threadLocal产生的风险。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#6272a4">// 伪代码
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">final</span> ThreadLocal<span style="color:#ff79c6">&lt;</span>TradePostPrintContext<span style="color:#ff79c6">&gt;</span> TRADE_POST_PRINT_CONTEXT <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> ThreadLocal<span style="color:#ff79c6">&lt;&gt;();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">TradePostPrintContext</span> <span style="color:#8be9fd;font-style:italic">implements</span> Serializable <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">    * 订单
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">    */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> Map<span style="color:#ff79c6">&lt;</span>Long<span style="color:#ff79c6">,</span> Trade<span style="color:#ff79c6">&gt;</span> sid2TradeMap<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>main<span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">try</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>        method1<span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">...</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">...</span>
+</span></span><span style="display:flex;"><span>        method2<span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span> <span style="color:#ff79c6">finally</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>        TRADE_POST_PRINT_CONTEXT<span style="color:#ff79c6">.</span><span style="color:#50fa7b">remove</span><span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>method1<span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>    Map<span style="color:#ff79c6">&lt;</span>Long<span style="color:#ff79c6">,</span> Trade<span style="color:#ff79c6">&gt;</span> sid2TradeMap <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> HashMap<span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span>    sid2TradeMap<span style="color:#ff79c6">.</span><span style="color:#50fa7b">put</span><span style="color:#ff79c6">(</span><span style="color:#bd93f9">1</span><span style="color:#ff79c6">,</span> <span style="color:#ff79c6">new</span> Trade<span style="color:#ff79c6">())</span>
+</span></span><span style="display:flex;"><span>    TRADE_POST_PRINT_CONTEXT<span style="color:#ff79c6">.</span><span style="color:#50fa7b">set</span><span style="color:#ff79c6">(</span><span style="color:#ff79c6">new</span> TradePostPrintContext<span style="color:#ff79c6">(</span>sid2TradeMap<span style="color:#ff79c6">));</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>method2<span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>    TradePostPrintContext context <span style="color:#ff79c6">=</span> TRADE_POST_PRINT_CONTEXT<span style="color:#ff79c6">.</span><span style="color:#50fa7b">get</span><span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span>     Map<span style="color:#ff79c6">&lt;</span>Long<span style="color:#ff79c6">,</span> Trade<span style="color:#ff79c6">&gt;</span> sid2TradeMap <span style="color:#ff79c6">=</span> context<span style="color:#ff79c6">.</span><span style="color:#50fa7b">sid2TradeMap</span><span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>    Trade <span style="color:#ff79c6">=</span> sid2TradeMap<span style="color:#ff79c6">.</span><span style="color:#50fa7b">get</span><span style="color:#ff79c6">(</span><span style="color:#bd93f9">1</span><span style="color:#ff79c6">)</span> <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span> <span style="color:#ff79c6">?</span> sid2TradeMap<span style="color:#ff79c6">.</span><span style="color:#50fa7b">get</span><span style="color:#ff79c6">(</span><span style="color:#bd93f9">1</span><span style="color:#ff79c6">)</span> <span style="color:#ff79c6">:</span> queryDb<span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span></code></pre></div><h5 id="mybatisplus的pagehelper踩坑">mybatisPlus的pageHelper踩坑</h5>
+<p>首先碰到的坑是这样的，首先代码执行了一个查询数据库的方法，但是这个方法是不分页的，方法里并没有进行分页（pageHelper）的配置。执行到这个方法的时却无缘无故调用了分页的相关sql。 然后我开始观察PageHelper的源码发现，分页配置是放在ThreadLocal中的。于是我猜测是threadLocal使用完没有remove导致的。后面我看到当查询执行完毕，会调用销毁ThreadLocal的方法，照理说不会出现问题，但是会出现一种场景，就是当我们他通过pageHelper设置完page后，没有调用查询方法，方法直接结束了，这样ThreadLocal就不会进入销毁的逻辑。后面这个线程被重复利用。因为上一次分页没有清，导致这一次原本没有分页的查询会进行分页</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">protected</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">final</span> ThreadLocal<span style="color:#ff79c6">&lt;</span>Page<span style="color:#ff79c6">&gt;</span> LOCAL_PAGE <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> ThreadLocal<span style="color:#ff79c6">&lt;</span>Page<span style="color:#ff79c6">&gt;();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>PageHelper<span style="color:#ff79c6">.</span><span style="color:#50fa7b">setPage</span><span style="color:#ff79c6">(</span><span style="color:#bd93f9">1</span><span style="color:#ff79c6">,</span><span style="color:#bd93f9">10</span><span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> <span style="color:#ff79c6">(</span>param <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span><span style="color:#ff79c6">){</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>    list <span style="color:#ff79c6">=</span> userMapper<span style="color:#ff79c6">.</span><span style="color:#50fa7b">selectIf</span><span style="color:#ff79c6">(</span>param<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span> <span style="color:#ff79c6">else</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// param为空，没有进行查询，分页信息不会清除
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    list <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> ArrayList<span style="color:#ff79c6">&lt;</span>User<span style="color:#ff79c6">&gt;();</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span></code></pre></div>
+
+                
+                
+<div class="entry-shang text-center">
+    
+	    <p>「真诚赞赏，手留余香」</p>
+	
+	<button class="zs show-zs btn btn-bred">赞赏支持</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+	<div class="zs-modal-head">
+		<button type="button" class="close">×</button>
+		<span class="author"><a href="https://zntzhang.github.io/"><img src="/img/favicon.png" />zhangtao&#39;s Blog</a></span>
+        
+	        <p class="tip"><i></i><span>真诚赞赏，手留余香</span></p>
+		
+ 
+	</div>
+	<div class="zs-modal-body">
+		<div class="zs-modal-btns">
+			<button class="btn btn-blink" data-num="2">2元</button>
+			<button class="btn btn-blink" data-num="5">5元</button>
+			<button class="btn btn-blink" data-num="10">10元</button>
+			<button class="btn btn-blink" data-num="50">50元</button>
+			<button class="btn btn-blink" data-num="100">100元</button>
+			<button class="btn btn-blink" data-num="1">任意金额</button>
+		</div>
+		<div class="zs-modal-pay">
+			<button class="btn btn-bred" id="pay-text">2元</button>
+			<p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+			<img src="/img/reward/wechat-2.png"  id="pay-image"/>
+		</div>
+	</div>
+	<div class="zs-modal-footer">
+		<label><input type="radio" name="zs-type" value="wechat" class="zs-type" checked="checked"><span ><span class="zs-wechat"><img src="/img/reward/wechat-btn.png"/></span></label>
+		<label><input type="radio" name="zs-type" value="alipay" class="zs-type" class="zs-alipay"><img src="/img/reward/alipay-btn.png"/></span></label>
+	</div>
+</div>
+<script type="text/javascript" src="/js/reward.js"></script>
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/2022-05-20-github-action%E4%BD%BF%E7%94%A8/" data-toggle="tooltip" data-placement="top" title="github action使用">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/post/2022-08-03-%E5%AD%A6%E4%B9%A0es%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%B8%80--mac%E5%AE%89%E8%A3%85es%E5%92%8Ckibana%E5%8F%8A%E7%AE%80%E5%8D%95%E5%AE%9E%E7%94%A8/" data-toggle="tooltip" data-placement="top" title="学习ES搜索引擎(一)--Mac安装ES和Kibana及简单实用">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/elasticsearch" title="elasticsearch">
+                            elasticsearch
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/es" title="es">
+                            es
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/java" title="java">
+                            java
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/jquery/js" title="jquery/js">
+                            jquery/js
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/linux" title="linux">
+                            linux
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/mq" title="mq">
+                            mq
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/mysql" title="mysql">
+                            mysql
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/netty" title="netty">
+                            netty
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/spring" title="spring">
+                            spring
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E4%BC%98%E5%8C%96" title="优化">
+                            优化
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E5%B9%B6%E5%8F%91" title="并发">
+                            并发
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93" title="数据库">
+                            数据库
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8" title="服务器">
+                            服务器
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F" title="设计模式">
+                            设计模式
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E9%94%81" title="锁">
+                            锁
+                        </a>
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="https://blog.csdn.net/qq_37221991">装睡的小5郎</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:zt931634776@163.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    <li>
+                        <a target="_blank" href="/18368494496">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/zntzhang">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; zhangtao&#39;s Blog 2023
+                   
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

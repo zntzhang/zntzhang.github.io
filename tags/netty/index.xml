@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>netty on zhangtao&#39;s Blog</title>
+    <link>https://zntzhang.github.io/tags/netty/</link>
+    <description>Recent content in netty on zhangtao&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 09 Apr 2020 22:33:20 +0000</lastBuildDate><atom:link href="https://zntzhang.github.io/tags/netty/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>浅入浅出Netty（三） Netty线程模型</title>
+      <link>https://zntzhang.github.io/post/2020-04-09-%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BAnetty%E4%B8%89-netty%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/</link>
+      <pubDate>Thu, 09 Apr 2020 22:33:20 +0000</pubDate>
+      
+      <guid>https://zntzhang.github.io/post/2020-04-09-%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BAnetty%E4%B8%89-netty%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/</guid>
+      <description>实际上Netty线程模型就是Reactor模式的一个实现，而Reactor模式又是什么呢？ Reactor模型 Reactor模式是基于事件驱动</description>
+    </item>
+    
+    <item>
+      <title>浅入浅出Netty（二） Netty</title>
+      <link>https://zntzhang.github.io/post/2020-04-09-%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BAnetty%E4%BA%8C-netty/</link>
+      <pubDate>Thu, 09 Apr 2020 22:32:38 +0000</pubDate>
+      
+      <guid>https://zntzhang.github.io/post/2020-04-09-%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BAnetty%E4%BA%8C-netty/</guid>
+      <description>这一遍先简单的讲一些netty是如何实现nio的代码的，后面会详细讲述netty原理 用一句简单的话来说就是：Netty 封装了 JDK 的 NIO，让你</description>
+    </item>
+    
+    <item>
+      <title>浅入浅出Netty（一）BIO与NIO</title>
+      <link>https://zntzhang.github.io/post/2020-03-28-%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BAnetty%E4%B8%80bio%E4%B8%8Enio/</link>
+      <pubDate>Sat, 28 Mar 2020 21:52:48 +0000</pubDate>
+      
+      <guid>https://zntzhang.github.io/post/2020-03-28-%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BAnetty%E4%B8%80bio%E4%B8%8Enio/</guid>
+      <description>在开始了解 Netty 是什么之前，我们先来回顾一下，如果我们需要实现一个客户端与服务端通信的程序，使用传统的Socket通信，应该如何来实现？ public class BIOServer {</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="zhangtao&#39;s Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="/img/post-bg-unix-linux.jpg">
+    <meta property="twitter:image" content="/img/post-bg-unix-linux.jpg" />
+    
+
+    
+    <meta name="title" content="JVM相关知识点总结" />
+    <meta property="og:title" content="JVM相关知识点总结" />
+    <meta property="twitter:title" content="JVM相关知识点总结" />
+    
+
+    
+    <meta name="description" content="张涛，Java程序员, 爱好吉他，游泳，骑车 | 这里是 张涛的博客，与你一起发现更大的世界。">
+    <meta property="og:description" content="张涛，Java程序员, 爱好吉他，游泳，骑车 | 这里是 张涛的博客，与你一起发现更大的世界。" />
+    <meta property="twitter:description" content="张涛，Java程序员, 爱好吉他，游泳，骑车 | 这里是 张涛的博客，与你一起发现更大的世界。" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="张涛，Java程序员, 爱好吉他，游泳，骑车 | 这里是 张涛的博客，与你一起发现更大的世界。">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>JVM相关知识点总结 | 张涛的博客 | zhangtao Blog</title>
+
+    <link rel="canonical" href="/post/2020-08-03-jvm%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">zhangtao&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/life/">life</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/work/">work</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/archive//">ARCHIVE</a></li>
+                    
+                        <li><a href="/notes//">NOTES</a></li>
+                    
+                        <li><a href="/about//">ABOUT</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/post-bg-unix-linux.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/java" title="java">
+                            java
+                        </a>
+                        
+                    </div>
+                    <h1>JVM相关知识点总结</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                zhangtao
+                             
+                            on 
+                            Monday, August 3, 2020
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h2 id="每个线程都有">每个线程都有：</h2>
+<ul>
+<li>程序计数器：记录了上下文切换的位置</li>
+<li>虚拟机栈：由栈帧组成，入栈出栈</li>
+<li>本地方法栈：Native方法</li>
+</ul>
+<h2 id="每个线程共享">每个线程共享：</h2>
+<ul>
+<li>堆：对象</li>
+<li>方法区（jdk8后改名元空间）：类信息、常量、静态变量</li>
+</ul>
+<p>new 一个对象经历了哪些步骤？</p>
+<ol>
+<li>类加载检查：使用双亲委派模式，从子类往父类询问是否已经加载到内存？如果都没有加载过。那么再从父类到子类依次尝试加载，把类加载到内存 — 避免类重复加载</li>
+<li>分配内存：从堆中划一片区域。根据堆内存是否碎片化，划分成两种方法 a. 指针碰撞：堆没有碎片，已分配和未分配有明显的界限。直接移动界限分配内存 b. 空闲列表：堆碎片化，会维护一个列表记录未分配的位置，分配时查找列表找到一个足够大的内存 并发冲突问题：创建对象必须要保证线程安全。jvm为每个线程都预分配了一块内存，当预分配的内存用完时，再使用不断CAS+重试</li>
+<li>对象初始化</li>
+</ol>
+<ul>
+<li>引用计数法：每有引用的地方就+1，0为死亡</li>
+<li>可达性分析：判断对象是否可达gc roots，如果不可达则为死亡</li>
+</ul>
+<p>引用计数法无法解决循环引用的问题，所以现在都采用可达性分析法</p>
+<ul>
+<li>方法运行时，方法中的局部变量的引用对象；</li>
+<li>类的静态变量、常量的引用对象；</li>
+<li>Native方法中的变量的引用对象。</li>
+</ul>
+<h2 id="1-标记-复制算法">1. 标记-复制算法</h2>
+<p>复制算法作为新生代的算法有一段历史演变，一开始是分为两个一样的a、b空间。当a空间满了，就标记活着的对象复制到b空间，然后把a空间清空。但是这样的话，ab空间有一个一直是空的，浪费50%的空间。后来统计发现，新生代每次gc后存活的对象很少，根本不需要50%。</p>
+<p>后来就诞生了现在的算法。既把新生代分为eden、s0、s1，默认比例为8：1：1。对象优先在eden中分配，当eden满时触发gc，把其他两个区存活的对象复制到s0或s1（空着的），然后清空其他两个区，年龄+1。</p>
+<p>优点：</p>
+<ul>
+<li>存活对象少时，复制效率高。</li>
+<li>没有内存碎片</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>存活对象多时，复制效率低。</li>
+<li>需要有一块空间一直空着，浪费内存空间</li>
+</ul>
+<h2 id="2-标记-清除算法">2. 标记-清除算法</h2>
+<p>先标记被回收的区域，然后删除</p>
+<p>优点：</p>
+<ul>
+<li>回收对象少的话，效率高</li>
+<li>不需要额外的空间</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>会产生碎片</li>
+</ul>
+<h2 id="3-标记-整理算法">3. 标记-整理算法</h2>
+<p>先标记被回收的区域，然后所有存活的对象往一侧移动，清除边界外的</p>
+<p>优点：</p>
+<ul>
+<li>对比标记-清除，没有碎片</li>
+<li>不需要额外的空间</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>比标记-清除耗费时间久</li>
+</ul>
+<h2 id="4-分代算法">4. 分代算法</h2>
+<p>新⽣代中，对象存活几率比例低，并且gc频率高，所以适合复制算法。</p>
+<p>⽽⽼年代的对象存活⼏率是⽐较⾼的，不适合复制算法，所以我们必须选择“标记-清除”（CMS）或“标记-整理”算法进⾏垃圾收集</p>
+<p>在Java堆划分出不同的区域之后，垃圾收集器才可以每次只回收其中某一个或者某些部分的区域。因而才有了“Minor GC”、“Major GC”、“Full GC”这样的回收类型的划分</p>
+<ul>
+<li>新生代收集（Minor GC/Young GC）：指目标只是新生代的垃圾收集</li>
+<li>老年代收集（Major GC/Old GC）：指目标只是老年代的垃圾收集。目前只有CMS收集器会有单独收集老年代的行为。</li>
+<li>整堆收集（Full GC）：收集整个Java堆和方法区的垃圾收集</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>虽然我们对各个收集器进⾏⽐较，但并⾮要挑选出⼀个最好的收集器。
+</span></span><span style="display:flex;"><span>因为知道现在为⽌还没有最好的垃圾收集器出现，更加没有万能的垃圾收集器，我们能做的就是根据具体应⽤场景选择适合⾃⼰的垃圾收集器。
+</span></span><span style="display:flex;"><span>试想⼀下：如果有⼀种四海之内、任何场景下都适⽤的完美收集器存在，那么我们的HotSpot虚拟机就不会实现那么多不同的垃圾收集器了。
+</span></span></code></pre></div><h2 id="各种垃圾回收器的比较">各种垃圾回收器的比较</h2>
+<h2 id="垃圾回收器的搭配">垃圾回收器的搭配</h2>
+<p>下面这种图是各个垃圾收集器的搭配，上面的是新生代的收集器，下面是老年代的收集器 
+  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/format,png.png" alt="img">
+
+</p>
+<p>一般会有这么几种搭配方案</p>
+<ul>
+<li>Serial收集器 + Serial Old收集器：单线程，适合单核</li>
+<li>ParNew收集器 + CMS收集器：追求低停顿</li>
+<li>Parallel Scavenge收集 + Parallel Old 收集：追求高吞吐</li>
+<li>G1 收集器：新一代，可指定停顿时间</li>
+</ul>
+<h2 id="stw">STW</h2>
+<p>STW既stop the world，暂停用户线程。为什么需要这样呢？</p>
+<p>因为当用户线程和回收线程并发期间，用户线程如果不暂停，新加入的垃圾可能会错过这次回收，所以我们在标记垃圾的时候，需要先暂停用户线程。</p>
+<p>标记完后，如果只是把垃圾清除，那么这个过程就不需要停顿用户线程。如果还需要整理，那么这个过程还需要停顿。</p>
+<p>所以追求速度的CMS处理器，采用的是标记-清除算法，当然也考虑到后期碎片过多，无法分配内存的问题，所以还设置了一个参数控制几次清除后整理。</p>
+<h2 id="cms收集器的收集过程">CMS收集器的收集过程</h2>
+<p>（1）初始标记（CMS initial mark）：标记gc roots。会STW</p>
+<p>（2）并发标记（CMS concurrent mark） 往下遍历。不STW</p>
+<p>（3）重新标记（CMS remark） 修正并发标记。会STW</p>
+<p>（4）并发清除（CMS concurrent sweep）标记清除。不STW</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/format,png-20230731201209195.png" alt="img">
+
+</p>
+<ul>
+<li>对象优先在Eden分配</li>
+<li>大对象直接进入老年代 -XX：PretenureSizeThreshold</li>
+<li>长期存活的对象直接进入老年代 -XX：MaxTenuringThreshold</li>
+<li>空间分配担保: 前面说过，新生代使用复制收集算法，但为了内存利用率， 只使用其中一个Survivor空间来作为轮换备份，如果出现大量对象在Minor GC后仍然存活的情况 ——最极端的情况就是内存回收后新生代中所有对象都存活，需要老年代进行分配担保，把Survivor无法容纳的对象直接送入老年代</li>
+</ul>
+<p>通过调整内存设置来减少gc的次数</p>
+<ul>
+<li>-Xmx 最大堆大小</li>
+<li>-Xms 初始堆大小，一般=Xmx，防止扩容带来的损耗</li>
+<li>-Xmn 新生代大小</li>
+<li>-XX:SurvivorRatio 默认=8，既新生代中Eden与两个s区的比例是 8：1：1</li>
+<li>-Xss 最大栈大小</li>
+<li>-XX:MaxMetaspaceSiz 最大元空间大小</li>
+</ul>
+
+
+                
+                
+<div class="entry-shang text-center">
+    
+	    <p>「真诚赞赏，手留余香」</p>
+	
+	<button class="zs show-zs btn btn-bred">赞赏支持</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+	<div class="zs-modal-head">
+		<button type="button" class="close">×</button>
+		<span class="author"><a href="https://zntzhang.github.io/"><img src="/img/favicon.png" />zhangtao&#39;s Blog</a></span>
+        
+	        <p class="tip"><i></i><span>真诚赞赏，手留余香</span></p>
+		
+ 
+	</div>
+	<div class="zs-modal-body">
+		<div class="zs-modal-btns">
+			<button class="btn btn-blink" data-num="2">2元</button>
+			<button class="btn btn-blink" data-num="5">5元</button>
+			<button class="btn btn-blink" data-num="10">10元</button>
+			<button class="btn btn-blink" data-num="50">50元</button>
+			<button class="btn btn-blink" data-num="100">100元</button>
+			<button class="btn btn-blink" data-num="1">任意金额</button>
+		</div>
+		<div class="zs-modal-pay">
+			<button class="btn btn-bred" id="pay-text">2元</button>
+			<p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+			<img src="/img/reward/wechat-2.png"  id="pay-image"/>
+		</div>
+	</div>
+	<div class="zs-modal-footer">
+		<label><input type="radio" name="zs-type" value="wechat" class="zs-type" checked="checked"><span ><span class="zs-wechat"><img src="/img/reward/wechat-btn.png"/></span></label>
+		<label><input type="radio" name="zs-type" value="alipay" class="zs-type" class="zs-alipay"><img src="/img/reward/alipay-btn.png"/></span></label>
+	</div>
+</div>
+<script type="text/javascript" src="/js/reward.js"></script>
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/2020-07-27-springboot%E4%B9%8Bstarter/" data-toggle="tooltip" data-placement="top" title="SpringBoot之Starter">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/post/2020-08-04-%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB%E4%BD%BF%E7%94%A8/" data-toggle="tooltip" data-placement="top" title="匿名内部类使用">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/elasticsearch" title="elasticsearch">
+                            elasticsearch
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/es" title="es">
+                            es
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/java" title="java">
+                            java
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/jquery/js" title="jquery/js">
+                            jquery/js
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/linux" title="linux">
+                            linux
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/mq" title="mq">
+                            mq
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/mysql" title="mysql">
+                            mysql
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/netty" title="netty">
+                            netty
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/spring" title="spring">
+                            spring
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E4%BC%98%E5%8C%96" title="优化">
+                            优化
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E5%B9%B6%E5%8F%91" title="并发">
+                            并发
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93" title="数据库">
+                            数据库
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8" title="服务器">
+                            服务器
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F" title="设计模式">
+                            设计模式
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E9%94%81" title="锁">
+                            锁
+                        </a>
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="https://blog.csdn.net/qq_37221991">装睡的小5郎</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:zt931634776@163.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    <li>
+                        <a target="_blank" href="/18368494496">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/zntzhang">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; zhangtao&#39;s Blog 2023
+                   
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>并发 on zhangtao&#39;s Blog</title>
+    <link>https://zntzhang.github.io/tags/%E5%B9%B6%E5%8F%91/</link>
+    <description>Recent content in 并发 on zhangtao&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 07 Nov 2021 16:56:59 +0000</lastBuildDate><atom:link href="https://zntzhang.github.io/tags/%E5%B9%B6%E5%8F%91/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>捞取大量数据慢查询优化</title>
+      <link>https://zntzhang.github.io/post/2021-11-07-%E6%8D%9E%E5%8F%96%E5%A4%A7%E9%87%8F%E6%95%B0%E6%8D%AE%E6%85%A2%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/</link>
+      <pubDate>Sun, 07 Nov 2021 16:56:59 +0000</pubDate>
+      
+      <guid>https://zntzhang.github.io/post/2021-11-07-%E6%8D%9E%E5%8F%96%E5%A4%A7%E9%87%8F%E6%95%B0%E6%8D%AE%E6%85%A2%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/</guid>
+      <description>双11期间这家客户积压了5w笔订单没有发货，所以客户反映每次计算都很慢，需要几十秒的时间。波次计算的代码需要把系统中审核的订单捞出来后进行计</description>
+    </item>
+    
+    <item>
+      <title>简单介绍AQS、ReetrantLock、CountDownLatch、CyclicBarrier、Semaphore</title>
+      <link>https://zntzhang.github.io/post/2020-07-04-%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8Daqsreetrantlockcountdownlatchcyclicbarriersemaphore/</link>
+      <pubDate>Sat, 04 Jul 2020 15:29:16 +0000</pubDate>
+      
+      <guid>https://zntzhang.github.io/post/2020-07-04-%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8Daqsreetrantlockcountdownlatchcyclicbarriersemaphore/</guid>
+      <description>AQS，既AbstractQueuedSynchronizer, 是JUC包实现同步的基础工具，是一个抽象类。 在AQS中，定义了一个volat</description>
+    </item>
+    
+    <item>
+      <title>Java并发编程（原子性、可见性、有序性、synchronized、CAS、volatile、ThreadLocal）笔记</title>
+      <link>https://zntzhang.github.io/post/2019-07-14-java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%8E%9F%E5%AD%90%E6%80%A7%E5%8F%AF%E8%A7%81%E6%80%A7%E6%9C%89%E5%BA%8F%E6%80%A7synchronizedcasvolatilethreadlocal%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sun, 14 Jul 2019 18:02:13 +0000</pubDate>
+      
+      <guid>https://zntzhang.github.io/post/2019-07-14-java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%8E%9F%E5%AD%90%E6%80%A7%E5%8F%AF%E8%A7%81%E6%80%A7%E6%9C%89%E5%BA%8F%E6%80%A7synchronizedcasvolatilethreadlocal%E7%AC%94%E8%AE%B0/</guid>
+      <description>自己网上总结了一些多线程并发的一些文章，如有错误请指教！ 多线程的三大特性 一、原子性 原子是世界上的最小单位，具有不可分割性。比如 a=0；（a非</description>
+    </item>
+    
+    <item>
+      <title>PageHelper中遇到的ThreadLocal小坑</title>
+      <link>https://zntzhang.github.io/post/2019-06-27-pagehelper%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84threadlocal%E5%B0%8F%E5%9D%91/</link>
+      <pubDate>Thu, 27 Jun 2019 22:43:11 +0000</pubDate>
+      
+      <guid>https://zntzhang.github.io/post/2019-06-27-pagehelper%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84threadlocal%E5%B0%8F%E5%9D%91/</guid>
+      <description>最近写代码刚好碰到ThreadLocal的小坑，顺便学习了一波ThreadLocal，拿出来分享一下 ThreadLocal什么时候会出现线程</description>
+    </item>
+    
+  </channel>
+</rss>

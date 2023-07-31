@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>es on zhangtao&#39;s Blog</title>
+    <link>https://zntzhang.github.io/tags/es/</link>
+    <description>Recent content in es on zhangtao&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 03 Aug 2022 14:02:39 +0000</lastBuildDate><atom:link href="https://zntzhang.github.io/tags/es/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>学习ES搜索引擎(二)--ES基础了解</title>
+      <link>https://zntzhang.github.io/post/2022-08-03-%E5%AD%A6%E4%B9%A0es%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%BA%8C--es%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/</link>
+      <pubDate>Wed, 03 Aug 2022 14:02:39 +0000</pubDate>
+      
+      <guid>https://zntzhang.github.io/post/2022-08-03-%E5%AD%A6%E4%B9%A0es%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%BA%8C--es%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/</guid>
+      <description>ES是一个分布式的全文搜索引擎 我们对数据库比较熟悉，刚开始了解ES时可以跟MySQL进行对比 MySQL是关系型数据库，里面的数据是一行行数据</description>
+    </item>
+    
+    <item>
+      <title>学习ES搜索引擎(一)--Mac安装ES和Kibana及简单实用</title>
+      <link>https://zntzhang.github.io/post/2022-08-03-%E5%AD%A6%E4%B9%A0es%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%B8%80--mac%E5%AE%89%E8%A3%85es%E5%92%8Ckibana%E5%8F%8A%E7%AE%80%E5%8D%95%E5%AE%9E%E7%94%A8/</link>
+      <pubDate>Wed, 03 Aug 2022 11:34:42 +0000</pubDate>
+      
+      <guid>https://zntzhang.github.io/post/2022-08-03-%E5%AD%A6%E4%B9%A0es%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%B8%80--mac%E5%AE%89%E8%A3%85es%E5%92%8Ckibana%E5%8F%8A%E7%AE%80%E5%8D%95%E5%AE%9E%E7%94%A8/</guid>
+      <description>最近打算研究下ES和Kibana,打算先自己安装学习一下。通常我们服务器会通过log4j会把服务器日志输出到到控制台上来或者log文件中。但</description>
+    </item>
+    
+  </channel>
+</rss>

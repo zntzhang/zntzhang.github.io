@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Redis on zhangtao&#39;s Blog</title>
+    <link>https://zntzhang.github.io/tags/redis/</link>
+    <description>Recent content in Redis on zhangtao&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 24 Jul 2020 14:27:29 +0000</lastBuildDate><atom:link href="https://zntzhang.github.io/tags/redis/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Redis面试常考题</title>
+      <link>https://zntzhang.github.io/post/2020-07-24-redis%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%80%83%E9%A2%98/</link>
+      <pubDate>Fri, 24 Jul 2020 14:27:29 +0000</pubDate>
+      
+      <guid>https://zntzhang.github.io/post/2020-07-24-redis%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%80%83%E9%A2%98/</guid>
+      <description>1. MySQL 和 Redis的区别 2. Redis 和 memcached 的区别 Redis 和 memcached 都是从内存中读取，memcached比Redis读取更快， 但是redis有很多优点 redis支持更</description>
+    </item>
+    
+  </channel>
+</rss>
