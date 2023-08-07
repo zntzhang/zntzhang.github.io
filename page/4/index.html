@@ -203,20 +203,20 @@ if (!doNotTrack) {
 <div data-pagefind-ignore="all">
 
 <div class="post-preview">
-    <a href="https://zntzhang.github.io/post/2021-05-27-%E9%80%9A%E8%BF%87%E6%95%B0%E6%8D%AE%E5%BA%93%E5%94%AF%E4%B8%80%E7%B4%A2%E5%BC%95%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+    <a href="https://zntzhang.github.io/post/2020-04-09-%E9%A1%B9%E7%9B%AE%E9%9B%86%E6%88%90swagger%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99-error-creating-bean-with-name-webmvcrequesthandlerprovider/">
         <h2 class="post-title">
-            通过数据库唯一索引实现分布式锁
+            项目集成swagger启动报错 Error creating bean with name webMvcRequestHandlerProvider
         </h2>
 	
         <div class="post-content-preview">
 	
-            伪代码 // 需要加事务 @Transactional @Override public &lt;T&gt; T lock(XxxLock lock, ILockCallback&lt;T&gt; callback) { // 数据库加锁 lock(lock); // 加锁逻辑 T result = callback.callback(); //释放锁 try { lockDao.batchDelete(locks); } catch (Exception e) { logger.error(&#34;mysq
+            最近项目集成了swagger以后启动一直报错 org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name &#39;webMvcRequestHandlerProvider&#39; defined in URL [jar:file:/Users/jasonfeng/.m2/repository/io/springfox/springfox-spring-web/2.2.2/springfox-spring-web-2.2.2.jar!/springfox/documentation/spring/web/plugins/WebMvcRequestHandlerProvider.class]: Unsatisfied dependency expressed through constructor argument with index 0 of type [java.util.List]: : No qualifying bean of type [org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping] found for dependency [collection of org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping]: expected at least 1 bean which qualifies as autowire candidate for this
        
         </div>
     </a>
     <p class="post-meta">
     
-        Posted by zhangtao on Thursday, May 27, 2021
+        Posted by zhangtao on Thursday, April 9, 2020
         
         
     
@@ -226,20 +226,20 @@ if (!doNotTrack) {
 <hr>
 
 <div class="post-preview">
-    <a href="https://zntzhang.github.io/post/2020-11-04-%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%AE%9E%E7%8E%B0-%E8%A1%8C%E9%94%81%E4%B8%8Emccc/">
+    <a href="https://zntzhang.github.io/post/2020-04-09-%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BAnetty%E4%B8%89-netty%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/">
         <h2 class="post-title">
-            事务隔离级别实现-行锁与MCCC
+            浅入浅出Netty（三） Netty线程模型
         </h2>
 	
         <div class="post-content-preview">
 	
-            我们都知道数据库在并发同时执行的时候，就可能出现脏读、不可重复读、幻读的问题，为了解决这些问题，设置了四种事务的隔离级别，分别是 读未提交：A
+            实际上Netty线程模型就是Reactor模式的一个实现，而Reactor模式又是什么呢？ Reactor模型 Reactor模式是基于事件驱动
        
         </div>
     </a>
     <p class="post-meta">
     
-        Posted by zhangtao on Wednesday, November 4, 2020
+        Posted by zhangtao on Thursday, April 9, 2020
         
         
     
@@ -249,20 +249,20 @@ if (!doNotTrack) {
 <hr>
 
 <div class="post-preview">
-    <a href="https://zntzhang.github.io/post/2020-08-04-%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB%E4%BD%BF%E7%94%A8/">
+    <a href="https://zntzhang.github.io/post/2020-04-09-%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BAnetty%E4%BA%8C-netty/">
         <h2 class="post-title">
-            匿名内部类使用
+            浅入浅出Netty（二） Netty
         </h2>
 	
         <div class="post-content-preview">
 	
-            在我们开发中，匿名内部类用的还是比较多的，笔者有点忘了一些细节，所以今天带大家复习一下匿名内部类 匿名内部类既没有名字的内部类 正因为没有名字，
+            这一遍先简单的讲一些netty是如何实现nio的代码的，后面会详细讲述netty原理 用一句简单的话来说就是：Netty 封装了 JDK 的 NIO，让你
        
         </div>
     </a>
     <p class="post-meta">
     
-        Posted by zhangtao on Tuesday, August 4, 2020
+        Posted by zhangtao on Thursday, April 9, 2020
         
         
     
@@ -272,20 +272,20 @@ if (!doNotTrack) {
 <hr>
 
 <div class="post-preview">
-    <a href="https://zntzhang.github.io/post/2020-08-03-jvm%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">
+    <a href="https://zntzhang.github.io/post/2020-03-28-%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BAnetty%E4%B8%80bio%E4%B8%8Enio/">
         <h2 class="post-title">
-            JVM相关知识点总结
+            浅入浅出Netty（一）BIO与NIO
         </h2>
 	
         <div class="post-content-preview">
 	
-            每个线程都有： 程序计数器：记录了上下文切换的位置 虚拟机栈：由栈帧组成，入栈出栈 本地方法栈：Native方法 每个线程共享： 堆：对象 方法区（jd
+            在开始了解 Netty 是什么之前，我们先来回顾一下，如果我们需要实现一个客户端与服务端通信的程序，使用传统的Socket通信，应该如何来实现？ public class BIOServer {
        
         </div>
     </a>
     <p class="post-meta">
     
-        Posted by zhangtao on Monday, August 3, 2020
+        Posted by zhangtao on Saturday, March 28, 2020
         
         
     
@@ -295,20 +295,135 @@ if (!doNotTrack) {
 <hr>
 
 <div class="post-preview">
-    <a href="https://zntzhang.github.io/post/2020-07-27-springboot%E4%B9%8Bstarter/">
+    <a href="https://zntzhang.github.io/post/2020-03-10-%E6%87%92%E4%BA%BA%E5%A6%82%E4%BD%95%E7%94%A8%E7%88%AC%E8%99%AB%E6%89%B9%E9%87%8F%E6%8A%8Acsdn%E7%9A%84%E5%8D%9A%E5%AE%A2%E5%AF%BC%E5%87%BA%E6%88%90markdown%E6%96%87%E4%BB%B6/">
         <h2 class="post-title">
-            SpringBoot之Starter
+            懒人如何用爬虫批量把CSDN的博客导出成markdown文件
         </h2>
 	
         <div class="post-content-preview">
 	
-            SpringBoot之所以流行，是因为Spring Starter模式的提出。Spring Starter的出现，可以让模块开发更加独立化，相互
+            最近博主搞了一个博客网站，但是遇到一个头疼的事情，就是要把以前写在csdn 上的博客批量导出成markdown文件，但是csdn上只支持单个导
        
         </div>
     </a>
     <p class="post-meta">
     
-        Posted by zhangtao on Monday, July 27, 2020
+        Posted by zhangtao on Tuesday, March 10, 2020
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://zntzhang.github.io/post/2020-02-25-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">
+        <h2 class="post-title">
+            设计模式之单例模式
+        </h2>
+	
+        <div class="post-content-preview">
+	
+            1.定义 单例模式是Java中比较常见的创建型设计模式，他的核心是确保一个类在任何情况下都绝对只有一个实例，并提供一个全局访问点。 如何确保一个
+       
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by zhangtao on Tuesday, February 25, 2020
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://zntzhang.github.io/post/2020-02-25-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">
+        <h2 class="post-title">
+            设计模式之简单工厂模式
+        </h2>
+	
+        <div class="post-content-preview">
+	
+            1.定义 属于类创建型模式。在简单工厂模式中，可以根据参数的不同返回不同类的实例。简单工厂模式专门定义一个类来负责创建其他类的实例，被创建的实
+       
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by zhangtao on Tuesday, February 25, 2020
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://zntzhang.github.io/post/2020-02-14-%E4%BD%BF%E7%94%A8%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%90%8E%E5%BC%95%E5%8F%91%E7%9A%84%E8%A1%80%E6%A1%88/">
+        <h2 class="post-title">
+            使用消息队列后引发的血案
+        </h2>
+	
+        <div class="post-content-preview">
+	
+            我们公司有一个项目，用到了消息队列，经常会遇到很多坑，难以排查，下面我详细描述一下心路历程。 首先介绍一下这个项目，简单的讲，有A,B两个工程
+       
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by zhangtao on Friday, February 14, 2020
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://zntzhang.github.io/post/2019-07-14-java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%8E%9F%E5%AD%90%E6%80%A7%E5%8F%AF%E8%A7%81%E6%80%A7%E6%9C%89%E5%BA%8F%E6%80%A7synchronizedcasvolatilethreadlocal%E7%AC%94%E8%AE%B0/">
+        <h2 class="post-title">
+            Java并发编程（原子性、可见性、有序性、synchronized、CAS、volatile、ThreadLocal）笔记
+        </h2>
+	
+        <div class="post-content-preview">
+	
+            自己网上总结了一些多线程并发的一些文章，如有错误请指教！ 多线程的三大特性 一、原子性 原子是世界上的最小单位，具有不可分割性。比如 a=0；（a非
+       
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by zhangtao on Sunday, July 14, 2019
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://zntzhang.github.io/post/2019-06-27-pagehelper%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84threadlocal%E5%B0%8F%E5%9D%91/">
+        <h2 class="post-title">
+            PageHelper中遇到的ThreadLocal小坑
+        </h2>
+	
+        <div class="post-content-preview">
+	
+            最近写代码刚好碰到ThreadLocal的小坑，顺便学习了一波ThreadLocal，拿出来分享一下 ThreadLocal什么时候会出现线程
+       
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by zhangtao on Thursday, June 27, 2019
         
         
     

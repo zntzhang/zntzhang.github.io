@@ -203,20 +203,20 @@ if (!doNotTrack) {
 <div data-pagefind-ignore="all">
 
 <div class="post-preview">
-    <a href="https://zntzhang.github.io/post/2020-07-27-%E6%80%BB%E7%BB%93%E8%87%AA%E5%B7%B1%E5%B8%B8%E7%94%A8%E7%9A%84jdk8%E5%86%99%E6%B3%95streamfunctionoptional/">
+    <a href="https://zntzhang.github.io/post/2019-05-21-%E5%90%8C%E4%B8%80%E4%B8%AA%E7%B1%BB%E7%9A%84%E4%B8%8D%E5%90%8C%E6%96%B9%E6%B3%95a%E6%96%B9%E6%B3%95%E6%B2%A1%E6%9C%89transactionalb%E6%96%B9%E6%B3%95%E6%9C%89transactionala%E8%B0%83%E7%94%A8b%E6%96%B9%E6%B3%95%E4%BA%8B%E5%8A%A1%E4%B8%8D%E8%B5%B7%E4%BD%9C%E7%94%A8/">
         <h2 class="post-title">
-            总结自己常用的JDK8写法（stream,function,optional）
+            同一个类的不同方法,A方法没有@Transactional，B方法有@Transactional,A调用B方法，事务不起作用
         </h2>
 	
         <div class="post-content-preview">
 	
-            特别要注意的是list集合，我们sql查询返回的list或者stream处理完的list都不可能是null，所以不需要判断是否为null 遍历
+            问题： 同一个类的不同方法,A方法没有@Transactional，B方法有@Transactional,A调用B方法，事务不起作用 原理解析：
        
         </div>
     </a>
     <p class="post-meta">
     
-        Posted by zhangtao on Monday, July 27, 2020
+        Posted by zhangtao on Tuesday, May 21, 2019
         
         
     
@@ -226,20 +226,20 @@ if (!doNotTrack) {
 <hr>
 
 <div class="post-preview">
-    <a href="https://zntzhang.github.io/post/2020-07-27-%E9%AB%98%E5%8F%AF%E7%94%A8%E6%96%B9%E6%A1%88%E5%92%8C%E4%B8%80%E8%87%B4%E6%80%A7hash/">
+    <a href="https://zntzhang.github.io/post/2019-02-19-%E6%9F%90%E4%B8%AA%E8%A1%A8%E6%9C%89%E8%BF%91%E5%8D%83%E4%B8%87%E6%95%B0%E6%8D%AEcrud%E6%AF%94%E8%BE%83%E6%85%A2%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E4%BA%86%E6%98%AF%E6%80%8E%E4%B9%88%E5%81%9A%E7%9A%84%E5%88%86%E8%A1%A8%E5%88%86%E5%BA%93%E4%BA%86%E6%9C%89%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%E6%9C%89%E7%94%A8%E5%88%B0%E4%B8%AD%E9%97%B4%E4%BB%B6%E4%B9%88%E4%BB%96%E4%BB%AC%E7%9A%84%E5%8E%9F%E7%90%86%E7%9F%A5%E9%81%93%E4%B9%88/">
         <h2 class="post-title">
-            高可用方案和一致性hash
+            某个表有近千万数据，CRUD比较慢，如何优化？分库分表了是怎么做的？分表分库了有什么问题？有用到中间件么?他们的原理知道么？
         </h2>
 	
         <div class="post-content-preview">
 	
-            其实大部分中间件都逃不过这两种模式 这种模式的特点是有一Master多slave，一般采用读写分离的方式，只从master中写，然后同步给sl
+            数据千万级别之多，占用的存储空间也比较大，可想而知它不会存储在一块连续的物理空间上，而是链式存储在多个碎片的物理空间上。可能对于长字符串的比
        
         </div>
     </a>
     <p class="post-meta">
     
-        Posted by zhangtao on Monday, July 27, 2020
+        Posted by zhangtao on Tuesday, February 19, 2019
         
         
     
@@ -249,20 +249,20 @@ if (!doNotTrack) {
 <hr>
 
 <div class="post-preview">
-    <a href="https://zntzhang.github.io/post/2020-07-27-spi%E6%9C%BA%E5%88%B6%E5%BA%94%E7%94%A8/">
+    <a href="https://zntzhang.github.io/post/2019-02-17-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E4%BA%94%E7%AB%A0-%E5%AE%89%E8%A3%85mysql/">
         <h2 class="post-title">
-            SPI机制应用
+            超详细，从零开始搭建阿里云服务器（centos7）第五章 安装mysql
         </h2>
 	
         <div class="post-content-preview">
 	
-            为什么要使用SPI? 系统设计的各个抽象，往往有很多不同的实现方案，在面向的对象的设计里，一般推荐模块之间基于接口编程，模块之间不对实现类进行
+            1.下载MySQL源安装包 wget http://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm 安装MySql源 yum -y install mysql57-community-release-el7-11.noarch.rpm 查看一下安装效果 yum repolist enabled | grep mysql.* 2.安装MySQL服务器 yum install mysql-community-server 中间会弹出是与否的选择，选择
        
         </div>
     </a>
     <p class="post-meta">
     
-        Posted by zhangtao on Monday, July 27, 2020
+        Posted by zhangtao on Sunday, February 17, 2019
         
         
     
@@ -272,20 +272,20 @@ if (!doNotTrack) {
 <hr>
 
 <div class="post-preview">
-    <a href="https://zntzhang.github.io/post/2020-07-27-oomcpu%E9%A3%99%E5%8D%87java%E8%BF%9B%E7%A8%8B%E8%A2%AB%E6%9D%80-%E7%BA%BF%E4%B8%8A%E6%95%85%E9%9A%9C%E5%88%86%E6%9E%90/">
+    <a href="https://zntzhang.github.io/post/2019-02-13-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%AE%89%E8%A3%85tomcat/">
         <h2 class="post-title">
-            OOM、CPU飙升、Java进程被杀 线上故障分析
+            超详细，从零开始搭建阿里云服务器（centos7）第四章 安装tomcat
         </h2>
 	
         <div class="post-content-preview">
 	
-            关于OOM出现的情况，一般可以猜想是内存泄露，或者是加载了过多class或者创建了过多对象，给JVM分配的内存不够导致 dump分析 首先登陆机
+            下面到了最关键的一步，安装tomcat过程中也是不断地爬坑。。 1.下载并上传tomcat压缩包 跟上一章类似，不细说了，我安装在了/home/
        
         </div>
     </a>
     <p class="post-meta">
     
-        Posted by zhangtao on Monday, July 27, 2020
+        Posted by zhangtao on Wednesday, February 13, 2019
         
         
     
@@ -295,20 +295,135 @@ if (!doNotTrack) {
 <hr>
 
 <div class="post-preview">
-    <a href="https://zntzhang.github.io/post/2020-07-24-redis%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%80%83%E9%A2%98/">
+    <a href="https://zntzhang.github.io/post/2019-02-13-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AE%89%E8%A3%85jdk/">
         <h2 class="post-title">
-            Redis面试常考题
+            超详细，从零开始搭建阿里云服务器（centos7）第三章 安装jdk
         </h2>
 	
         <div class="post-content-preview">
 	
-            1. MySQL 和 Redis的区别 2. Redis 和 memcached 的区别 Redis 和 memcached 都是从内存中读取，memcached比Redis读取更快， 但是redis有很多优点 redis支持更
+            1.下载jdk 首先去oracle官网下载你所需要版本的jdk，我下的是jdk1.8 https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html 2.上传jdk到云服务器 上传文件的方式有很多，这里不细说
        
         </div>
     </a>
     <p class="post-meta">
     
-        Posted by zhangtao on Friday, July 24, 2020
+        Posted by zhangtao on Wednesday, February 13, 2019
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://zntzhang.github.io/post/2019-02-12-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7/">
+        <h2 class="post-title">
+            超详细，从零开始搭建阿里云服务器（centos7）第二章 创建用户
+        </h2>
+	
+        <div class="post-content-preview">
+	
+            1.创建用户 远程连接完后而第一件事就是创建自己的用户，因为root用户是最高权限的超级管理员，生产上不可能使用它， adduser zntzhang 创建用户 passwd zntzhang 设置密码 这
+       
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by zhangtao on Tuesday, February 12, 2019
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://zntzhang.github.io/post/2019-02-12-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/">
+        <h2 class="post-title">
+            超详细，从零开始搭建阿里云服务器（centos7）第一章 远程连接
+        </h2>
+	
+        <div class="post-content-preview">
+	
+            博主前两天买了3年最低配的阿里云玩玩，这次写一个笔记记录下自己搭服务器所遇到的坑。 1.购买阿里云 首先在阿里云官网 https://www.al
+       
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by zhangtao on Tuesday, February 12, 2019
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://zntzhang.github.io/post/2018-11-13-mysql%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E5%92%8C%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+        <h2 class="post-title">
+            MySql存储引擎和数据结构
+        </h2>
+	
+        <div class="post-content-preview">
+	
+            InnoDB 支持事务 支持外键 对比MyISAM引擎，写的处理效率会差一些，并且会占用更多的磁盘空间以保留数据和索引 MyISAM 不支持事务 不支持外键 优势是访问速度快
+       
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by zhangtao on Tuesday, November 13, 2018
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://zntzhang.github.io/post/2018-10-22-%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B9%8B%E9%94%81%E4%B8%8E%E4%BA%8B%E5%8A%A1/">
+        <h2 class="post-title">
+            数据库之锁与事务
+        </h2>
+	
+        <div class="post-content-preview">
+	
+            前言: 我们都知道事务的几种性质，数据库为了维护这些性质，尤其是一致性和隔离性，一般使用加锁这种方式。同时数据库又是个高并发的应用，同一时间会
+       
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by zhangtao on Monday, October 22, 2018
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://zntzhang.github.io/post/2018-09-21-git%E4%B8%ADreset%E6%93%8D%E4%BD%9C%E7%9A%84%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93/">
+        <h2 class="post-title">
+            git中reset操作的三种模式（总结）
+        </h2>
+	
+        <div class="post-content-preview">
+	
+            首先，git 本地提交，会经过三个步骤。 这三个步骤的流程不多做解释 工作区 &ndash;&gt; 暂存区 &ndash;&gt;版本库 然后 git reset –soft 可以把版本库上的
+       
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by zhangtao on Friday, September 21, 2018
         
         
     
