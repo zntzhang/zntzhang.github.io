@@ -6,22 +6,49 @@
     <description>Recent content in Tags on zhangtao&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 10 Sep 2023 10:43:12 +0000</lastBuildDate><atom:link href="https://zntzhang.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 31 Oct 2023 10:56:17 +0000</lastBuildDate><atom:link href="https://zntzhang.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>java</title>
+      <link>https://zntzhang.github.io/tags/java/</link>
+      <pubDate>Tue, 31 Oct 2023 10:56:17 +0000</pubDate>
+      
+      <guid>https://zntzhang.github.io/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>中间件</title>
+      <link>https://zntzhang.github.io/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/</link>
+      <pubDate>Tue, 31 Oct 2023 10:56:17 +0000</pubDate>
+      
+      <guid>https://zntzhang.github.io/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>设计模式</title>
+      <link>https://zntzhang.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Wed, 11 Oct 2023 10:40:43 +0000</pubDate>
+      
+      <guid>https://zntzhang.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>宗教</title>
+      <link>https://zntzhang.github.io/tags/%E5%AE%97%E6%95%99/</link>
+      <pubDate>Tue, 10 Oct 2023 10:43:12 +0000</pubDate>
+      
+      <guid>https://zntzhang.github.io/tags/%E5%AE%97%E6%95%99/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>经济</title>
       <link>https://zntzhang.github.io/tags/%E7%BB%8F%E6%B5%8E/</link>
       <pubDate>Sun, 10 Sep 2023 10:43:12 +0000</pubDate>
       
       <guid>https://zntzhang.github.io/tags/%E7%BB%8F%E6%B5%8E/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>java</title>
-      <link>https://zntzhang.github.io/tags/java/</link>
-      <pubDate>Wed, 26 Apr 2023 10:43:12 +0000</pubDate>
-      
-      <guid>https://zntzhang.github.io/tags/java/</guid>
       <description></description>
     </item>
     
@@ -130,15 +157,6 @@
       <pubDate>Tue, 16 Aug 2022 21:04:57 +0000</pubDate>
       
       <guid>https://zntzhang.github.io/tags/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>设计模式</title>
-      <link>https://zntzhang.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
-      <pubDate>Tue, 16 Aug 2022 21:04:57 +0000</pubDate>
-      
-      <guid>https://zntzhang.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
       <description></description>
     </item>
     

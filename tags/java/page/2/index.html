@@ -202,6 +202,29 @@ if (!doNotTrack) {
 <div data-pagefind-ignore="all">
 
 <div class="post-preview">
+    <a href="https://zntzhang.github.io/post/2021-05-27-%E9%80%9A%E8%BF%87%E6%95%B0%E6%8D%AE%E5%BA%93%E5%94%AF%E4%B8%80%E7%B4%A2%E5%BC%95%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+        <h2 class="post-title">
+            通过数据库唯一索引实现分布式锁
+        </h2>
+	
+        <div class="post-content-preview">
+	
+            伪代码 // 需要加事务 @Transactional @Override public &lt;T&gt; T lock(XxxLock lock, ILockCallback&lt;T&gt; callback) { // 数据库加锁 lock(lock); // 加锁逻辑 T result = callback.callback(); //释放锁 try { lockDao.batchDelete(locks); } catch (Exception e) { logger.error(&#34;mysq
+       
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by zhangtao on Thursday, May 27, 2021
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="https://zntzhang.github.io/post/2020-08-04-%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB%E4%BD%BF%E7%94%A8/">
         <h2 class="post-title">
             匿名内部类使用
@@ -408,29 +431,6 @@ if (!doNotTrack) {
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="https://zntzhang.github.io/post/2019-07-14-java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%8E%9F%E5%AD%90%E6%80%A7%E5%8F%AF%E8%A7%81%E6%80%A7%E6%9C%89%E5%BA%8F%E6%80%A7synchronizedcasvolatilethreadlocal%E7%AC%94%E8%AE%B0/">
-        <h2 class="post-title">
-            Java并发编程（原子性、可见性、有序性、synchronized、CAS、volatile、ThreadLocal）笔记
-        </h2>
-	
-        <div class="post-content-preview">
-	
-            自己网上总结了一些多线程并发的一些文章，如有错误请指教！ 多线程的三大特性 一、原子性 原子是世界上的最小单位，具有不可分割性。比如 a=0；（a非
-       
-        </div>
-    </a>
-    <p class="post-meta">
-    
-        Posted by zhangtao on Sunday, July 14, 2019
-        
-        
-    
-    </p>
-
-</div>
-<hr>
-
 </div>
 
             
@@ -619,9 +619,13 @@ if (!doNotTrack) {
                
             
                
+            
+               
                     <a href="/tags/%E4%BC%98%E5%8C%96" title="优化">
                         优化
                     </a>
+               
+            
                
             
                

@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="zhangtao&#39;s Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="/img/post-bg-unix-linux.jpg">
+    <meta property="twitter:image" content="/img/post-bg-unix-linux.jpg" />
+    
+
+    
+    <meta name="title" content="注册中心ZK、nameServer、eureka、Nacos介绍与对比" />
+    <meta property="og:title" content="注册中心ZK、nameServer、eureka、Nacos介绍与对比" />
+    <meta property="twitter:title" content="注册中心ZK、nameServer、eureka、Nacos介绍与对比" />
+    
+
+    
+    <meta name="description" content="">
+    <meta property="og:description" content="" />
+    <meta property="twitter:description" content="" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>注册中心ZK、nameServer、eureka、Nacos介绍与对比 | 张涛的博客 | zhangtao Blog</title>
+
+    <link rel="canonical" href="/post/2023-10-31-%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83zknameservereurekanacos%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%AF%B9%E6%AF%94/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-270JTPVG2X"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-270JTPVG2X', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">zhangtao&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/life/">life</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/work/">work</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/archive//">ARCHIVE</a></li>
+                    
+                        <li><a href="/about//">ABOUT</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/post-bg-unix-linux.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6" title="中间件">
+                            中间件
+                        </a>
+                        
+                        <a class="tag" href="/tags/java" title="java">
+                            java
+                        </a>
+                        
+                    </div>
+                    <h1>注册中心ZK、nameServer、eureka、Nacos介绍与对比</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                zhangtao
+                             
+                            on 
+                            Tuesday, October 31, 2023
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h1 id="前言">前言</h1>
+<h2 id="注册中心的由来">注册中心的由来</h2>
+<p>微服务架构是存在着很多跨服务调用，每个服务都存在着多个节点，如果有多个提供者和消费者，当提供者增加/减少或者消费者增加/减少，双方都需要感知发现。所以诞生了注册中心这个中间件。</p>
+<p>市面上有很多注册中心，如 Zookeeper、NameServer、Eureka、Nacos，下面我来讲一下它们的特点、应用和区别。</p>
+<h1 id="zookeeper">Zookeeper</h1>
+<p>Zookeeper的存储结构是树形结构，它有四种节点，分别是：</p>
+<ul>
+<li>持久节点：除非自己删除，否则一直存在。</li>
+<li>持久顺序节点：加了编号，按添加时间排序。</li>
+<li>临时节点：Zookeeper会维护一个跟客户端的session，通过心跳存续，如果客户端失去心跳，一段时间后节点的session到期，就会删除节点。</li>
+<li>临时顺序节点。</li>
+</ul>
+<h3 id="特点">特点</h3>
+<ul>
+<li>Watch监听器：当客户端向某个节点添加监听，当节点发生变化，Zookeeper会实时通知客户端。</li>
+<li>节点的名字唯一，不允许重复创建。</li>
+</ul>
+<h3 id="强一致性">强一致性</h3>
+<p>Zookeeper多节点部署，只要集群中存在超过一半的节点能够正常工作，那么整个集群就能够正常对外服务。</p>
+<p>Zookeeper围绕着ZAB协议保障数据的一致性。</p>
+<p>ZAB协议里规定，Zookeeper集群中只有一个主节点，其余都是从节点。</p>
+<p>所有的写请求都必须先走主节点，主节点写入后，同步给从节点，超过半数的节点返回成功，则返回客户端成功，没有超过一半，则返回客户端失败。</p>
+<p>为了提升读的性能，读请求不要求必须请求主节点，从节点也可以读。</p>
+<p>如果主节点挂了，那么会进行主节点选举，ZAB协议为了保障一致性，选举期间服务是不可用的，牺牲了一些可用性（CP）。</p>
+<p>当主节点挂了，就会开始选举，持有消息最新的节点有资格参加竞选，当最终投票超过半数就会被选为主节点，并通知其他节点。</p>
+<h3 id="应用">应用</h3>
+<p>利用上述这些特点，Zookeeper有用广泛的应用。</p>
+<h4 id="dubbo中的注册中心">Dubbo中的注册中心</h4>
+<p>当Dubbo provider启动时，会在Zookeeper上的 <code>/dubbo/{serviceName}/providers</code> 节点上添加一个临时节点。</p>
+<p>当consumer启动时，会在Zookeeper上的 <code>/dubbo/{serviceName}/consumers</code> 节点下添加一个临时节点，同时添加watcher监听providers节点。</p>
+<p>当新增provider节点，consumer通过watcher机制能够马上会收到并本地缓存。</p>
+<p>当provider挂了，心跳断开连接时，等临时节点的会话到期会触发节点删除，consumer会收到并本地缓存。</p>
+<p>通过watcher机制，当consumer发生了变化，provider能够及时感应到。</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/20200825230524735.png" alt="Zookeeper">
+
+</p>
+<h4 id="分布式锁">分布式锁</h4>
+<p>加锁就是在Zookeeper上添加<strong>临时顺序节点</strong>，判断是否是最小节点，如果是最小节点，则无需排队。如果不是最小的，则往后加一个顺序节点，并且向前一个节点添加一个watch监听，线程等待排队，当上一个节点删除后，会通知唤醒这个线程。</p>
+<p>通过watch机制唤醒线程的方式比较优雅，避免了羊群效应。</p>
+<h4 id="kafka的应用">Kafka的应用</h4>
+<p>Broker集群各节点之间独立，使用Zookeeper将整个集群中的Broker统一管理。</p>
+<p>Topic消息会被分到多个partition并将其分布在多个Broker上，Topic与Broker的对应关系也都是由Zookeeper在维护。</p>
+<p>每个partition只能被同组的某一个Consumer进行消费，因此需要在Zookeeper上记录partition与Consumer之间的对应关系。</p>
+<p>早期Kafka多副本选举，leader故障后Zookeeper检测到会通知其他副本节点（只有isr副本才有资格）进行选举，谁先创建leader节点，就成为leader，通知其他副本watch新的leader节点。</p>
+<h1 id="nameserver">NameServer</h1>
+<p>NameServer是RocketMQ中重要的组成部分。它跟Kafka当中的Zookeeper的角色类似，充当了注册中心的作用。</p>
+<h2 id="应用-1">应用</h2>
+<p>Broker启动后，会向每一台NameServer节点注册信息，并会与NameServer维持一个心跳，当Broker故障后，心跳丢失，NameServer会将Broker踢出。</p>
+<p>创建topic时，需要绑定Broker队列，创建成功后会向NameServer注册topic与Broker的对应关系。</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/image-20230825180937202.png" alt="NameServer">
+
+</p>
+<p>Producer启动后，会从NameServer中获取topic对应的Broker信息，从而知道自己订阅的topic信息要发送到哪些Broker上，根据负载均衡算法选择1台Broker建立连接，进行消息发送。</p>
+<p>Consumer启动后，会从NameServer中获取topic对应的Broker信息，从而知道自己订阅的topic信息存在于哪些Broker上，然后跟相关的Broker建立连接，消费消息。</p>
+<h2 id="高可用">高可用</h2>
+<p>NameServer采用的是跟Zookeeper不一样的模式，它是无状态、去中心化的中间件。</p>
+<p><strong>作为注册中心，一致性的要求没有这么强。但是需要保障可用性，每个NameServer节点数据可以不一致，也不需要保障一半以上的节点存活，只要有一台节点存活，集群就可以正常运作</strong>.</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/image-20230825161952028.png" alt="NameServer High Availability">
+
+</p>
+<p>下面是NameServer的部分源码，也可以明了的看出NameServer所维护的数据。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#6272a4">// NameServer源码
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">RouteInfoManager</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">final</span> InternalLogger log <span style="color:#ff79c6">=</span> InternalLoggerFactory<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getLogger</span><span style="color:#ff79c6">(</span>LoggerName<span style="color:#ff79c6">.</span><span style="color:#50fa7b">NAMESRV_LOGGER_NAME</span><span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">final</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">long</span> BROKER_CHANNEL_EXPIRED_TIME <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1000</span> <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">60</span> <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">2</span><span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">final</span> ReadWriteLock lock <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> ReentrantReadWriteLock<span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// topic与Broker的绑定关系
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">final</span> HashMap<span style="color:#ff79c6">&lt;</span>String<span style="color:#6272a4">/* topic */</span><span style="color:#ff79c6">,</span> List<span style="color:#ff79c6">&lt;</span>QueueData<span style="color:#ff79c6">&gt;&gt;</span> topicQueueTable<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">final</span> HashMap<span style="color:#ff79c6">&lt;</span>String<span style="color:#6272a4">/* brokerName */</span><span style="color:#ff79c6">,</span> BrokerData<span style="color:#ff79c6">&gt;</span> brokerAddrTable<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">final</span> HashMap<span style="color:#ff79c6">&lt;</span>String<span style="color:#6272a4">/* clusterName */</span><span style="color:#ff79c6">,</span> Set<span style="color:#ff79c6">&lt;</span>String<span style="color:#6272a4">/* brokerName */</span><span style="color:#ff79c6">&gt;&gt;</span> clusterAddrTable<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">final</span> HashMap<span style="color:#ff79c6">&lt;</span>String<span style="color:#6272a4">/* brokerAddr */</span><span style="color:#ff79c6">,</span> BrokerLiveInfo<span style="color:#ff79c6">&gt;</span> brokerLiveTable<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">final</span> HashMap<span style="color:#ff79c6">&lt;</span>String<span style="color:#6272a4">/* brokerAddr */</span><span style="color:#ff79c6">,</span> List<span style="color:#ff79c6">&lt;</span>String<span style="color:#ff79c6">&gt;</span><span style="color:#6272a4">/* Filter Server */</span><span style="color:#ff79c6">&gt;</span> filterServerTable<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span></code></pre></div><h1 id="eureka">eureka</h1>
+<p>也是无状态、去中心化的中间件，AP模式</p>
+<p>eureka有一个eureka还有一种自我保护机制，如果在15分钟内超过 85% 的节点都没有正常的心跳，那么就会进入自我保护机制，不再下线节点。这里会有坑，如果服务器真的大面积故障了，但是 eureka上无法下线，就仍然会命中故障机。这时候需要设置enableSelfPreservation=false</p>
+<h1 id="nacos">Nacos</h1>
+<p>Nacos是阿里巴巴推出的新一代的集注册中心和配置中心一体的中间件</p>
+<p>注册Nacos的节点跟注册zk的节点一样，也有临时节点和永久节点之分，当节点故障后，被Nacos的心跳检测到断连后，如果是临时节点，这个注册的节点会被Nacos删除。如果是永久节点，不会被删除，只会被标记成不健康。Nacos作为服务注册中心时，适合注册临时节点。如果是一些基础服务组件，例如数据库、缓存等更适合永久节点注册</p>
+<p>Nacos的特点是提供AP和CP两种模式给开发者使用，并且可以无缝切换。需要强一致的时候使用CP，是用raft协议实现的。如果是要保证高可用不需要强一致，可以使用AP模式(借鉴了eureka)</p>
+<p>此外Nacos还支持动态配置</p>
+<h1 id="总结">总结</h1>
+<p>这是上面几种中间件作为注册中心的对比</p>
+<table>
+<thead>
+<tr>
+<th>中间件</th>
+<th>一致性模型</th>
+<th>特点</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Zookeeper</td>
+<td>CP</td>
+<td>强一致性、有序节点、持久性</td>
+<td>Dubbo注册中心、分布式锁、Kafka</td>
+</tr>
+<tr>
+<td>NameServer</td>
+<td>AP</td>
+<td>轻量级、无状态</td>
+<td>RocketMQ注册中心</td>
+</tr>
+<tr>
+<td>Eureka</td>
+<td>AP</td>
+<td>AP模型、自我保护机制</td>
+<td>微服务、高可用应用</td>
+</tr>
+<tr>
+<td>Nacos</td>
+<td>AP/CP</td>
+<td>支持AP和CP模型、动态配置和监听机制</td>
+<td>微服务、配置中心、注册中心</td>
+</tr>
+</tbody>
+</table>
+<p>当我们考虑注册中心选型时，CAP问题无法避免，上面这些中间件无非就是这两种模式中的一种</p>
+<ul>
+<li>基于 Leader 的非对等部署的单点写⼀致性 CP</li>
+<li>对等部署的多写⼀致性 AP</li>
+</ul>
+<p>当我们选用服务注册中心的时候，可用性比一致性更重要，同时CP这种单Leader节点在高并发的场景会承受更多的压力，会存在性能瓶颈，所以Zookeeper是不太适合作为注册中心的</p>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/2023-10-11-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F/" data-toggle="tooltip" data-placement="top" title="设计模式之责任链模式">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+                
+
+                
+
+
+<script src="https://giscus.app/client.js"
+        data-repo="zntzhang/zntzhang.github.io"
+        data-repo-id="R_kgDOKAsvPA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOKAsvPM4CYSZK"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/elasticsearch" title="elasticsearch">
+                            elasticsearch
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/es" title="es">
+                            es
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/java" title="java">
+                            java
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/jquery/js" title="jquery/js">
+                            jquery/js
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/linux" title="linux">
+                            linux
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/mq" title="mq">
+                            mq
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/mysql" title="mysql">
+                            mysql
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/netty" title="netty">
+                            netty
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/spring" title="spring">
+                            spring
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E4%BC%98%E5%8C%96" title="优化">
+                            优化
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E5%B9%B6%E5%8F%91" title="并发">
+                            并发
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93" title="数据库">
+                            数据库
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8" title="服务器">
+                            服务器
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F" title="设计模式">
+                            设计模式
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E9%94%81" title="锁">
+                            锁
+                        </a>
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="https://blog.csdn.net/qq_37221991">装睡的小5郎</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:zt931634776@163.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    <li>
+                        <a target="_blank" href="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/IMG_8285.JPG">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/zntzhang">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; zhangtao&#39;s Blog 2023
+                   
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

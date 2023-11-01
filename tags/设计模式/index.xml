@@ -6,7 +6,16 @@
     <description>Recent content in 设计模式 on zhangtao&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 16 Aug 2022 21:04:57 +0000</lastBuildDate><atom:link href="https://zntzhang.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 11 Oct 2023 10:40:43 +0000</lastBuildDate><atom:link href="https://zntzhang.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>设计模式之责任链模式</title>
+      <link>https://zntzhang.github.io/post/2023-10-11-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Wed, 11 Oct 2023 10:40:43 +0000</pubDate>
+      
+      <guid>https://zntzhang.github.io/post/2023-10-11-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F/</guid>
+      <description>1.定义 责任链模式是常见的行为型设计模式。当我们需要实现的业务逻辑需要通过多个步骤来处理，并且这些步骤有排列组合的场景时，就可以使用责任链模</description>
+    </item>
+    
     <item>
       <title>设计模式之观察者模式</title>
       <link>https://zntzhang.github.io/post/2022-08-16-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
