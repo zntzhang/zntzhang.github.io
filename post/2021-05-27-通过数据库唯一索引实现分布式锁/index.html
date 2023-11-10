@@ -74,14 +74,14 @@
 
 
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-270JTPVG2X"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SQEK16N545"></script>
 <script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.dataLayer = window.dataLayer || [];
 	function gtag(){dataLayer.push(arguments);}
 	gtag('js', new Date());
-	gtag('config', 'G-270JTPVG2X', { 'anonymize_ip': false });
+	gtag('config', 'G-SQEK16N545', { 'anonymize_ip': false });
 }
 </script>
 
@@ -260,7 +260,7 @@ if (!doNotTrack) {
 <p>对比其他的分布式锁实现方式，貌似还缺了点什么，比如这个锁不可重入，无法设置超时时间 其实这些我们也可以解决， 首先可重入方面，我们可以增加一个字段记录重入的次数total，然后使用sql</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>insert into <span style="color:#50fa7b">table</span> <span style="color:#ff79c6">(</span>`key`<span style="color:#ff79c6">)</span> values <span style="color:#ff79c6">(</span>#key#<span style="color:#ff79c6">)</span> on duplicate key update total <span style="color:#ff79c6">=</span> total <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span>
 </span></span></code></pre></div><p>这个sql的意思是，如果没有这条记录则新增一条记录，如果重复了那么total字段+1， 这样当a再次执行sql时，total字段会+1，但是这样结束时就不能直接删掉了，需要先-1，减到0再释放， 超时方面，我们可以设置数据库的innodb_lock_wait_timeout参数来设置超时时间，默认50s，超时则会报错</p>
-<p>弊端 之前我们一直使用的是这种方式的，但是使用时发现每天会发生上千次的死锁报错，对数据的一致性和业务稳定性会造成一定的影响。原因是因为mysql默认级别RR会产生间隙锁，增大死锁的可能性。 切换成RC后，锁冲突减少，但是插入相同的key仍然可能会导致的死锁  <a href="https://note.youdao.com/">https://blog.csdn.net/pml18710973036/article/details/78452688</a>。切换成redis锁的方式，可以避免这类死锁问题</p>
+<p>弊端 之前我们一直使用的是这种方式的，但是使用时发现每天会发生上千次的死锁报错，对数据的一致性和业务稳定性会造成一定的影响。原因是因为mysql默认级别RR会产生间隙锁，增大死锁的可能性。 切换成RC后，锁冲突减少，但是插入相同的key仍然可能会导致的死锁  <a href="https://blog.csdn.net/pml18710973036/article/details/78452688">https://blog.csdn.net/pml18710973036/article/details/78452688</a>。切换成redis锁的方式，可以避免这类死锁问题</p>
 
 
                 
