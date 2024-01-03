@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="zhangtao&#39;s Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://zntzhang.github.io//img/bg_qtj.jpg">
+    <meta property="twitter:image" content="https://zntzhang.github.io//img/bg_qtj.jpg" />
+    
+
+    
+    <meta name="title" content="技术博客" />
+    <meta property="og:title" content="技术博客" />
+    <meta property="twitter:title" content="技术博客" />
+    
+
+    
+    <meta name="description" content="">
+    <meta property="og:description" content="" />
+    <meta property="twitter:description" content="" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="">
+    <meta name="google-site-verification" content="K8yZVd7oQY5zziuYgoxVtDwSFu_rnMWkzP5I1XY4qpI" />
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>技术博客 | 张涛的博客 | zhangtao Blog</title>
+
+    <link rel="canonical" href="/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SQEK16N545"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-SQEK16N545', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">zhangtao&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                   
+                    
+                        
+                        <li>
+                            <a href="/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/">技术博客</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/%E7%94%9F%E6%B4%BB/">生活</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/archive//">归档</a></li>
+                    
+                        <li><a href="/notes//">知识整理</a></li>
+                    
+                        <li><a href="/about//">关于我</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+<header class="intro-header" style="background-image: url('/img/bg_qtj.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>zhangtao&#39;s Blog </h1>
+                    
+		    <span class="subheading">不以物喜，不以己悲</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+  
+<div data-pagefind-ignore="all" class="container">
+    <div class="row">
+        
+        
+   	    <div class="
+            col-lg-8 col-lg-offset-1
+            col-md-8 col-md-offset-1
+            col-sm-12
+            col-xs-12
+            post-container
+        ">
+            
+<div data-pagefind-ignore="all">
+
+<div class="post-preview">
+    <a href="https://zntzhang.github.io/post/2022-06-08-threadlocal%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E6%88%98/">
+        <h2 class="post-title">
+            ThreadLocal原理与实战
+        </h2>
+	
+        <div class="post-content-preview">
+	
+            ThreadLocal我会将其解释为线程上下文变量，当我们想要在方法间传递参数，又不想很挫的将每个方法都参数列表都加上这个参数时，可以使用它
+       
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by zhangtao on 2022-06-08
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://zntzhang.github.io/post/2022-05-20-github-action%E4%BD%BF%E7%94%A8/">
+        <h2 class="post-title">
+            github action使用
+        </h2>
+	
+        <div class="post-content-preview">
+	
+            当我们需要发布服务时，往往是怎么操作的？最古老的方法无非是本地打包，然后ssh到服务器上，上传新包，删除老包，执行脚本启动。这个过程自己操作
+       
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by zhangtao on 2022-05-20
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://zntzhang.github.io/post/2022-04-15-%E5%85%AC%E5%8F%B8open-api%E5%AF%B9%E6%8E%A5%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">
+        <h2 class="post-title">
+            公司open api对接遇到的问题解决
+        </h2>
+	
+        <div class="post-content-preview">
+	
+            之前在写开放平台的接口的时候，碰到了一些问题，记录一下 由于工期很赶，所以还没来得及自己测试,接口匆匆忙忙上线，当客户在用时，发现查询接口使用
+       
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by zhangtao on 2022-04-15
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://zntzhang.github.io/post/2022-02-06-%E7%94%A8java%E7%BB%99%E5%A5%B3%E5%8F%8B%E8%87%AA%E5%8A%A8%E6%8F%90%E4%BA%A4%E5%B7%A5%E4%BD%9C%E5%86%85%E5%AE%B9%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/">
+        <h2 class="post-title">
+            用Java给女友自动提交工作内容的自动化脚本
+        </h2>
+	
+        <div class="post-content-preview">
+	
+            女朋友每天早上都需要登录某工作网站提交一项内容，其实在程序员看来，这些都是可以用代码自动化解决的，于是我开始加班加点搞了起来。 整理需求 首先她
+       
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by zhangtao on 2022-02-06
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://zntzhang.github.io/post/2021-12-21-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95--mockito&#43;junit/">
+        <h2 class="post-title">
+            单元测试--Mockito&#43;JUnit
+        </h2>
+	
+        <div class="post-content-preview">
+	
+            最近领导开始要求写代码需要写单元测试了。于是花了点时间研究下单元测试。 一、目的 单元测试适合一些项目复杂，启动一次项目要花很大成本的项目，这样
+       
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by zhangtao on 2021-12-21
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://zntzhang.github.io/post/2021-11-07-%E6%8D%9E%E5%8F%96%E5%A4%A7%E9%87%8F%E6%95%B0%E6%8D%AE%E6%85%A2%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/">
+        <h2 class="post-title">
+            捞取大量数据慢查询优化
+        </h2>
+	
+        <div class="post-content-preview">
+	
+            双11期间这家客户积压了5w笔订单没有发货，所以客户反映每次计算都很慢，需要几十秒的时间。波次计算的代码需要把系统中审核的订单捞出来后进行计
+       
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by zhangtao on 2021-11-07
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://zntzhang.github.io/post/2021-07-27-%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%95%BF%E4%BA%8B%E5%8A%A1%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5%E6%80%9D%E8%B7%AF/">
+        <h2 class="post-title">
+            记一次长事务问题排查思路
+        </h2>
+	
+        <div class="post-content-preview">
+	
+            今天早上dba群里抛出一个问题说，有一个长事务一直在重复执行我们的一个语句。于是问题抛给我们，我们开始排查。 首先dba告知我们这句sql是重
+       
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by zhangtao on 2021-07-27
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://zntzhang.github.io/post/2021-05-27-%E9%80%9A%E8%BF%87%E6%95%B0%E6%8D%AE%E5%BA%93%E5%94%AF%E4%B8%80%E7%B4%A2%E5%BC%95%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+        <h2 class="post-title">
+            通过数据库唯一索引实现分布式锁
+        </h2>
+	
+        <div class="post-content-preview">
+	
+            伪代码 // 需要加事务 @Transactional @Override public &lt;T&gt; T lock(XxxLock lock, ILockCallback&lt;T&gt; callback) { // 数据库加锁 lock(lock); // 加锁逻辑 T result = callback.callback(); //释放锁 try { lockDao.batchDelete(locks); } catch (Exception e) { logger.error(&#34;mysq
+       
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by zhangtao on 2021-05-27
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://zntzhang.github.io/post/2020-11-04-%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%AE%9E%E7%8E%B0-%E8%A1%8C%E9%94%81%E4%B8%8Emccc/">
+        <h2 class="post-title">
+            事务隔离级别实现-行锁与MCCC
+        </h2>
+	
+        <div class="post-content-preview">
+	
+            我们都知道数据库在并发同时执行的时候，就可能出现脏读、不可重复读、幻读的问题，为了解决这些问题，设置了四种事务的隔离级别，分别是 读未提交：A
+       
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by zhangtao on 2020-11-04
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="https://zntzhang.github.io/post/2020-08-04-%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB%E4%BD%BF%E7%94%A8/">
+        <h2 class="post-title">
+            匿名内部类使用
+        </h2>
+	
+        <div class="post-content-preview">
+	
+            在我们开发中，匿名内部类用的还是比较多的，笔者有点忘了一些细节，所以今天带大家复习一下匿名内部类 匿名内部类既没有名字的内部类 正因为没有名字，
+       
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by zhangtao on 2020-08-04
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+</div>
+
+            
+
+
+<ul class="pager" data-pagefind-ignore="all">
+    
+    <li class="previous">
+        <a href="/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/">&larr; Newer Posts</a>
+    </li>
+    
+    
+    <li class="next">
+        <a href="/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/page/3/">Older Posts &rarr;</a>
+    </li>
+    
+</ul>
+
+
+       	</div>
+        
+
+<div class="
+    col-lg-3 col-lg-offset-0
+    col-md-3 col-md-offset-0
+    col-sm-12
+    col-xs-12
+    sidebar-container
+">
+    
+	
+    <section class="visible-md visible-lg">
+	
+        <div class="short-about">
+            
+            <a href="/about">
+               <img src="/img/zhangtao.jpeg" alt="avatar" style="cursor: pointer" />
+            </a>
+            
+            
+                <p>Java程序员, 浙江杭州, 爱好历史，吉他，游泳，骑行</p>
+            
+           
+           <ul class="list-inline">
+               
+               <li>
+                   <a href="mailto:zt931634776@163.com">
+                      <span class="fa-stack fa-lg">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                      </span>
+                   </a>
+               </li>
+               
+               
+               
+               
+               
+               
+               <li>
+                   <a target="_blank" href="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/IMG_8285.JPG">
+                       <span class="fa-stack fa-lg">
+                           <i class="fas fa-circle fa-stack-2x"></i>
+                           <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+                       </span>
+                   </a>
+               </li>
+               
+               
+               <li>
+                   <a target="_blank" href="https://github.com/zntzhang">
+                       <span class="fa-stack fa-lg">
+                           <i class="fas fa-circle fa-stack-2x"></i>
+                           <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                       </span>
+                   </a>
+               </li>
+               
+               
+               
+               
+               
+               
+            
+            
+               
+               
+               
+               
+                </ul>
+            </div>
+    </section>
+	
+    
+    
+    
+    
+    <section>
+        <hr class="hidden-sm hidden-xs">
+        <h5>标签</h5>
+        <div class="tags">
+            
+            
+               
+            
+               
+            
+               
+            
+               
+                    <a href="/tags/elasticsearch" title="elasticsearch">
+                        elasticsearch
+                    </a>
+               
+            
+               
+                    <a href="/tags/es" title="es">
+                        es
+                    </a>
+               
+            
+               
+            
+               
+                    <a href="/tags/java" title="java">
+                        java
+                    </a>
+               
+            
+               
+            
+               
+                    <a href="/tags/jquery/js" title="jquery/js">
+                        jquery/js
+                    </a>
+               
+            
+               
+            
+               
+            
+               
+                    <a href="/tags/linux" title="linux">
+                        linux
+                    </a>
+               
+            
+               
+                    <a href="/tags/mq" title="mq">
+                        mq
+                    </a>
+               
+            
+               
+            
+               
+                    <a href="/tags/mysql" title="mysql">
+                        mysql
+                    </a>
+               
+            
+               
+                    <a href="/tags/netty" title="netty">
+                        netty
+                    </a>
+               
+            
+               
+            
+               
+            
+               
+                    <a href="/tags/spring" title="spring">
+                        spring
+                    </a>
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+                    <a href="/tags/%E4%BC%98%E5%8C%96" title="优化">
+                        优化
+                    </a>
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+                    <a href="/tags/%E5%B9%B6%E5%8F%91" title="并发">
+                        并发
+                    </a>
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93" title="数据库">
+                        数据库
+                    </a>
+               
+            
+               
+            
+               
+                    <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8" title="服务器">
+                        服务器
+                    </a>
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+                    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F" title="设计模式">
+                        设计模式
+                    </a>
+               
+            
+               
+                    <a href="/tags/%E9%94%81" title="锁">
+                        锁
+                    </a>
+               
+            
+        </div>
+    </section>
+    
+
+    
+    
+    <section>
+        <hr class="hidden-sm hidden-xs">
+        <h5>友链</h5>
+        <ul class="list-inline">
+            
+            <li><a target="_blank" href="https://blog.csdn.net/qq_37221991">装睡的小5郎</a></li>
+            
+        </ul>
+    </section>
+    
+    
+</div>
+
+	</div>
+</div>
+
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:zt931634776@163.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    <li>
+                        <a target="_blank" href="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/IMG_8285.JPG">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/zntzhang">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; zhangtao&#39;s Blog 2024
+                   
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>
