@@ -6,7 +6,34 @@
     <description>Recent content in Tags on zhangtao&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 31 Oct 2023 10:56:17 +0000</lastBuildDate><atom:link href="https://zntzhang.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 04 Jan 2024 10:56:17 +0000</lastBuildDate><atom:link href="https://zntzhang.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Redis</title>
+      <link>https://zntzhang.github.io/tags/redis/</link>
+      <pubDate>Thu, 04 Jan 2024 10:56:17 +0000</pubDate>
+      
+      <guid>https://zntzhang.github.io/tags/redis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>设计模式</title>
+      <link>https://zntzhang.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Thu, 04 Jan 2024 10:56:17 +0000</pubDate>
+      
+      <guid>https://zntzhang.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>锁</title>
+      <link>https://zntzhang.github.io/tags/%E9%94%81/</link>
+      <pubDate>Thu, 04 Jan 2024 10:56:17 +0000</pubDate>
+      
+      <guid>https://zntzhang.github.io/tags/%E9%94%81/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>java</title>
       <link>https://zntzhang.github.io/tags/java/</link>
@@ -22,15 +49,6 @@
       <pubDate>Tue, 31 Oct 2023 10:56:17 +0000</pubDate>
       
       <guid>https://zntzhang.github.io/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>设计模式</title>
-      <link>https://zntzhang.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
-      <pubDate>Wed, 11 Oct 2023 10:40:43 +0000</pubDate>
-      
-      <guid>https://zntzhang.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
       <description></description>
     </item>
     
@@ -260,15 +278,6 @@
     </item>
     
     <item>
-      <title>锁</title>
-      <link>https://zntzhang.github.io/tags/%E9%94%81/</link>
-      <pubDate>Thu, 27 May 2021 11:06:14 +0000</pubDate>
-      
-      <guid>https://zntzhang.github.io/tags/%E9%94%81/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>后端</title>
       <link>https://zntzhang.github.io/tags/%E5%90%8E%E7%AB%AF/</link>
       <pubDate>Tue, 04 Aug 2020 16:48:41 +0000</pubDate>
@@ -292,15 +301,6 @@
       <pubDate>Mon, 27 Jul 2020 09:57:14 +0000</pubDate>
       
       <guid>https://zntzhang.github.io/tags/spring/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Redis</title>
-      <link>https://zntzhang.github.io/tags/redis/</link>
-      <pubDate>Fri, 24 Jul 2020 14:27:29 +0000</pubDate>
-      
-      <guid>https://zntzhang.github.io/tags/redis/</guid>
       <description></description>
     </item>
     
