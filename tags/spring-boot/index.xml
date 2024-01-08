@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>spring boot on zhangtao&#39;s Blog</title>
-    <link>https://zntzhang.github.io/tags/spring-boot/</link>
+    <link>https://zhangtaoblog.cn/tags/spring-boot/</link>
     <description>Recent content in spring boot on zhangtao&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 06 Feb 2022 13:23:31 +0000</lastBuildDate><atom:link href="https://zntzhang.github.io/tags/spring-boot/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 06 Feb 2022 13:23:31 +0000</lastBuildDate><atom:link href="https://zhangtaoblog.cn/tags/spring-boot/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>用Java给女友自动提交工作内容的自动化脚本</title>
-      <link>https://zntzhang.github.io/post/2022-02-06-%E7%94%A8java%E7%BB%99%E5%A5%B3%E5%8F%8B%E8%87%AA%E5%8A%A8%E6%8F%90%E4%BA%A4%E5%B7%A5%E4%BD%9C%E5%86%85%E5%AE%B9%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/</link>
+      <link>https://zhangtaoblog.cn/post/2022-02-06-%E7%94%A8java%E7%BB%99%E5%A5%B3%E5%8F%8B%E8%87%AA%E5%8A%A8%E6%8F%90%E4%BA%A4%E5%B7%A5%E4%BD%9C%E5%86%85%E5%AE%B9%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/</link>
       <pubDate>Sun, 06 Feb 2022 13:23:31 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2022-02-06-%E7%94%A8java%E7%BB%99%E5%A5%B3%E5%8F%8B%E8%87%AA%E5%8A%A8%E6%8F%90%E4%BA%A4%E5%B7%A5%E4%BD%9C%E5%86%85%E5%AE%B9%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/</guid>
+      <guid>https://zhangtaoblog.cn/post/2022-02-06-%E7%94%A8java%E7%BB%99%E5%A5%B3%E5%8F%8B%E8%87%AA%E5%8A%A8%E6%8F%90%E4%BA%A4%E5%B7%A5%E4%BD%9C%E5%86%85%E5%AE%B9%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/</guid>
       <description>女朋友每天早上都需要登录某工作网站提交一项内容，其实在程序员看来，这些都是可以用代码自动化解决的，于是我开始加班加点搞了起来。 整理需求 首先她</description>
     </item>
     

@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on zhangtao&#39;s Blog</title>
-    <link>https://zntzhang.github.io/categories/</link>
+    <link>https://zhangtaoblog.cn/categories/</link>
     <description>Recent content in Categories on zhangtao&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 04 Jan 2024 10:56:17 +0000</lastBuildDate><atom:link href="https://zntzhang.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 04 Jan 2024 10:56:17 +0000</lastBuildDate><atom:link href="https://zhangtaoblog.cn/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>技术博客</title>
-      <link>https://zntzhang.github.io/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/</link>
+      <link>https://zhangtaoblog.cn/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/</link>
       <pubDate>Thu, 04 Jan 2024 10:56:17 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/</guid>
+      <guid>https://zhangtaoblog.cn/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/</guid>
       <description></description>
     </item>
     
     <item>
       <title>生活</title>
-      <link>https://zntzhang.github.io/categories/%E7%94%9F%E6%B4%BB/</link>
+      <link>https://zhangtaoblog.cn/categories/%E7%94%9F%E6%B4%BB/</link>
       <pubDate>Tue, 10 Oct 2023 10:43:12 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/categories/%E7%94%9F%E6%B4%BB/</guid>
+      <guid>https://zhangtaoblog.cn/categories/%E7%94%9F%E6%B4%BB/</guid>
       <description></description>
     </item>
     

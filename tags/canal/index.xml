@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>canal on zhangtao&#39;s Blog</title>
-    <link>https://zntzhang.github.io/tags/canal/</link>
+    <link>https://zhangtaoblog.cn/tags/canal/</link>
     <description>Recent content in canal on zhangtao&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 23 Dec 2022 17:56:17 +0000</lastBuildDate><atom:link href="https://zntzhang.github.io/tags/canal/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 23 Dec 2022 17:56:17 +0000</lastBuildDate><atom:link href="https://zhangtaoblog.cn/tags/canal/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>优雅数据同步--canal实现mysql同步demo</title>
-      <link>https://zntzhang.github.io/post/2022-12-23-%E4%BC%98%E9%9B%85%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5--canal%E5%AE%9E%E7%8E%B0mysql%E5%90%8C%E6%AD%A5demo/</link>
+      <link>https://zhangtaoblog.cn/post/2022-12-23-%E4%BC%98%E9%9B%85%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5--canal%E5%AE%9E%E7%8E%B0mysql%E5%90%8C%E6%AD%A5demo/</link>
       <pubDate>Fri, 23 Dec 2022 17:56:17 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2022-12-23-%E4%BC%98%E9%9B%85%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5--canal%E5%AE%9E%E7%8E%B0mysql%E5%90%8C%E6%AD%A5demo/</guid>
+      <guid>https://zhangtaoblog.cn/post/2022-12-23-%E4%BC%98%E9%9B%85%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5--canal%E5%AE%9E%E7%8E%B0mysql%E5%90%8C%E6%AD%A5demo/</guid>
       <description>当需要两张表数据同步的时候，我们会想到几种方案？ 最简单的一种方式就是触发器的方式。例如A同步到B,可以通过下面的sql来添加触发器 create trigger tri_trade_update after UPDATE</description>
     </item>
     

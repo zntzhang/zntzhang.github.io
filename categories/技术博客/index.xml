@@ -2,557 +2,557 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>技术博客 on zhangtao&#39;s Blog</title>
-    <link>https://zntzhang.github.io/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/</link>
+    <link>https://zhangtaoblog.cn/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/</link>
     <description>Recent content in 技术博客 on zhangtao&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 04 Jan 2024 10:56:17 +0000</lastBuildDate><atom:link href="https://zntzhang.github.io/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 04 Jan 2024 10:56:17 +0000</lastBuildDate><atom:link href="https://zhangtaoblog.cn/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>模板模式实现分布式锁实战</title>
-      <link>https://zntzhang.github.io/post/2024-01-04-%E6%A8%A1%E6%9D%BF%E6%A8%A1%E5%BC%8F%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%AE%9E%E6%88%98/</link>
+      <link>https://zhangtaoblog.cn/post/2024-01-04-%E6%A8%A1%E6%9D%BF%E6%A8%A1%E5%BC%8F%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%AE%9E%E6%88%98/</link>
       <pubDate>Thu, 04 Jan 2024 10:56:17 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2024-01-04-%E6%A8%A1%E6%9D%BF%E6%A8%A1%E5%BC%8F%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%AE%9E%E6%88%98/</guid>
+      <guid>https://zhangtaoblog.cn/post/2024-01-04-%E6%A8%A1%E6%9D%BF%E6%A8%A1%E5%BC%8F%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%AE%9E%E6%88%98/</guid>
       <description>前言 分布式锁相信大家都有用过，常见的分布式锁实现方式例如redis、zookeeper、数据库都可以实现，而我们代码中强引用这些分布式锁的代</description>
     </item>
     
     <item>
       <title>注册中心ZK、nameServer、eureka、Nacos介绍与对比</title>
-      <link>https://zntzhang.github.io/post/2023-10-31-%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83zknameservereurekanacos%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%AF%B9%E6%AF%94/</link>
+      <link>https://zhangtaoblog.cn/post/2023-10-31-%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83zknameservereurekanacos%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%AF%B9%E6%AF%94/</link>
       <pubDate>Tue, 31 Oct 2023 10:56:17 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2023-10-31-%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83zknameservereurekanacos%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%AF%B9%E6%AF%94/</guid>
+      <guid>https://zhangtaoblog.cn/post/2023-10-31-%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83zknameservereurekanacos%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%AF%B9%E6%AF%94/</guid>
       <description>前言 注册中心的由来 微服务架构是存在着很多跨服务调用，每个服务都存在着多个节点，如果有多个提供者和消费者，当提供者增加/减少或者消费者增加/减</description>
     </item>
     
     <item>
       <title>设计模式之责任链模式</title>
-      <link>https://zntzhang.github.io/post/2023-10-11-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F/</link>
+      <link>https://zhangtaoblog.cn/post/2023-10-11-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Wed, 11 Oct 2023 10:40:43 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2023-10-11-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F/</guid>
+      <guid>https://zhangtaoblog.cn/post/2023-10-11-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F/</guid>
       <description>1.定义 责任链模式是常见的行为型设计模式。当我们需要实现的业务逻辑需要通过多个步骤来处理，并且这些步骤有排列组合的场景时，就可以使用责任链模</description>
     </item>
     
     <item>
       <title>记一次死锁问题</title>
-      <link>https://zntzhang.github.io/post/2023-04-26-%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%AD%BB%E9%94%81%E9%97%AE%E9%A2%98/</link>
+      <link>https://zhangtaoblog.cn/post/2023-04-26-%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%AD%BB%E9%94%81%E9%97%AE%E9%A2%98/</link>
       <pubDate>Wed, 26 Apr 2023 10:43:12 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2023-04-26-%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%AD%BB%E9%94%81%E9%97%AE%E9%A2%98/</guid>
+      <guid>https://zhangtaoblog.cn/post/2023-04-26-%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%AD%BB%E9%94%81%E9%97%AE%E9%A2%98/</guid>
       <description>最近在做一个需求，碰到了死锁的问题，记录下解决问题的过程 背景 这个需求要改动一个接口，我这边称为A接口，原先的逻辑是A接口内部会调用c方法，c</description>
     </item>
     
     <item>
       <title>记一次线上oom排查过程</title>
-      <link>https://zntzhang.github.io/post/2023-04-25-%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Aoom%E6%8E%92%E6%9F%A5%E8%BF%87%E7%A8%8B/</link>
+      <link>https://zhangtaoblog.cn/post/2023-04-25-%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Aoom%E6%8E%92%E6%9F%A5%E8%BF%87%E7%A8%8B/</link>
       <pubDate>Tue, 25 Apr 2023 17:42:26 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2023-04-25-%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Aoom%E6%8E%92%E6%9F%A5%E8%BF%87%E7%A8%8B/</guid>
+      <guid>https://zhangtaoblog.cn/post/2023-04-25-%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Aoom%E6%8E%92%E6%9F%A5%E8%BF%87%E7%A8%8B/</guid>
       <description>故障 线上pda服务器出现卡慢，由于pda服务器主要是只是做了网关路由的服务，于是我们猜测是某个下游服务出现了问题，通过elk查看慢请求发现基</description>
     </item>
     
     <item>
       <title>从位运算理解位图，位掩码</title>
-      <link>https://zntzhang.github.io/post/2023-03-22-%E4%BB%8E%E4%BD%8D%E8%BF%90%E7%AE%97%E7%90%86%E8%A7%A3%E4%BD%8D%E5%9B%BE%E4%BD%8D%E6%8E%A9%E7%A0%81/</link>
+      <link>https://zhangtaoblog.cn/post/2023-03-22-%E4%BB%8E%E4%BD%8D%E8%BF%90%E7%AE%97%E7%90%86%E8%A7%A3%E4%BD%8D%E5%9B%BE%E4%BD%8D%E6%8E%A9%E7%A0%81/</link>
       <pubDate>Wed, 22 Mar 2023 19:41:14 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2023-03-22-%E4%BB%8E%E4%BD%8D%E8%BF%90%E7%AE%97%E7%90%86%E8%A7%A3%E4%BD%8D%E5%9B%BE%E4%BD%8D%E6%8E%A9%E7%A0%81/</guid>
+      <guid>https://zhangtaoblog.cn/post/2023-03-22-%E4%BB%8E%E4%BD%8D%E8%BF%90%E7%AE%97%E7%90%86%E8%A7%A3%E4%BD%8D%E5%9B%BE%E4%BD%8D%E6%8E%A9%E7%A0%81/</guid>
       <description>位图是一种较难理解的数据结构，想了解位图，我需要先温习一下基础，复习下一些二进制的知识 1个字节=8个二进制位 二进制每逢二进一，下面是二进制对</description>
     </item>
     
     <item>
       <title>优雅数据同步--canal实现mysql同步demo</title>
-      <link>https://zntzhang.github.io/post/2022-12-23-%E4%BC%98%E9%9B%85%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5--canal%E5%AE%9E%E7%8E%B0mysql%E5%90%8C%E6%AD%A5demo/</link>
+      <link>https://zhangtaoblog.cn/post/2022-12-23-%E4%BC%98%E9%9B%85%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5--canal%E5%AE%9E%E7%8E%B0mysql%E5%90%8C%E6%AD%A5demo/</link>
       <pubDate>Fri, 23 Dec 2022 17:56:17 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2022-12-23-%E4%BC%98%E9%9B%85%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5--canal%E5%AE%9E%E7%8E%B0mysql%E5%90%8C%E6%AD%A5demo/</guid>
+      <guid>https://zhangtaoblog.cn/post/2022-12-23-%E4%BC%98%E9%9B%85%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5--canal%E5%AE%9E%E7%8E%B0mysql%E5%90%8C%E6%AD%A5demo/</guid>
       <description>当需要两张表数据同步的时候，我们会想到几种方案？ 最简单的一种方式就是触发器的方式。例如A同步到B,可以通过下面的sql来添加触发器 create trigger tri_trade_update after UPDATE</description>
     </item>
     
     <item>
       <title>消息队列的坑（重复消费、顺序消费、消息丢失）</title>
-      <link>https://zntzhang.github.io/post/2022-11-01-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E7%9A%84%E5%9D%91%E9%87%8D%E5%A4%8D%E6%B6%88%E8%B4%B9%E9%A1%BA%E5%BA%8F%E6%B6%88%E8%B4%B9%E6%B6%88%E6%81%AF%E4%B8%A2%E5%A4%B1/</link>
+      <link>https://zhangtaoblog.cn/post/2022-11-01-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E7%9A%84%E5%9D%91%E9%87%8D%E5%A4%8D%E6%B6%88%E8%B4%B9%E9%A1%BA%E5%BA%8F%E6%B6%88%E8%B4%B9%E6%B6%88%E6%81%AF%E4%B8%A2%E5%A4%B1/</link>
       <pubDate>Tue, 01 Nov 2022 21:04:38 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2022-11-01-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E7%9A%84%E5%9D%91%E9%87%8D%E5%A4%8D%E6%B6%88%E8%B4%B9%E9%A1%BA%E5%BA%8F%E6%B6%88%E8%B4%B9%E6%B6%88%E6%81%AF%E4%B8%A2%E5%A4%B1/</guid>
+      <guid>https://zhangtaoblog.cn/post/2022-11-01-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E7%9A%84%E5%9D%91%E9%87%8D%E5%A4%8D%E6%B6%88%E8%B4%B9%E9%A1%BA%E5%BA%8F%E6%B6%88%E8%B4%B9%E6%B6%88%E6%81%AF%E4%B8%A2%E5%A4%B1/</guid>
       <description>1.rabbitmq erlang语言开发，时效性最高 2.rocketmq 吞吐量高，时效性高，实现了事务消息，但在大数据方面需要自己写代码支持 3.kafka 超高的吞吐量，消息较少时可能会有延</description>
     </item>
     
     <item>
       <title>设计模式之观察者模式</title>
-      <link>https://zntzhang.github.io/post/2022-08-16-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
+      <link>https://zhangtaoblog.cn/post/2022-08-16-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Tue, 16 Aug 2022 21:04:57 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2022-08-16-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</guid>
+      <guid>https://zhangtaoblog.cn/post/2022-08-16-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</guid>
       <description>观察者模式是我现在公司用的很广泛的一种设计模式，同时也十分好用，下面我推荐给大家 首先我们要明白为什么需要观察者模式，我们举个例子分析。比如我</description>
     </item>
     
     <item>
       <title>学习ES搜索引擎(二)--ES基础了解</title>
-      <link>https://zntzhang.github.io/post/2022-08-03-%E5%AD%A6%E4%B9%A0es%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%BA%8C--es%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/</link>
+      <link>https://zhangtaoblog.cn/post/2022-08-03-%E5%AD%A6%E4%B9%A0es%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%BA%8C--es%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/</link>
       <pubDate>Wed, 03 Aug 2022 14:02:39 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2022-08-03-%E5%AD%A6%E4%B9%A0es%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%BA%8C--es%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/</guid>
+      <guid>https://zhangtaoblog.cn/post/2022-08-03-%E5%AD%A6%E4%B9%A0es%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%BA%8C--es%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/</guid>
       <description>ES是一个分布式的全文搜索引擎 我们对数据库比较熟悉，刚开始了解ES时可以跟MySQL进行对比 MySQL是关系型数据库，里面的数据是一行行数据</description>
     </item>
     
     <item>
       <title>学习ES搜索引擎(一)--Mac安装ES和Kibana及简单实用</title>
-      <link>https://zntzhang.github.io/post/2022-08-03-%E5%AD%A6%E4%B9%A0es%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%B8%80--mac%E5%AE%89%E8%A3%85es%E5%92%8Ckibana%E5%8F%8A%E7%AE%80%E5%8D%95%E5%AE%9E%E7%94%A8/</link>
+      <link>https://zhangtaoblog.cn/post/2022-08-03-%E5%AD%A6%E4%B9%A0es%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%B8%80--mac%E5%AE%89%E8%A3%85es%E5%92%8Ckibana%E5%8F%8A%E7%AE%80%E5%8D%95%E5%AE%9E%E7%94%A8/</link>
       <pubDate>Wed, 03 Aug 2022 11:34:42 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2022-08-03-%E5%AD%A6%E4%B9%A0es%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%B8%80--mac%E5%AE%89%E8%A3%85es%E5%92%8Ckibana%E5%8F%8A%E7%AE%80%E5%8D%95%E5%AE%9E%E7%94%A8/</guid>
+      <guid>https://zhangtaoblog.cn/post/2022-08-03-%E5%AD%A6%E4%B9%A0es%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%B8%80--mac%E5%AE%89%E8%A3%85es%E5%92%8Ckibana%E5%8F%8A%E7%AE%80%E5%8D%95%E5%AE%9E%E7%94%A8/</guid>
       <description>最近打算研究下ES和Kibana,打算先自己安装学习一下。通常我们服务器会通过log4j会把服务器日志输出到到控制台上来或者log文件中。但</description>
     </item>
     
     <item>
       <title>ThreadLocal原理与实战</title>
-      <link>https://zntzhang.github.io/post/2022-06-08-threadlocal%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E6%88%98/</link>
+      <link>https://zhangtaoblog.cn/post/2022-06-08-threadlocal%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E6%88%98/</link>
       <pubDate>Wed, 08 Jun 2022 17:06:07 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2022-06-08-threadlocal%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E6%88%98/</guid>
+      <guid>https://zhangtaoblog.cn/post/2022-06-08-threadlocal%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E6%88%98/</guid>
       <description>ThreadLocal我会将其解释为线程上下文变量，当我们想要在方法间传递参数，又不想很挫的将每个方法都参数列表都加上这个参数时，可以使用它</description>
     </item>
     
     <item>
       <title>github action使用</title>
-      <link>https://zntzhang.github.io/post/2022-05-20-github-action%E4%BD%BF%E7%94%A8/</link>
+      <link>https://zhangtaoblog.cn/post/2022-05-20-github-action%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Fri, 20 May 2022 15:07:28 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2022-05-20-github-action%E4%BD%BF%E7%94%A8/</guid>
+      <guid>https://zhangtaoblog.cn/post/2022-05-20-github-action%E4%BD%BF%E7%94%A8/</guid>
       <description>当我们需要发布服务时，往往是怎么操作的？最古老的方法无非是本地打包，然后ssh到服务器上，上传新包，删除老包，执行脚本启动。这个过程自己操作</description>
     </item>
     
     <item>
       <title>公司open api对接遇到的问题解决</title>
-      <link>https://zntzhang.github.io/post/2022-04-15-%E5%85%AC%E5%8F%B8open-api%E5%AF%B9%E6%8E%A5%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</link>
+      <link>https://zhangtaoblog.cn/post/2022-04-15-%E5%85%AC%E5%8F%B8open-api%E5%AF%B9%E6%8E%A5%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</link>
       <pubDate>Fri, 15 Apr 2022 14:59:33 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2022-04-15-%E5%85%AC%E5%8F%B8open-api%E5%AF%B9%E6%8E%A5%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</guid>
+      <guid>https://zhangtaoblog.cn/post/2022-04-15-%E5%85%AC%E5%8F%B8open-api%E5%AF%B9%E6%8E%A5%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</guid>
       <description>之前在写开放平台的接口的时候，碰到了一些问题，记录一下 由于工期很赶，所以还没来得及自己测试,接口匆匆忙忙上线，当客户在用时，发现查询接口使用</description>
     </item>
     
     <item>
       <title>用Java给女友自动提交工作内容的自动化脚本</title>
-      <link>https://zntzhang.github.io/post/2022-02-06-%E7%94%A8java%E7%BB%99%E5%A5%B3%E5%8F%8B%E8%87%AA%E5%8A%A8%E6%8F%90%E4%BA%A4%E5%B7%A5%E4%BD%9C%E5%86%85%E5%AE%B9%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/</link>
+      <link>https://zhangtaoblog.cn/post/2022-02-06-%E7%94%A8java%E7%BB%99%E5%A5%B3%E5%8F%8B%E8%87%AA%E5%8A%A8%E6%8F%90%E4%BA%A4%E5%B7%A5%E4%BD%9C%E5%86%85%E5%AE%B9%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/</link>
       <pubDate>Sun, 06 Feb 2022 13:23:31 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2022-02-06-%E7%94%A8java%E7%BB%99%E5%A5%B3%E5%8F%8B%E8%87%AA%E5%8A%A8%E6%8F%90%E4%BA%A4%E5%B7%A5%E4%BD%9C%E5%86%85%E5%AE%B9%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/</guid>
+      <guid>https://zhangtaoblog.cn/post/2022-02-06-%E7%94%A8java%E7%BB%99%E5%A5%B3%E5%8F%8B%E8%87%AA%E5%8A%A8%E6%8F%90%E4%BA%A4%E5%B7%A5%E4%BD%9C%E5%86%85%E5%AE%B9%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/</guid>
       <description>女朋友每天早上都需要登录某工作网站提交一项内容，其实在程序员看来，这些都是可以用代码自动化解决的，于是我开始加班加点搞了起来。 整理需求 首先她</description>
     </item>
     
     <item>
       <title>单元测试--Mockito&#43;JUnit</title>
-      <link>https://zntzhang.github.io/post/2021-12-21-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95--mockito&#43;junit/</link>
+      <link>https://zhangtaoblog.cn/post/2021-12-21-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95--mockito&#43;junit/</link>
       <pubDate>Tue, 21 Dec 2021 00:00:26 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2021-12-21-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95--mockito&#43;junit/</guid>
+      <guid>https://zhangtaoblog.cn/post/2021-12-21-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95--mockito&#43;junit/</guid>
       <description>最近领导开始要求写代码需要写单元测试了。于是花了点时间研究下单元测试。 一、目的 单元测试适合一些项目复杂，启动一次项目要花很大成本的项目，这样</description>
     </item>
     
     <item>
       <title>捞取大量数据慢查询优化</title>
-      <link>https://zntzhang.github.io/post/2021-11-07-%E6%8D%9E%E5%8F%96%E5%A4%A7%E9%87%8F%E6%95%B0%E6%8D%AE%E6%85%A2%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/</link>
+      <link>https://zhangtaoblog.cn/post/2021-11-07-%E6%8D%9E%E5%8F%96%E5%A4%A7%E9%87%8F%E6%95%B0%E6%8D%AE%E6%85%A2%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/</link>
       <pubDate>Sun, 07 Nov 2021 16:56:59 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2021-11-07-%E6%8D%9E%E5%8F%96%E5%A4%A7%E9%87%8F%E6%95%B0%E6%8D%AE%E6%85%A2%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/</guid>
+      <guid>https://zhangtaoblog.cn/post/2021-11-07-%E6%8D%9E%E5%8F%96%E5%A4%A7%E9%87%8F%E6%95%B0%E6%8D%AE%E6%85%A2%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/</guid>
       <description>双11期间这家客户积压了5w笔订单没有发货，所以客户反映每次计算都很慢，需要几十秒的时间。波次计算的代码需要把系统中审核的订单捞出来后进行计</description>
     </item>
     
     <item>
       <title>记一次长事务问题排查思路</title>
-      <link>https://zntzhang.github.io/post/2021-07-27-%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%95%BF%E4%BA%8B%E5%8A%A1%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5%E6%80%9D%E8%B7%AF/</link>
+      <link>https://zhangtaoblog.cn/post/2021-07-27-%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%95%BF%E4%BA%8B%E5%8A%A1%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5%E6%80%9D%E8%B7%AF/</link>
       <pubDate>Tue, 27 Jul 2021 17:37:43 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2021-07-27-%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%95%BF%E4%BA%8B%E5%8A%A1%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5%E6%80%9D%E8%B7%AF/</guid>
+      <guid>https://zhangtaoblog.cn/post/2021-07-27-%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%95%BF%E4%BA%8B%E5%8A%A1%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5%E6%80%9D%E8%B7%AF/</guid>
       <description>今天早上dba群里抛出一个问题说，有一个长事务一直在重复执行我们的一个语句。于是问题抛给我们，我们开始排查。 首先dba告知我们这句sql是重</description>
     </item>
     
     <item>
       <title>通过数据库唯一索引实现分布式锁</title>
-      <link>https://zntzhang.github.io/post/2021-05-27-%E9%80%9A%E8%BF%87%E6%95%B0%E6%8D%AE%E5%BA%93%E5%94%AF%E4%B8%80%E7%B4%A2%E5%BC%95%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/</link>
+      <link>https://zhangtaoblog.cn/post/2021-05-27-%E9%80%9A%E8%BF%87%E6%95%B0%E6%8D%AE%E5%BA%93%E5%94%AF%E4%B8%80%E7%B4%A2%E5%BC%95%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/</link>
       <pubDate>Thu, 27 May 2021 11:06:14 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2021-05-27-%E9%80%9A%E8%BF%87%E6%95%B0%E6%8D%AE%E5%BA%93%E5%94%AF%E4%B8%80%E7%B4%A2%E5%BC%95%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/</guid>
+      <guid>https://zhangtaoblog.cn/post/2021-05-27-%E9%80%9A%E8%BF%87%E6%95%B0%E6%8D%AE%E5%BA%93%E5%94%AF%E4%B8%80%E7%B4%A2%E5%BC%95%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/</guid>
       <description>伪代码 // 需要加事务 @Transactional @Override public &amp;lt;T&amp;gt; T lock(XxxLock lock, ILockCallback&amp;lt;T&amp;gt; callback) { // 数据库加锁 lock(lock); // 加锁逻辑 T result = callback.callback(); //释放锁 try { lockDao.batchDelete(locks); } catch (Exception e) { logger.error(&amp;#34;mysq</description>
     </item>
     
     <item>
       <title>事务隔离级别实现-行锁与MCCC</title>
-      <link>https://zntzhang.github.io/post/2020-11-04-%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%AE%9E%E7%8E%B0-%E8%A1%8C%E9%94%81%E4%B8%8Emccc/</link>
+      <link>https://zhangtaoblog.cn/post/2020-11-04-%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%AE%9E%E7%8E%B0-%E8%A1%8C%E9%94%81%E4%B8%8Emccc/</link>
       <pubDate>Wed, 04 Nov 2020 20:52:55 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2020-11-04-%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%AE%9E%E7%8E%B0-%E8%A1%8C%E9%94%81%E4%B8%8Emccc/</guid>
+      <guid>https://zhangtaoblog.cn/post/2020-11-04-%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%AE%9E%E7%8E%B0-%E8%A1%8C%E9%94%81%E4%B8%8Emccc/</guid>
       <description>我们都知道数据库在并发同时执行的时候，就可能出现脏读、不可重复读、幻读的问题，为了解决这些问题，设置了四种事务的隔离级别，分别是 读未提交：A</description>
     </item>
     
     <item>
       <title>匿名内部类使用</title>
-      <link>https://zntzhang.github.io/post/2020-08-04-%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB%E4%BD%BF%E7%94%A8/</link>
+      <link>https://zhangtaoblog.cn/post/2020-08-04-%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Tue, 04 Aug 2020 16:48:41 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2020-08-04-%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB%E4%BD%BF%E7%94%A8/</guid>
+      <guid>https://zhangtaoblog.cn/post/2020-08-04-%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB%E4%BD%BF%E7%94%A8/</guid>
       <description>在我们开发中，匿名内部类用的还是比较多的，笔者有点忘了一些细节，所以今天带大家复习一下匿名内部类 匿名内部类既没有名字的内部类 正因为没有名字，</description>
     </item>
     
     <item>
       <title>JVM相关知识点总结</title>
-      <link>https://zntzhang.github.io/post/2020-08-03-jvm%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/</link>
+      <link>https://zhangtaoblog.cn/post/2020-08-03-jvm%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/</link>
       <pubDate>Mon, 03 Aug 2020 17:13:35 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2020-08-03-jvm%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/</guid>
+      <guid>https://zhangtaoblog.cn/post/2020-08-03-jvm%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/</guid>
       <description>每个线程都有： 程序计数器：记录了上下文切换的位置 虚拟机栈：由栈帧组成，入栈出栈 本地方法栈：Native方法 每个线程共享： 堆：对象 方法区（jd</description>
     </item>
     
     <item>
       <title>SpringBoot之Starter</title>
-      <link>https://zntzhang.github.io/post/2020-07-27-springboot%E4%B9%8Bstarter/</link>
+      <link>https://zhangtaoblog.cn/post/2020-07-27-springboot%E4%B9%8Bstarter/</link>
       <pubDate>Mon, 27 Jul 2020 09:57:14 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2020-07-27-springboot%E4%B9%8Bstarter/</guid>
+      <guid>https://zhangtaoblog.cn/post/2020-07-27-springboot%E4%B9%8Bstarter/</guid>
       <description>SpringBoot之所以流行，是因为Spring Starter模式的提出。Spring Starter的出现，可以让模块开发更加独立化，相互</description>
     </item>
     
     <item>
       <title>总结自己常用的JDK8写法（stream,function,optional）</title>
-      <link>https://zntzhang.github.io/post/2020-07-27-%E6%80%BB%E7%BB%93%E8%87%AA%E5%B7%B1%E5%B8%B8%E7%94%A8%E7%9A%84jdk8%E5%86%99%E6%B3%95streamfunctionoptional/</link>
+      <link>https://zhangtaoblog.cn/post/2020-07-27-%E6%80%BB%E7%BB%93%E8%87%AA%E5%B7%B1%E5%B8%B8%E7%94%A8%E7%9A%84jdk8%E5%86%99%E6%B3%95streamfunctionoptional/</link>
       <pubDate>Mon, 27 Jul 2020 09:56:44 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2020-07-27-%E6%80%BB%E7%BB%93%E8%87%AA%E5%B7%B1%E5%B8%B8%E7%94%A8%E7%9A%84jdk8%E5%86%99%E6%B3%95streamfunctionoptional/</guid>
+      <guid>https://zhangtaoblog.cn/post/2020-07-27-%E6%80%BB%E7%BB%93%E8%87%AA%E5%B7%B1%E5%B8%B8%E7%94%A8%E7%9A%84jdk8%E5%86%99%E6%B3%95streamfunctionoptional/</guid>
       <description>特别要注意的是list集合，我们sql查询返回的list或者stream处理完的list都不可能是null，所以不需要判断是否为null 遍历</description>
     </item>
     
     <item>
       <title>高可用方案和一致性hash</title>
-      <link>https://zntzhang.github.io/post/2020-07-27-%E9%AB%98%E5%8F%AF%E7%94%A8%E6%96%B9%E6%A1%88%E5%92%8C%E4%B8%80%E8%87%B4%E6%80%A7hash/</link>
+      <link>https://zhangtaoblog.cn/post/2020-07-27-%E9%AB%98%E5%8F%AF%E7%94%A8%E6%96%B9%E6%A1%88%E5%92%8C%E4%B8%80%E8%87%B4%E6%80%A7hash/</link>
       <pubDate>Mon, 27 Jul 2020 09:56:16 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2020-07-27-%E9%AB%98%E5%8F%AF%E7%94%A8%E6%96%B9%E6%A1%88%E5%92%8C%E4%B8%80%E8%87%B4%E6%80%A7hash/</guid>
+      <guid>https://zhangtaoblog.cn/post/2020-07-27-%E9%AB%98%E5%8F%AF%E7%94%A8%E6%96%B9%E6%A1%88%E5%92%8C%E4%B8%80%E8%87%B4%E6%80%A7hash/</guid>
       <description>其实大部分中间件都逃不过这两种模式 这种模式的特点是有一Master多slave，一般采用读写分离的方式，只从master中写，然后同步给sl</description>
     </item>
     
     <item>
       <title>SPI机制应用</title>
-      <link>https://zntzhang.github.io/post/2020-07-27-spi%E6%9C%BA%E5%88%B6%E5%BA%94%E7%94%A8/</link>
+      <link>https://zhangtaoblog.cn/post/2020-07-27-spi%E6%9C%BA%E5%88%B6%E5%BA%94%E7%94%A8/</link>
       <pubDate>Mon, 27 Jul 2020 09:55:42 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2020-07-27-spi%E6%9C%BA%E5%88%B6%E5%BA%94%E7%94%A8/</guid>
+      <guid>https://zhangtaoblog.cn/post/2020-07-27-spi%E6%9C%BA%E5%88%B6%E5%BA%94%E7%94%A8/</guid>
       <description>为什么要使用SPI? 系统设计的各个抽象，往往有很多不同的实现方案，在面向的对象的设计里，一般推荐模块之间基于接口编程，模块之间不对实现类进行</description>
     </item>
     
     <item>
       <title>OOM、CPU飙升、Java进程被杀 线上故障分析</title>
-      <link>https://zntzhang.github.io/post/2020-07-27-oomcpu%E9%A3%99%E5%8D%87java%E8%BF%9B%E7%A8%8B%E8%A2%AB%E6%9D%80-%E7%BA%BF%E4%B8%8A%E6%95%85%E9%9A%9C%E5%88%86%E6%9E%90/</link>
+      <link>https://zhangtaoblog.cn/post/2020-07-27-oomcpu%E9%A3%99%E5%8D%87java%E8%BF%9B%E7%A8%8B%E8%A2%AB%E6%9D%80-%E7%BA%BF%E4%B8%8A%E6%95%85%E9%9A%9C%E5%88%86%E6%9E%90/</link>
       <pubDate>Mon, 27 Jul 2020 09:55:11 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2020-07-27-oomcpu%E9%A3%99%E5%8D%87java%E8%BF%9B%E7%A8%8B%E8%A2%AB%E6%9D%80-%E7%BA%BF%E4%B8%8A%E6%95%85%E9%9A%9C%E5%88%86%E6%9E%90/</guid>
+      <guid>https://zhangtaoblog.cn/post/2020-07-27-oomcpu%E9%A3%99%E5%8D%87java%E8%BF%9B%E7%A8%8B%E8%A2%AB%E6%9D%80-%E7%BA%BF%E4%B8%8A%E6%95%85%E9%9A%9C%E5%88%86%E6%9E%90/</guid>
       <description>关于OOM出现的情况，一般可以猜想是内存泄露，或者是加载了过多class或者创建了过多对象，给JVM分配的内存不够导致 dump分析 首先登陆机</description>
     </item>
     
     <item>
       <title>Redis面试常考题</title>
-      <link>https://zntzhang.github.io/post/2020-07-24-redis%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%80%83%E9%A2%98/</link>
+      <link>https://zhangtaoblog.cn/post/2020-07-24-redis%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%80%83%E9%A2%98/</link>
       <pubDate>Fri, 24 Jul 2020 14:27:29 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2020-07-24-redis%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%80%83%E9%A2%98/</guid>
+      <guid>https://zhangtaoblog.cn/post/2020-07-24-redis%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%80%83%E9%A2%98/</guid>
       <description>1. MySQL 和 Redis的区别 2. Redis 和 memcached 的区别 Redis 和 memcached 都是从内存中读取，memcached比Redis读取更快， 但是redis有很多优点 redis支持更</description>
     </item>
     
     <item>
       <title>超详细，从零开始搭建阿里云服务器（centos7）第六章 安装Maven和RocketMq</title>
-      <link>https://zntzhang.github.io/post/2020-07-23-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%AE%89%E8%A3%85maven%E5%92%8Crocketmq/</link>
+      <link>https://zhangtaoblog.cn/post/2020-07-23-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%AE%89%E8%A3%85maven%E5%92%8Crocketmq/</link>
       <pubDate>Thu, 23 Jul 2020 09:45:10 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2020-07-23-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%AE%89%E8%A3%85maven%E5%92%8Crocketmq/</guid>
+      <guid>https://zhangtaoblog.cn/post/2020-07-23-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%AE%89%E8%A3%85maven%E5%92%8Crocketmq/</guid>
       <description>RocketMq是真的难搭，废了好多功夫才搭建完，碰到了好多坑，下面我把我吃到的坑记录下来 1. 安装Maven 1.1 下载maven wget http://mirrors.shu.edu.cn/apache/maven/maven-3/3.6.0/source/apache-maven-3.6.0-src.tar.gz 解压maven</description>
     </item>
     
     <item>
       <title>为什么我两次sql查询，查出来的对象引用是同一个？</title>
-      <link>https://zntzhang.github.io/post/2020-07-22-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%B8%A4%E6%AC%A1sql%E6%9F%A5%E8%AF%A2%E6%9F%A5%E5%87%BA%E6%9D%A5%E7%9A%84%E5%AF%B9%E8%B1%A1%E5%BC%95%E7%94%A8%E6%98%AF%E5%90%8C%E4%B8%80%E4%B8%AA/</link>
+      <link>https://zhangtaoblog.cn/post/2020-07-22-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%B8%A4%E6%AC%A1sql%E6%9F%A5%E8%AF%A2%E6%9F%A5%E5%87%BA%E6%9D%A5%E7%9A%84%E5%AF%B9%E8%B1%A1%E5%BC%95%E7%94%A8%E6%98%AF%E5%90%8C%E4%B8%80%E4%B8%AA/</link>
       <pubDate>Wed, 22 Jul 2020 17:42:39 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2020-07-22-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%B8%A4%E6%AC%A1sql%E6%9F%A5%E8%AF%A2%E6%9F%A5%E5%87%BA%E6%9D%A5%E7%9A%84%E5%AF%B9%E8%B1%A1%E5%BC%95%E7%94%A8%E6%98%AF%E5%90%8C%E4%B8%80%E4%B8%AA/</guid>
+      <guid>https://zhangtaoblog.cn/post/2020-07-22-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%B8%A4%E6%AC%A1sql%E6%9F%A5%E8%AF%A2%E6%9F%A5%E5%87%BA%E6%9D%A5%E7%9A%84%E5%AF%B9%E8%B1%A1%E5%BC%95%E7%94%A8%E6%98%AF%E5%90%8C%E4%B8%80%E4%B8%AA/</guid>
       <description>回答这个问题，我们需要掌握MyBatis的缓存概念，如果我们两次查询，一次是数据库查询，而第二次直接取得缓存中的数据，那么这两次查询查询的数</description>
     </item>
     
     <item>
       <title>拦截器、过滤器、AOP的区别</title>
-      <link>https://zntzhang.github.io/post/2020-07-22-%E6%8B%A6%E6%88%AA%E5%99%A8%E8%BF%87%E6%BB%A4%E5%99%A8aop%E7%9A%84%E5%8C%BA%E5%88%AB/</link>
+      <link>https://zhangtaoblog.cn/post/2020-07-22-%E6%8B%A6%E6%88%AA%E5%99%A8%E8%BF%87%E6%BB%A4%E5%99%A8aop%E7%9A%84%E5%8C%BA%E5%88%AB/</link>
       <pubDate>Wed, 22 Jul 2020 17:41:58 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2020-07-22-%E6%8B%A6%E6%88%AA%E5%99%A8%E8%BF%87%E6%BB%A4%E5%99%A8aop%E7%9A%84%E5%8C%BA%E5%88%AB/</guid>
+      <guid>https://zhangtaoblog.cn/post/2020-07-22-%E6%8B%A6%E6%88%AA%E5%99%A8%E8%BF%87%E6%BB%A4%E5%99%A8aop%E7%9A%84%E5%8C%BA%E5%88%AB/</guid>
       <description>spring中独有的 在SpringMVC的配置文件中配置 可对请求和响应处理 &amp;lt;mvc:interceptors&amp;gt; &amp;lt;mvc:interceptor&amp;gt; &amp;lt;mvc:mapping path=&amp;#34;/**&amp;#34; /&amp;gt; &amp;lt;bean class=&amp;#34;com.scorpios.atcrowdfunding.web.LoginInterceptor&amp;#34;&amp;gt;&amp;lt;/bean&amp;gt; &amp;lt;/mvc:interceptor&amp;gt; &amp;lt;/mvc:interceptors&amp;gt; 可以针对自定义的url拦截 servlet中有的 可</description>
     </item>
     
     <item>
       <title>简单介绍AQS、ReetrantLock、CountDownLatch、CyclicBarrier、Semaphore</title>
-      <link>https://zntzhang.github.io/post/2020-07-04-%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8Daqsreetrantlockcountdownlatchcyclicbarriersemaphore/</link>
+      <link>https://zhangtaoblog.cn/post/2020-07-04-%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8Daqsreetrantlockcountdownlatchcyclicbarriersemaphore/</link>
       <pubDate>Sat, 04 Jul 2020 15:29:16 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2020-07-04-%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8Daqsreetrantlockcountdownlatchcyclicbarriersemaphore/</guid>
+      <guid>https://zhangtaoblog.cn/post/2020-07-04-%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8Daqsreetrantlockcountdownlatchcyclicbarriersemaphore/</guid>
       <description>AQS，既AbstractQueuedSynchronizer, 是JUC包实现同步的基础工具，是一个抽象类。 在AQS中，定义了一个volat</description>
     </item>
     
     <item>
       <title>Spring容器初始化和解决循环依赖问题的分析</title>
-      <link>https://zntzhang.github.io/post/2020-06-25-spring%E5%AE%B9%E5%99%A8%E5%88%9D%E5%A7%8B%E5%8C%96%E5%92%8C%E8%A7%A3%E5%86%B3%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96%E9%97%AE%E9%A2%98%E7%9A%84%E5%88%86%E6%9E%90/</link>
+      <link>https://zhangtaoblog.cn/post/2020-06-25-spring%E5%AE%B9%E5%99%A8%E5%88%9D%E5%A7%8B%E5%8C%96%E5%92%8C%E8%A7%A3%E5%86%B3%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96%E9%97%AE%E9%A2%98%E7%9A%84%E5%88%86%E6%9E%90/</link>
       <pubDate>Thu, 25 Jun 2020 11:57:28 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2020-06-25-spring%E5%AE%B9%E5%99%A8%E5%88%9D%E5%A7%8B%E5%8C%96%E5%92%8C%E8%A7%A3%E5%86%B3%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96%E9%97%AE%E9%A2%98%E7%9A%84%E5%88%86%E6%9E%90/</guid>
+      <guid>https://zhangtaoblog.cn/post/2020-06-25-spring%E5%AE%B9%E5%99%A8%E5%88%9D%E5%A7%8B%E5%8C%96%E5%92%8C%E8%A7%A3%E5%86%B3%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96%E9%97%AE%E9%A2%98%E7%9A%84%E5%88%86%E6%9E%90/</guid>
       <description>Bean 容器找到配置文件中 Spring Bean 的定义。（beanDefintion） Bean 容器利用 Java Reflection API 创建一个Bean的实例。(执行构造方法) 如果涉及到一些属性值 利</description>
     </item>
     
     <item>
       <title>项目集成swagger启动报错 Error creating bean with name webMvcRequestHandlerProvider</title>
-      <link>https://zntzhang.github.io/post/2020-04-09-%E9%A1%B9%E7%9B%AE%E9%9B%86%E6%88%90swagger%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99-error-creating-bean-with-name-webmvcrequesthandlerprovider/</link>
+      <link>https://zhangtaoblog.cn/post/2020-04-09-%E9%A1%B9%E7%9B%AE%E9%9B%86%E6%88%90swagger%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99-error-creating-bean-with-name-webmvcrequesthandlerprovider/</link>
       <pubDate>Thu, 09 Apr 2020 22:34:11 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2020-04-09-%E9%A1%B9%E7%9B%AE%E9%9B%86%E6%88%90swagger%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99-error-creating-bean-with-name-webmvcrequesthandlerprovider/</guid>
+      <guid>https://zhangtaoblog.cn/post/2020-04-09-%E9%A1%B9%E7%9B%AE%E9%9B%86%E6%88%90swagger%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99-error-creating-bean-with-name-webmvcrequesthandlerprovider/</guid>
       <description>最近项目集成了swagger以后启动一直报错 org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name &amp;#39;webMvcRequestHandlerProvider&amp;#39; defined in URL [jar:file:/Users/jasonfeng/.m2/repository/io/springfox/springfox-spring-web/2.2.2/springfox-spring-web-2.2.2.jar!/springfox/documentation/spring/web/plugins/WebMvcRequestHandlerProvider.class]: Unsatisfied dependency expressed through constructor argument with index 0 of type [java.util.List]: : No qualifying bean of type [org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping] found for dependency [collection of org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping]: expected at least 1 bean which qualifies as autowire candidate for this</description>
     </item>
     
     <item>
       <title>浅入浅出Netty（三） Netty线程模型</title>
-      <link>https://zntzhang.github.io/post/2020-04-09-%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BAnetty%E4%B8%89-netty%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/</link>
+      <link>https://zhangtaoblog.cn/post/2020-04-09-%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BAnetty%E4%B8%89-netty%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/</link>
       <pubDate>Thu, 09 Apr 2020 22:33:20 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2020-04-09-%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BAnetty%E4%B8%89-netty%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/</guid>
+      <guid>https://zhangtaoblog.cn/post/2020-04-09-%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BAnetty%E4%B8%89-netty%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/</guid>
       <description>实际上Netty线程模型就是Reactor模式的一个实现，而Reactor模式又是什么呢？ Reactor模型 Reactor模式是基于事件驱动</description>
     </item>
     
     <item>
       <title>浅入浅出Netty（二） Netty</title>
-      <link>https://zntzhang.github.io/post/2020-04-09-%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BAnetty%E4%BA%8C-netty/</link>
+      <link>https://zhangtaoblog.cn/post/2020-04-09-%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BAnetty%E4%BA%8C-netty/</link>
       <pubDate>Thu, 09 Apr 2020 22:32:38 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2020-04-09-%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BAnetty%E4%BA%8C-netty/</guid>
+      <guid>https://zhangtaoblog.cn/post/2020-04-09-%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BAnetty%E4%BA%8C-netty/</guid>
       <description>这一遍先简单的讲一些netty是如何实现nio的代码的，后面会详细讲述netty原理 用一句简单的话来说就是：Netty 封装了 JDK 的 NIO，让你</description>
     </item>
     
     <item>
       <title>浅入浅出Netty（一）BIO与NIO</title>
-      <link>https://zntzhang.github.io/post/2020-03-28-%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BAnetty%E4%B8%80bio%E4%B8%8Enio/</link>
+      <link>https://zhangtaoblog.cn/post/2020-03-28-%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BAnetty%E4%B8%80bio%E4%B8%8Enio/</link>
       <pubDate>Sat, 28 Mar 2020 21:52:48 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2020-03-28-%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BAnetty%E4%B8%80bio%E4%B8%8Enio/</guid>
+      <guid>https://zhangtaoblog.cn/post/2020-03-28-%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BAnetty%E4%B8%80bio%E4%B8%8Enio/</guid>
       <description>在开始了解 Netty 是什么之前，我们先来回顾一下，如果我们需要实现一个客户端与服务端通信的程序，使用传统的Socket通信，应该如何来实现？ public class BIOServer {</description>
     </item>
     
     <item>
       <title>懒人如何用爬虫批量把CSDN的博客导出成markdown文件</title>
-      <link>https://zntzhang.github.io/post/2020-03-10-%E6%87%92%E4%BA%BA%E5%A6%82%E4%BD%95%E7%94%A8%E7%88%AC%E8%99%AB%E6%89%B9%E9%87%8F%E6%8A%8Acsdn%E7%9A%84%E5%8D%9A%E5%AE%A2%E5%AF%BC%E5%87%BA%E6%88%90markdown%E6%96%87%E4%BB%B6/</link>
+      <link>https://zhangtaoblog.cn/post/2020-03-10-%E6%87%92%E4%BA%BA%E5%A6%82%E4%BD%95%E7%94%A8%E7%88%AC%E8%99%AB%E6%89%B9%E9%87%8F%E6%8A%8Acsdn%E7%9A%84%E5%8D%9A%E5%AE%A2%E5%AF%BC%E5%87%BA%E6%88%90markdown%E6%96%87%E4%BB%B6/</link>
       <pubDate>Tue, 10 Mar 2020 22:09:54 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2020-03-10-%E6%87%92%E4%BA%BA%E5%A6%82%E4%BD%95%E7%94%A8%E7%88%AC%E8%99%AB%E6%89%B9%E9%87%8F%E6%8A%8Acsdn%E7%9A%84%E5%8D%9A%E5%AE%A2%E5%AF%BC%E5%87%BA%E6%88%90markdown%E6%96%87%E4%BB%B6/</guid>
+      <guid>https://zhangtaoblog.cn/post/2020-03-10-%E6%87%92%E4%BA%BA%E5%A6%82%E4%BD%95%E7%94%A8%E7%88%AC%E8%99%AB%E6%89%B9%E9%87%8F%E6%8A%8Acsdn%E7%9A%84%E5%8D%9A%E5%AE%A2%E5%AF%BC%E5%87%BA%E6%88%90markdown%E6%96%87%E4%BB%B6/</guid>
       <description>最近博主搞了一个博客网站，但是遇到一个头疼的事情，就是要把以前写在csdn 上的博客批量导出成markdown文件，但是csdn上只支持单个导</description>
     </item>
     
     <item>
       <title>设计模式之单例模式</title>
-      <link>https://zntzhang.github.io/post/2020-02-25-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</link>
+      <link>https://zhangtaoblog.cn/post/2020-02-25-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Tue, 25 Feb 2020 10:50:43 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2020-02-25-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</guid>
+      <guid>https://zhangtaoblog.cn/post/2020-02-25-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</guid>
       <description>1.定义 单例模式是Java中比较常见的创建型设计模式，他的核心是确保一个类在任何情况下都绝对只有一个实例，并提供一个全局访问点。 如何确保一个</description>
     </item>
     
     <item>
       <title>设计模式之简单工厂模式</title>
-      <link>https://zntzhang.github.io/post/2020-02-25-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</link>
+      <link>https://zhangtaoblog.cn/post/2020-02-25-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Tue, 25 Feb 2020 10:49:49 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2020-02-25-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</guid>
+      <guid>https://zhangtaoblog.cn/post/2020-02-25-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</guid>
       <description>1.定义 属于类创建型模式。在简单工厂模式中，可以根据参数的不同返回不同类的实例。简单工厂模式专门定义一个类来负责创建其他类的实例，被创建的实</description>
     </item>
     
     <item>
       <title>使用消息队列后引发的血案</title>
-      <link>https://zntzhang.github.io/post/2020-02-14-%E4%BD%BF%E7%94%A8%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%90%8E%E5%BC%95%E5%8F%91%E7%9A%84%E8%A1%80%E6%A1%88/</link>
+      <link>https://zhangtaoblog.cn/post/2020-02-14-%E4%BD%BF%E7%94%A8%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%90%8E%E5%BC%95%E5%8F%91%E7%9A%84%E8%A1%80%E6%A1%88/</link>
       <pubDate>Fri, 14 Feb 2020 17:15:07 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2020-02-14-%E4%BD%BF%E7%94%A8%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%90%8E%E5%BC%95%E5%8F%91%E7%9A%84%E8%A1%80%E6%A1%88/</guid>
+      <guid>https://zhangtaoblog.cn/post/2020-02-14-%E4%BD%BF%E7%94%A8%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%90%8E%E5%BC%95%E5%8F%91%E7%9A%84%E8%A1%80%E6%A1%88/</guid>
       <description>我们公司有一个项目，用到了消息队列，经常会遇到很多坑，难以排查，下面我详细描述一下心路历程。 首先介绍一下这个项目，简单的讲，有A,B两个工程</description>
     </item>
     
     <item>
       <title>Java并发编程（原子性、可见性、有序性、synchronized、CAS、volatile、ThreadLocal）笔记</title>
-      <link>https://zntzhang.github.io/post/2019-07-14-java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%8E%9F%E5%AD%90%E6%80%A7%E5%8F%AF%E8%A7%81%E6%80%A7%E6%9C%89%E5%BA%8F%E6%80%A7synchronizedcasvolatilethreadlocal%E7%AC%94%E8%AE%B0/</link>
+      <link>https://zhangtaoblog.cn/post/2019-07-14-java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%8E%9F%E5%AD%90%E6%80%A7%E5%8F%AF%E8%A7%81%E6%80%A7%E6%9C%89%E5%BA%8F%E6%80%A7synchronizedcasvolatilethreadlocal%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Sun, 14 Jul 2019 18:02:13 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2019-07-14-java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%8E%9F%E5%AD%90%E6%80%A7%E5%8F%AF%E8%A7%81%E6%80%A7%E6%9C%89%E5%BA%8F%E6%80%A7synchronizedcasvolatilethreadlocal%E7%AC%94%E8%AE%B0/</guid>
+      <guid>https://zhangtaoblog.cn/post/2019-07-14-java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%8E%9F%E5%AD%90%E6%80%A7%E5%8F%AF%E8%A7%81%E6%80%A7%E6%9C%89%E5%BA%8F%E6%80%A7synchronizedcasvolatilethreadlocal%E7%AC%94%E8%AE%B0/</guid>
       <description>自己网上总结了一些多线程并发的一些文章，如有错误请指教！ 多线程的三大特性 一、原子性 原子是世界上的最小单位，具有不可分割性。比如 a=0；（a非</description>
     </item>
     
     <item>
       <title>PageHelper中遇到的ThreadLocal小坑</title>
-      <link>https://zntzhang.github.io/post/2019-06-27-pagehelper%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84threadlocal%E5%B0%8F%E5%9D%91/</link>
+      <link>https://zhangtaoblog.cn/post/2019-06-27-pagehelper%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84threadlocal%E5%B0%8F%E5%9D%91/</link>
       <pubDate>Thu, 27 Jun 2019 22:43:11 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2019-06-27-pagehelper%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84threadlocal%E5%B0%8F%E5%9D%91/</guid>
+      <guid>https://zhangtaoblog.cn/post/2019-06-27-pagehelper%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84threadlocal%E5%B0%8F%E5%9D%91/</guid>
       <description>最近写代码刚好碰到ThreadLocal的小坑，顺便学习了一波ThreadLocal，拿出来分享一下 ThreadLocal什么时候会出现线程</description>
     </item>
     
     <item>
       <title>同一个类的不同方法,A方法没有@Transactional，B方法有@Transactional,A调用B方法，事务不起作用</title>
-      <link>https://zntzhang.github.io/post/2019-05-21-%E5%90%8C%E4%B8%80%E4%B8%AA%E7%B1%BB%E7%9A%84%E4%B8%8D%E5%90%8C%E6%96%B9%E6%B3%95a%E6%96%B9%E6%B3%95%E6%B2%A1%E6%9C%89transactionalb%E6%96%B9%E6%B3%95%E6%9C%89transactionala%E8%B0%83%E7%94%A8b%E6%96%B9%E6%B3%95%E4%BA%8B%E5%8A%A1%E4%B8%8D%E8%B5%B7%E4%BD%9C%E7%94%A8/</link>
+      <link>https://zhangtaoblog.cn/post/2019-05-21-%E5%90%8C%E4%B8%80%E4%B8%AA%E7%B1%BB%E7%9A%84%E4%B8%8D%E5%90%8C%E6%96%B9%E6%B3%95a%E6%96%B9%E6%B3%95%E6%B2%A1%E6%9C%89transactionalb%E6%96%B9%E6%B3%95%E6%9C%89transactionala%E8%B0%83%E7%94%A8b%E6%96%B9%E6%B3%95%E4%BA%8B%E5%8A%A1%E4%B8%8D%E8%B5%B7%E4%BD%9C%E7%94%A8/</link>
       <pubDate>Tue, 21 May 2019 16:09:36 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2019-05-21-%E5%90%8C%E4%B8%80%E4%B8%AA%E7%B1%BB%E7%9A%84%E4%B8%8D%E5%90%8C%E6%96%B9%E6%B3%95a%E6%96%B9%E6%B3%95%E6%B2%A1%E6%9C%89transactionalb%E6%96%B9%E6%B3%95%E6%9C%89transactionala%E8%B0%83%E7%94%A8b%E6%96%B9%E6%B3%95%E4%BA%8B%E5%8A%A1%E4%B8%8D%E8%B5%B7%E4%BD%9C%E7%94%A8/</guid>
+      <guid>https://zhangtaoblog.cn/post/2019-05-21-%E5%90%8C%E4%B8%80%E4%B8%AA%E7%B1%BB%E7%9A%84%E4%B8%8D%E5%90%8C%E6%96%B9%E6%B3%95a%E6%96%B9%E6%B3%95%E6%B2%A1%E6%9C%89transactionalb%E6%96%B9%E6%B3%95%E6%9C%89transactionala%E8%B0%83%E7%94%A8b%E6%96%B9%E6%B3%95%E4%BA%8B%E5%8A%A1%E4%B8%8D%E8%B5%B7%E4%BD%9C%E7%94%A8/</guid>
       <description>问题： 同一个类的不同方法,A方法没有@Transactional，B方法有@Transactional,A调用B方法，事务不起作用 原理解析：</description>
     </item>
     
     <item>
       <title>某个表有近千万数据，CRUD比较慢，如何优化？分库分表了是怎么做的？分表分库了有什么问题？有用到中间件么?他们的原理知道么？</title>
-      <link>https://zntzhang.github.io/post/2019-02-19-%E6%9F%90%E4%B8%AA%E8%A1%A8%E6%9C%89%E8%BF%91%E5%8D%83%E4%B8%87%E6%95%B0%E6%8D%AEcrud%E6%AF%94%E8%BE%83%E6%85%A2%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E4%BA%86%E6%98%AF%E6%80%8E%E4%B9%88%E5%81%9A%E7%9A%84%E5%88%86%E8%A1%A8%E5%88%86%E5%BA%93%E4%BA%86%E6%9C%89%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%E6%9C%89%E7%94%A8%E5%88%B0%E4%B8%AD%E9%97%B4%E4%BB%B6%E4%B9%88%E4%BB%96%E4%BB%AC%E7%9A%84%E5%8E%9F%E7%90%86%E7%9F%A5%E9%81%93%E4%B9%88/</link>
+      <link>https://zhangtaoblog.cn/post/2019-02-19-%E6%9F%90%E4%B8%AA%E8%A1%A8%E6%9C%89%E8%BF%91%E5%8D%83%E4%B8%87%E6%95%B0%E6%8D%AEcrud%E6%AF%94%E8%BE%83%E6%85%A2%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E4%BA%86%E6%98%AF%E6%80%8E%E4%B9%88%E5%81%9A%E7%9A%84%E5%88%86%E8%A1%A8%E5%88%86%E5%BA%93%E4%BA%86%E6%9C%89%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%E6%9C%89%E7%94%A8%E5%88%B0%E4%B8%AD%E9%97%B4%E4%BB%B6%E4%B9%88%E4%BB%96%E4%BB%AC%E7%9A%84%E5%8E%9F%E7%90%86%E7%9F%A5%E9%81%93%E4%B9%88/</link>
       <pubDate>Tue, 19 Feb 2019 10:53:03 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2019-02-19-%E6%9F%90%E4%B8%AA%E8%A1%A8%E6%9C%89%E8%BF%91%E5%8D%83%E4%B8%87%E6%95%B0%E6%8D%AEcrud%E6%AF%94%E8%BE%83%E6%85%A2%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E4%BA%86%E6%98%AF%E6%80%8E%E4%B9%88%E5%81%9A%E7%9A%84%E5%88%86%E8%A1%A8%E5%88%86%E5%BA%93%E4%BA%86%E6%9C%89%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%E6%9C%89%E7%94%A8%E5%88%B0%E4%B8%AD%E9%97%B4%E4%BB%B6%E4%B9%88%E4%BB%96%E4%BB%AC%E7%9A%84%E5%8E%9F%E7%90%86%E7%9F%A5%E9%81%93%E4%B9%88/</guid>
+      <guid>https://zhangtaoblog.cn/post/2019-02-19-%E6%9F%90%E4%B8%AA%E8%A1%A8%E6%9C%89%E8%BF%91%E5%8D%83%E4%B8%87%E6%95%B0%E6%8D%AEcrud%E6%AF%94%E8%BE%83%E6%85%A2%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E4%BA%86%E6%98%AF%E6%80%8E%E4%B9%88%E5%81%9A%E7%9A%84%E5%88%86%E8%A1%A8%E5%88%86%E5%BA%93%E4%BA%86%E6%9C%89%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%E6%9C%89%E7%94%A8%E5%88%B0%E4%B8%AD%E9%97%B4%E4%BB%B6%E4%B9%88%E4%BB%96%E4%BB%AC%E7%9A%84%E5%8E%9F%E7%90%86%E7%9F%A5%E9%81%93%E4%B9%88/</guid>
       <description>数据千万级别之多，占用的存储空间也比较大，可想而知它不会存储在一块连续的物理空间上，而是链式存储在多个碎片的物理空间上。可能对于长字符串的比</description>
     </item>
     
     <item>
       <title>超详细，从零开始搭建阿里云服务器（centos7）第五章 安装mysql</title>
-      <link>https://zntzhang.github.io/post/2019-02-17-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E4%BA%94%E7%AB%A0-%E5%AE%89%E8%A3%85mysql/</link>
+      <link>https://zhangtaoblog.cn/post/2019-02-17-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E4%BA%94%E7%AB%A0-%E5%AE%89%E8%A3%85mysql/</link>
       <pubDate>Sun, 17 Feb 2019 15:21:25 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2019-02-17-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E4%BA%94%E7%AB%A0-%E5%AE%89%E8%A3%85mysql/</guid>
+      <guid>https://zhangtaoblog.cn/post/2019-02-17-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E4%BA%94%E7%AB%A0-%E5%AE%89%E8%A3%85mysql/</guid>
       <description>1.下载MySQL源安装包 wget http://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm 安装MySql源 yum -y install mysql57-community-release-el7-11.noarch.rpm 查看一下安装效果 yum repolist enabled | grep mysql.* 2.安装MySQL服务器 yum install mysql-community-server 中间会弹出是与否的选择，选择</description>
     </item>
     
     <item>
       <title>超详细，从零开始搭建阿里云服务器（centos7）第四章 安装tomcat</title>
-      <link>https://zntzhang.github.io/post/2019-02-13-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%AE%89%E8%A3%85tomcat/</link>
+      <link>https://zhangtaoblog.cn/post/2019-02-13-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%AE%89%E8%A3%85tomcat/</link>
       <pubDate>Wed, 13 Feb 2019 15:42:15 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2019-02-13-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%AE%89%E8%A3%85tomcat/</guid>
+      <guid>https://zhangtaoblog.cn/post/2019-02-13-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%AE%89%E8%A3%85tomcat/</guid>
       <description>下面到了最关键的一步，安装tomcat过程中也是不断地爬坑。。 1.下载并上传tomcat压缩包 跟上一章类似，不细说了，我安装在了/home/</description>
     </item>
     
     <item>
       <title>超详细，从零开始搭建阿里云服务器（centos7）第三章 安装jdk</title>
-      <link>https://zntzhang.github.io/post/2019-02-13-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AE%89%E8%A3%85jdk/</link>
+      <link>https://zhangtaoblog.cn/post/2019-02-13-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AE%89%E8%A3%85jdk/</link>
       <pubDate>Wed, 13 Feb 2019 13:56:09 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2019-02-13-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AE%89%E8%A3%85jdk/</guid>
+      <guid>https://zhangtaoblog.cn/post/2019-02-13-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AE%89%E8%A3%85jdk/</guid>
       <description>1.下载jdk 首先去oracle官网下载你所需要版本的jdk，我下的是jdk1.8 https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html 2.上传jdk到云服务器 上传文件的方式有很多，这里不细说</description>
     </item>
     
     <item>
       <title>超详细，从零开始搭建阿里云服务器（centos7）第二章 创建用户</title>
-      <link>https://zntzhang.github.io/post/2019-02-12-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7/</link>
+      <link>https://zhangtaoblog.cn/post/2019-02-12-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7/</link>
       <pubDate>Tue, 12 Feb 2019 17:31:14 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2019-02-12-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7/</guid>
+      <guid>https://zhangtaoblog.cn/post/2019-02-12-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7/</guid>
       <description>1.创建用户 远程连接完后而第一件事就是创建自己的用户，因为root用户是最高权限的超级管理员，生产上不可能使用它， adduser zntzhang 创建用户 passwd zntzhang 设置密码 这</description>
     </item>
     
     <item>
       <title>超详细，从零开始搭建阿里云服务器（centos7）第一章 远程连接</title>
-      <link>https://zntzhang.github.io/post/2019-02-12-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/</link>
+      <link>https://zhangtaoblog.cn/post/2019-02-12-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/</link>
       <pubDate>Tue, 12 Feb 2019 16:57:54 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2019-02-12-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/</guid>
+      <guid>https://zhangtaoblog.cn/post/2019-02-12-%E8%B6%85%E8%AF%A6%E7%BB%86%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8centos7%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/</guid>
       <description>博主前两天买了3年最低配的阿里云玩玩，这次写一个笔记记录下自己搭服务器所遇到的坑。 1.购买阿里云 首先在阿里云官网 https://www.al</description>
     </item>
     
     <item>
       <title>MySql存储引擎和数据结构</title>
-      <link>https://zntzhang.github.io/post/2018-11-13-mysql%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E5%92%8C%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
+      <link>https://zhangtaoblog.cn/post/2018-11-13-mysql%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E5%92%8C%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
       <pubDate>Tue, 13 Nov 2018 15:49:59 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2018-11-13-mysql%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E5%92%8C%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</guid>
+      <guid>https://zhangtaoblog.cn/post/2018-11-13-mysql%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E5%92%8C%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</guid>
       <description>InnoDB 支持事务 支持外键 对比MyISAM引擎，写的处理效率会差一些，并且会占用更多的磁盘空间以保留数据和索引 MyISAM 不支持事务 不支持外键 优势是访问速度快</description>
     </item>
     
     <item>
       <title>数据库之锁与事务</title>
-      <link>https://zntzhang.github.io/post/2018-10-22-%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B9%8B%E9%94%81%E4%B8%8E%E4%BA%8B%E5%8A%A1/</link>
+      <link>https://zhangtaoblog.cn/post/2018-10-22-%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B9%8B%E9%94%81%E4%B8%8E%E4%BA%8B%E5%8A%A1/</link>
       <pubDate>Mon, 22 Oct 2018 11:38:05 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2018-10-22-%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B9%8B%E9%94%81%E4%B8%8E%E4%BA%8B%E5%8A%A1/</guid>
+      <guid>https://zhangtaoblog.cn/post/2018-10-22-%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B9%8B%E9%94%81%E4%B8%8E%E4%BA%8B%E5%8A%A1/</guid>
       <description>前言: 我们都知道事务的几种性质，数据库为了维护这些性质，尤其是一致性和隔离性，一般使用加锁这种方式。同时数据库又是个高并发的应用，同一时间会</description>
     </item>
     
     <item>
       <title>git中reset操作的三种模式（总结）</title>
-      <link>https://zntzhang.github.io/post/2018-09-21-git%E4%B8%ADreset%E6%93%8D%E4%BD%9C%E7%9A%84%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93/</link>
+      <link>https://zhangtaoblog.cn/post/2018-09-21-git%E4%B8%ADreset%E6%93%8D%E4%BD%9C%E7%9A%84%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93/</link>
       <pubDate>Fri, 21 Sep 2018 17:14:56 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2018-09-21-git%E4%B8%ADreset%E6%93%8D%E4%BD%9C%E7%9A%84%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93/</guid>
+      <guid>https://zhangtaoblog.cn/post/2018-09-21-git%E4%B8%ADreset%E6%93%8D%E4%BD%9C%E7%9A%84%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93/</guid>
       <description>首先，git 本地提交，会经过三个步骤。 这三个步骤的流程不多做解释 工作区 &amp;ndash;&amp;gt; 暂存区 &amp;ndash;&amp;gt;版本库 然后 git reset –soft 可以把版本库上的</description>
     </item>
     
     <item>
       <title>spring中service调用service如何保持事务一致</title>
-      <link>https://zntzhang.github.io/post/2018-05-31-spring%E4%B8%ADservice%E8%B0%83%E7%94%A8service%E5%A6%82%E4%BD%95%E4%BF%9D%E6%8C%81%E4%BA%8B%E5%8A%A1%E4%B8%80%E8%87%B4/</link>
+      <link>https://zhangtaoblog.cn/post/2018-05-31-spring%E4%B8%ADservice%E8%B0%83%E7%94%A8service%E5%A6%82%E4%BD%95%E4%BF%9D%E6%8C%81%E4%BA%8B%E5%8A%A1%E4%B8%80%E8%87%B4/</link>
       <pubDate>Thu, 31 May 2018 20:21:51 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2018-05-31-spring%E4%B8%ADservice%E8%B0%83%E7%94%A8service%E5%A6%82%E4%BD%95%E4%BF%9D%E6%8C%81%E4%BA%8B%E5%8A%A1%E4%B8%80%E8%87%B4/</guid>
+      <guid>https://zhangtaoblog.cn/post/2018-05-31-spring%E4%B8%ADservice%E8%B0%83%E7%94%A8service%E5%A6%82%E4%BD%95%E4%BF%9D%E6%8C%81%E4%BA%8B%E5%8A%A1%E4%B8%80%E8%87%B4/</guid>
       <description>在使用SPRING的事务控制时，事务一般都是加在SERVICE层的，这个时候如果一个SERVICE调用另一个SERVICE时如何保持事务一致</description>
     </item>
     
     <item>
       <title>Integer比较 ==与equals</title>
-      <link>https://zntzhang.github.io/post/2018-04-20-integer%E6%AF%94%E8%BE%83-%E4%B8%8Eequals/</link>
+      <link>https://zhangtaoblog.cn/post/2018-04-20-integer%E6%AF%94%E8%BE%83-%E4%B8%8Eequals/</link>
       <pubDate>Fri, 20 Apr 2018 11:30:18 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2018-04-20-integer%E6%AF%94%E8%BE%83-%E4%B8%8Eequals/</guid>
+      <guid>https://zhangtaoblog.cn/post/2018-04-20-integer%E6%AF%94%E8%BE%83-%E4%B8%8Eequals/</guid>
       <description>class Test { public static void main(String[] args) { Integer i1 = new Integer(5); Integer i2 = new Integer(5); System.out.println(i1 == i2); //false (情况，即new的id，而不是=的id赋值) Integer i3 = 5; Integer i4 = 5; System.out.println(i3 == i4); //true } } 所以判断Integer</description>
     </item>
     
     <item>
       <title>git使用笔记</title>
-      <link>https://zntzhang.github.io/post/2018-02-07-git%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</link>
+      <link>https://zhangtaoblog.cn/post/2018-02-07-git%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Wed, 07 Feb 2018 13:44:48 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2018-02-07-git%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</guid>
+      <guid>https://zhangtaoblog.cn/post/2018-02-07-git%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</guid>
       <description>1.git整合idea 2.在IDEA中实战Git</description>
     </item>
     
     <item>
       <title>MyCAT简单笔记</title>
-      <link>https://zntzhang.github.io/post/2017-12-23-mycat%E7%AE%80%E5%8D%95%E7%AC%94%E8%AE%B0/</link>
+      <link>https://zhangtaoblog.cn/post/2017-12-23-mycat%E7%AE%80%E5%8D%95%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Sat, 23 Dec 2017 15:25:43 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2017-12-23-mycat%E7%AE%80%E5%8D%95%E7%AC%94%E8%AE%B0/</guid>
+      <guid>https://zhangtaoblog.cn/post/2017-12-23-mycat%E7%AE%80%E5%8D%95%E7%AC%94%E8%AE%B0/</guid>
       <description>1.为什么要使用MyCAT? MyCAT是mysql中间件,一个可以视为MySQL集群的企业级数据库，用来替代昂贵的Oracle集群 2.MyC</description>
     </item>
     
     <item>
       <title>Spring AOP控制事务</title>
-      <link>https://zntzhang.github.io/post/2017-12-23-spring-aop%E6%8E%A7%E5%88%B6%E4%BA%8B%E5%8A%A1/</link>
+      <link>https://zhangtaoblog.cn/post/2017-12-23-spring-aop%E6%8E%A7%E5%88%B6%E4%BA%8B%E5%8A%A1/</link>
       <pubDate>Sat, 23 Dec 2017 09:25:11 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2017-12-23-spring-aop%E6%8E%A7%E5%88%B6%E4%BA%8B%E5%8A%A1/</guid>
+      <guid>https://zhangtaoblog.cn/post/2017-12-23-spring-aop%E6%8E%A7%E5%88%B6%E4%BA%8B%E5%8A%A1/</guid>
       <description>一. spring事务管理的两种方式 1. 编程式事务 自己写事务处理的类，然后调用(较少使用) 2. 声明式事务 2.1 使用基于注解的AOP事务管理 @Trans</description>
     </item>
     
     <item>
       <title>数据库建立索引的优缺点</title>
-      <link>https://zntzhang.github.io/post/2017-12-16-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BB%BA%E7%AB%8B%E7%B4%A2%E5%BC%95%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9/</link>
+      <link>https://zhangtaoblog.cn/post/2017-12-16-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BB%BA%E7%AB%8B%E7%B4%A2%E5%BC%95%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9/</link>
       <pubDate>Sat, 16 Dec 2017 10:30:52 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2017-12-16-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BB%BA%E7%AB%8B%E7%B4%A2%E5%BC%95%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9/</guid>
+      <guid>https://zhangtaoblog.cn/post/2017-12-16-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BB%BA%E7%AB%8B%E7%B4%A2%E5%BC%95%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9/</guid>
       <description>创建索引可以大大提高系统的性能: 第一，通过创建唯一性索引，可以保证数据库表中每一行数据的唯一性。 第二，可以大大加快数据的检索速度，这也是创建</description>
     </item>
     
     <item>
       <title>从零开始搭建SSM</title>
-      <link>https://zntzhang.github.io/post/2017-12-16-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BAssm/</link>
+      <link>https://zhangtaoblog.cn/post/2017-12-16-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BAssm/</link>
       <pubDate>Sat, 16 Dec 2017 10:23:52 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2017-12-16-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BAssm/</guid>
+      <guid>https://zhangtaoblog.cn/post/2017-12-16-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BAssm/</guid>
       <description>下面是我搭建框架时参考的文章以及自己的觉得重要的笔记,如果大家只是搭建框架,前三步就足够了. http://blog.csdn.net/gebitan505/article/details/44455235/ 2.配置事务管理 http://blog.csdn.net/zhshulin/article/details/38108159 3.log4j配置 http://blog.csdn.net/github_32658299/article/details/54288923 4.SS</description>
     </item>
     
     <item>
       <title>(function($){})(jQuery)、jQuery.extend({})、jQuery.fn.extend()的含义与之间的联系运用</title>
-      <link>https://zntzhang.github.io/post/2017-12-15-functionjqueryjquery.extendjquery.fn.extend%E7%9A%84%E5%90%AB%E4%B9%89%E4%B8%8E%E4%B9%8B%E9%97%B4%E7%9A%84%E8%81%94%E7%B3%BB%E8%BF%90%E7%94%A8/</link>
+      <link>https://zhangtaoblog.cn/post/2017-12-15-functionjqueryjquery.extendjquery.fn.extend%E7%9A%84%E5%90%AB%E4%B9%89%E4%B8%8E%E4%B9%8B%E9%97%B4%E7%9A%84%E8%81%94%E7%B3%BB%E8%BF%90%E7%94%A8/</link>
       <pubDate>Fri, 15 Dec 2017 15:45:55 +0000</pubDate>
       
-      <guid>https://zntzhang.github.io/post/2017-12-15-functionjqueryjquery.extendjquery.fn.extend%E7%9A%84%E5%90%AB%E4%B9%89%E4%B8%8E%E4%B9%8B%E9%97%B4%E7%9A%84%E8%81%94%E7%B3%BB%E8%BF%90%E7%94%A8/</guid>
+      <guid>https://zhangtaoblog.cn/post/2017-12-15-functionjqueryjquery.extendjquery.fn.extend%E7%9A%84%E5%90%AB%E4%B9%89%E4%B8%8E%E4%B9%8B%E9%97%B4%E7%9A%84%E8%81%94%E7%B3%BB%E8%BF%90%E7%94%A8/</guid>
       <description>1. (function($){})(jQuery)的含义 首先讲(function(){})();的含义，它是一个立即执行函数；相当于先申明一个</description>
     </item>
     
