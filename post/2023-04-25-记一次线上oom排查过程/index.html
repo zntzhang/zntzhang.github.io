@@ -10,8 +10,8 @@
     <meta property="og:type" content="article">
 
     
-    <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg">
-    <meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg" />
+    <meta property="og:image" content="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg">
+    <meta property="twitter:image" content="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg" />
     
 
     
@@ -174,7 +174,7 @@ if (!doNotTrack) {
 
 <style type="text/css">
     header.intro-header {
-        background-image: url('https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg')
+        background-image: url('https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg')
     }
 </style>
 
@@ -239,11 +239,11 @@ if (!doNotTrack) {
 <h2 id="排查">排查</h2>
 <p>与此同时，仓储的某台服务器服务心跳消息群里已经告警，我们进入服务器的grafana监控发现，这台服务器cpu已经快100%了，服务器处于假死状态，很久就出现了oom</p>
 <p>
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/image-20230731175027988.png" alt="image-20230731175027988">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/image-20230731175027988.png" alt="image-20230731175027988">
 
 </p>
 <p>
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/image-20230731175001486.png" alt="image-20230731175001486">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/image-20230731175001486.png" alt="image-20230731175001486">
 
 </p>
 <p>于是我们第一步是把服务器nginx和dubbo下线，</p>
@@ -251,7 +251,7 @@ if (!doNotTrack) {
 <p>dump完之后我们对服务器进行了重启。同时我们发现这台服务器已经很久没有发布过了，配置又比较低只有4g，最近又拉了500家公司进来，考虑到可能是用户太多服务器扛不住导致的，于是又临时加了一个点分摊压力</p>
 <p>dump文件下完后，我们通过eclips的mat工具进行分析，分析后发现整个堆内存的对象总共就只有一个g，那么问题来了，问什么会oom</p>
 <p>
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/image-20230731175230318.png" alt="image-20230731175230318">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/image-20230731175230318.png" alt="image-20230731175230318">
 
 </p>
 <p>我们查看了oom的报错是overhead limit exceeded，即gc超过一定次数，没有回收出足够的垃圾导致的。于是我们查看了当时的grafana监控，当时fullgc了8次，总共47s，导致服务stoptheworld处于不可用状态，然后仍然没有回收出足够的垃圾，所以最后oom了</p>
@@ -538,7 +538,7 @@ if (!doNotTrack) {
 		            
                     
                     <li>
-                        <a target="_blank" href="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/IMG_8285.JPG">
+                        <a target="_blank" href="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/IMG_8285.JPG">
                             <span class="fa-stack fa-lg">
                                 <i class="fas fa-circle fa-stack-2x"></i>
                                 <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
@@ -613,7 +613,7 @@ if (!doNotTrack) {
 
 
 <script>
-    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+    loadAsync("https://gcore.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
         var $nav = document.querySelector("nav");
         if($nav) FastClick.attach($nav);
     })

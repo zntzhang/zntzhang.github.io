@@ -10,8 +10,8 @@
     <meta property="og:type" content="article">
 
     
-    <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg">
-    <meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg" />
+    <meta property="og:image" content="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg">
+    <meta property="twitter:image" content="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg" />
     
 
     
@@ -174,7 +174,7 @@ if (!doNotTrack) {
 
 <style type="text/css">
     header.intro-header {
-        background-image: url('https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg')
+        background-image: url('https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg')
     }
 </style>
 
@@ -270,7 +270,7 @@ if (!doNotTrack) {
 <p>2、实现可重入的逻辑，所以需要在锁中记录重入次数，每次重入次数+1</p>
 <p>不同于上面SET key value [EX 过期时间] NX方式，redission的加锁逻辑是通过一段lua脚本来实现的，redis的lua脚本可以实现原子性的操作，下图是lua脚本</p>
 <p>
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/image-20240105170729529.png" alt="image-20240105170729529">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/image-20240105170729529.png" alt="image-20240105170729529">
 
 </p>
 <p>解锁逻辑也是一样的，由于需要判断当前线程才能执行删除，所以也需要通过lua脚本来实现删除的逻辑</p>
@@ -676,7 +676,7 @@ if (!doNotTrack) {
 		            
                     
                     <li>
-                        <a target="_blank" href="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/IMG_8285.JPG">
+                        <a target="_blank" href="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/IMG_8285.JPG">
                             <span class="fa-stack fa-lg">
                                 <i class="fas fa-circle fa-stack-2x"></i>
                                 <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
@@ -751,7 +751,7 @@ if (!doNotTrack) {
 
 
 <script>
-    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+    loadAsync("https://gcore.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
         var $nav = document.querySelector("nav");
         if($nav) FastClick.attach($nav);
     })

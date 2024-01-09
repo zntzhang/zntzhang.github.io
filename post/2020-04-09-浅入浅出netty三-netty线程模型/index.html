@@ -10,8 +10,8 @@
     <meta property="og:type" content="article">
 
     
-    <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg">
-    <meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg" />
+    <meta property="og:image" content="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg">
+    <meta property="twitter:image" content="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg" />
     
 
     
@@ -174,7 +174,7 @@ if (!doNotTrack) {
 
 <style type="text/css">
     header.intro-header {
-        background-image: url('https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg')
+        background-image: url('https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg')
     }
 </style>
 
@@ -236,7 +236,7 @@ if (!doNotTrack) {
 </ul>
 <h3 id="单reactor单线程模型">单Reactor单线程模型</h3>
 <p>
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/format,png-20230731201350953.png" alt="img">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/format,png-20230731201350953.png" alt="img">
 
 </p>
 <p>从图中可以看出：</p>
@@ -244,7 +244,7 @@ if (!doNotTrack) {
 <p>这种模型好处是简单，坏处却很明显，当某个Handler阻塞时，会导致其他客户端的handler和accpetor都得不到执行，无法做到高性能，只适用于业务处理非常快速的场景</p>
 <h3 id="单reactor多线程模型">单Reactor多线程模型</h3>
 <p>
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/format,png-20230731201357235.png" alt="img">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/format,png-20230731201357235.png" alt="img">
 
 </p>
 <p>该模型在事件处理器（Handler）部分采用了多线程（线程池）</p>
@@ -253,7 +253,7 @@ if (!doNotTrack) {
 <p>于是又有了下面的线程模型。</p>
 <h3 id="主从reactor多线程模型">主从Reactor多线程模型</h3>
 <p>
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/format,png-20230731201403725.png" alt="img">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/format,png-20230731201403725.png" alt="img">
 
  比起第二种模型，它是将Reactor分成两部分：</p>
 <ol>
@@ -613,7 +613,7 @@ if (!doNotTrack) {
 		            
                     
                     <li>
-                        <a target="_blank" href="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/IMG_8285.JPG">
+                        <a target="_blank" href="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/IMG_8285.JPG">
                             <span class="fa-stack fa-lg">
                                 <i class="fas fa-circle fa-stack-2x"></i>
                                 <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
@@ -688,7 +688,7 @@ if (!doNotTrack) {
 
 
 <script>
-    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+    loadAsync("https://gcore.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
         var $nav = document.querySelector("nav");
         if($nav) FastClick.attach($nav);
     })

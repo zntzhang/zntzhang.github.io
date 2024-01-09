@@ -10,8 +10,8 @@
     <meta property="og:type" content="article">
 
     
-    <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg">
-    <meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg" />
+    <meta property="og:image" content="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg">
+    <meta property="twitter:image" content="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg" />
     
 
     
@@ -174,7 +174,7 @@ if (!doNotTrack) {
 
 <style type="text/css">
     header.intro-header {
-        background-image: url('https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg')
+        background-image: url('https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg')
     }
 </style>
 
@@ -264,7 +264,7 @@ if (!doNotTrack) {
 <p>当provider挂了，心跳断开连接时，等临时节点的会话到期会触发节点删除，consumer会收到并本地缓存。</p>
 <p>通过watcher机制，当consumer发生了变化，provider能够及时感应到。</p>
 <p>
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/20200825230524735.png" alt="Zookeeper">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/20200825230524735.png" alt="Zookeeper">
 
 </p>
 <h4 id="分布式锁">分布式锁</h4>
@@ -281,7 +281,7 @@ if (!doNotTrack) {
 <p>Broker启动后，会向每一台NameServer节点注册信息，并会与NameServer维持一个心跳，当Broker故障后，心跳丢失，NameServer会将Broker踢出。</p>
 <p>创建topic时，需要绑定Broker队列，创建成功后会向NameServer注册topic与Broker的对应关系。</p>
 <p>
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/image-20230825180937202.png" alt="NameServer">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/image-20230825180937202.png" alt="NameServer">
 
 </p>
 <p>Producer启动后，会从NameServer中获取topic对应的Broker信息，从而知道自己订阅的topic信息要发送到哪些Broker上，根据负载均衡算法选择1台Broker建立连接，进行消息发送。</p>
@@ -290,7 +290,7 @@ if (!doNotTrack) {
 <p>NameServer采用的是跟Zookeeper不一样的模式，它是无状态、去中心化的中间件。</p>
 <p><strong>作为注册中心，一致性的要求没有这么强。但是需要保障可用性，每个NameServer节点数据可以不一致，也不需要保障一半以上的节点存活，只要有一台节点存活，集群就可以正常运作</strong>.</p>
 <p>
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/image-20230825161952028.png" alt="NameServer High Availability">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/image-20230825161952028.png" alt="NameServer High Availability">
 
 </p>
 <p>下面是NameServer的部分源码，也可以明了的看出NameServer所维护的数据。</p>
@@ -638,7 +638,7 @@ if (!doNotTrack) {
 		            
                     
                     <li>
-                        <a target="_blank" href="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/IMG_8285.JPG">
+                        <a target="_blank" href="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/IMG_8285.JPG">
                             <span class="fa-stack fa-lg">
                                 <i class="fas fa-circle fa-stack-2x"></i>
                                 <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
@@ -713,7 +713,7 @@ if (!doNotTrack) {
 
 
 <script>
-    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+    loadAsync("https://gcore.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
         var $nav = document.querySelector("nav");
         if($nav) FastClick.attach($nav);
     })

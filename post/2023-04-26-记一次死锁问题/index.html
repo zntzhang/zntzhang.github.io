@@ -10,8 +10,8 @@
     <meta property="og:type" content="article">
 
     
-    <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg">
-    <meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg" />
+    <meta property="og:image" content="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg">
+    <meta property="twitter:image" content="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg" />
     
 
     
@@ -174,7 +174,7 @@ if (!doNotTrack) {
 
 <style type="text/css">
     header.intro-header {
-        background-image: url('https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg')
+        background-image: url('https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg')
     }
 </style>
 
@@ -232,12 +232,12 @@ if (!doNotTrack) {
 <p>A接口的入参是某个商品的编码，拿到这个商品编码后匹配到一个交易订单，B方法和C方法都是需要操作这个订单商品的库存，所以都上了锁。</p>
 <h3 id="原逻辑">原逻辑</h3>
 <p>
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/image-20230731174338805.png" alt="image-20230731174338805">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/image-20230731174338805.png" alt="image-20230731174338805">
 
 </p>
 <h3 id="现逻辑">现逻辑</h3>
 <p>
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/19696c7cd9ac4285bf4eeaea6adbdf01.jpeg" alt="img">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/19696c7cd9ac4285bf4eeaea6adbdf01.jpeg" alt="img">
 
 </p>
 <p>加完B方法后，发现每次调用接口都会超时，分析日志发现是c方法加库存锁超时了。c方法的库存锁还未释放，同时B方法又加了这个锁，B需要等待C占用的锁释放，而c的锁释放也需要等待B方法结束，于是就产生了死锁</p>
@@ -577,7 +577,7 @@ if (!doNotTrack) {
 		            
                     
                     <li>
-                        <a target="_blank" href="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/IMG_8285.JPG">
+                        <a target="_blank" href="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/IMG_8285.JPG">
                             <span class="fa-stack fa-lg">
                                 <i class="fas fa-circle fa-stack-2x"></i>
                                 <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
@@ -652,7 +652,7 @@ if (!doNotTrack) {
 
 
 <script>
-    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+    loadAsync("https://gcore.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
         var $nav = document.querySelector("nav");
         if($nav) FastClick.attach($nav);
     })

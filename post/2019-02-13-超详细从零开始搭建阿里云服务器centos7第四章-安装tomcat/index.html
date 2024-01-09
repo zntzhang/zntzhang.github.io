@@ -10,8 +10,8 @@
     <meta property="og:type" content="article">
 
     
-    <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg">
-    <meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg" />
+    <meta property="og:image" content="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg">
+    <meta property="twitter:image" content="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg" />
     
 
     
@@ -174,7 +174,7 @@ if (!doNotTrack) {
 
 <style type="text/css">
     header.intro-header {
-        background-image: url('https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg')
+        background-image: url('https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg')
     }
 </style>
 
@@ -232,7 +232,7 @@ if (!doNotTrack) {
 <h2 id="2解压压缩包">2.解压压缩包</h2>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>tar <span style="color:#ff79c6">-</span>zxvf apache<span style="color:#ff79c6">-</span>tomcat<span style="color:#ff79c6">-</span><span style="color:#bd93f9">7.0.92</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">tar</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">gz</span>
 </span></span></code></pre></div><p>
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/2019021315105469.png" alt="img">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/2019021315105469.png" alt="img">
 
 </p>
 <h2 id="3启动tomcat">3.启动tomcat</h2>
@@ -258,7 +258,7 @@ if (!doNotTrack) {
 <h3 id="开启端口对应的服务">开启端口对应的服务</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>firewall<span style="color:#ff79c6">-</span>cmd <span style="color:#ff79c6">--</span>zone<span style="color:#ff79c6">=</span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#ff79c6">--</span>list<span style="color:#ff79c6">-</span>ports   查看所有打开的端口
 </span></span></code></pre></div><p>通过firewall-cmd &ndash;list-services这个命令我们查看当前打开了那些服务,比如下面这个 
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/20190213153639682.png" alt="img">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/20190213153639682.png" alt="img">
 
  一开始是没有 http和ftp的服务，需要自己添加，可以通过下面的命令添加一个服务到firewalld</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>firewall<span style="color:#ff79c6">-</span>cmd <span style="color:#ff79c6">--</span>permanent <span style="color:#ff79c6">--</span>add<span style="color:#ff79c6">-</span>service<span style="color:#ff79c6">=</span>http
@@ -545,7 +545,7 @@ if (!doNotTrack) {
 		            
                     
                     <li>
-                        <a target="_blank" href="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/IMG_8285.JPG">
+                        <a target="_blank" href="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/IMG_8285.JPG">
                             <span class="fa-stack fa-lg">
                                 <i class="fas fa-circle fa-stack-2x"></i>
                                 <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
@@ -620,7 +620,7 @@ if (!doNotTrack) {
 
 
 <script>
-    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+    loadAsync("https://gcore.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
         var $nav = document.querySelector("nav");
         if($nav) FastClick.attach($nav);
     })

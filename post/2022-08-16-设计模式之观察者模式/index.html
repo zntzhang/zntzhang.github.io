@@ -10,8 +10,8 @@
     <meta property="og:type" content="article">
 
     
-    <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg">
-    <meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg" />
+    <meta property="og:image" content="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg">
+    <meta property="twitter:image" content="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg" />
     
 
     
@@ -174,7 +174,7 @@ if (!doNotTrack) {
 
 <style type="text/css">
     header.intro-header {
-        background-image: url('https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg')
+        background-image: url('https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg')
     }
 </style>
 
@@ -240,7 +240,7 @@ if (!doNotTrack) {
                 
                 <p><em>观察者模式是我现在公司用的很广泛的一种设计模式，同时也十分好用，下面我推荐给大家</em></p>
 <p>首先我们要明白为什么需要观察者模式，我们举个例子分析。比如我们电商系统有一个商品改名了，那么如果会触发下面逻辑 
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/057a70734cc791b43a82d214e1029303.jpeg" alt="img">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/057a70734cc791b43a82d214e1029303.jpeg" alt="img">
 
  我们用代码实现如下</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">ObserverDemo</span> <span style="color:#ff79c6">{</span>
@@ -270,7 +270,7 @@ if (!doNotTrack) {
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
 </span></span></code></pre></div><p>执行结果如下</p>
 <p>
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/dc98fd10441740fba1d722abdcdcfe61.jpeg" alt="img">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/dc98fd10441740fba1d722abdcdcfe61.jpeg" alt="img">
 
 </p>
 <p>这样写看似没什么问题，某一天产品经理突然说，商品改名需要把采购单据的相关商品名称也要同步修改，那么我们在itemChangeName 方法里又要进行修改，添加修改采购单相关方法。这样就违反了设计原则中的开闭原则。</p>
@@ -306,7 +306,7 @@ if (!doNotTrack) {
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
 </span></span></code></pre></div><p>有没有什么办法可以不修改这个方法呢，我们引入本期主题–观察者模式 我先画个图让大家看下观察者模式是怎么实现的 
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/38c7eb0de5815b610dfb2697536569ab.jpeg" alt="img">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/38c7eb0de5815b610dfb2697536569ab.jpeg" alt="img">
 
  看着是不是跟消息队列有点像，其实消息队列也是用了观察者模式的思想。 我们用代码实现下定义事件接口及实现类</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#6272a4">/**
@@ -752,7 +752,7 @@ if (!doNotTrack) {
 		            
                     
                     <li>
-                        <a target="_blank" href="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/IMG_8285.JPG">
+                        <a target="_blank" href="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/IMG_8285.JPG">
                             <span class="fa-stack fa-lg">
                                 <i class="fas fa-circle fa-stack-2x"></i>
                                 <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
@@ -827,7 +827,7 @@ if (!doNotTrack) {
 
 
 <script>
-    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+    loadAsync("https://gcore.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
         var $nav = document.querySelector("nav");
         if($nav) FastClick.attach($nav);
     })

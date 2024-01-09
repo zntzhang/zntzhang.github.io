@@ -10,8 +10,8 @@
     <meta property="og:type" content="article">
 
     
-    <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg">
-    <meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg" />
+    <meta property="og:image" content="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg">
+    <meta property="twitter:image" content="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg" />
     
 
     
@@ -174,7 +174,7 @@ if (!doNotTrack) {
 
 <style type="text/css">
     header.intro-header {
-        background-image: url('https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg')
+        background-image: url('https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg')
     }
 </style>
 
@@ -251,7 +251,7 @@ if (!doNotTrack) {
 <p>排他锁：SELECT &hellip; FOR UPDATE;</p>
 <p>在数据库操作中，为了有效保证并发读取数据的正确性，提出的事务隔离级别。我们的数据库锁，也是为了构建这些隔离级别存在的。</p>
 <p>
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/70.png" alt="img">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/70.png" alt="img">
 
 </p>
 <ul>
@@ -272,7 +272,7 @@ if (!doNotTrack) {
 <h3 id="213-举例">2.1.3 举例</h3>
 <p>下面还是借用我在数据库的读现象浅析一文中举的例子来说明在未提交读的隔离级别中两个事务之间的隔离情况。</p>
 <p>
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/70-20230731201814559-20230731201819409.png" alt="img">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/70-20230731201814559-20230731201819409.png" alt="img">
 
 </p>
 <p>事务一共查询了两次，在两次查询的过程中，事务二对数据进行了修改，并未提交（commit）。但是事务一的第二次查询查到了事务二的修改结果。在数据库的读现象浅析中我们介绍过，这种现象我们称之为脏读。</p>
@@ -288,7 +288,7 @@ if (!doNotTrack) {
 <p>事务1更新某行记录时，事务2不能对这行记录做更新，直到事务1结束。（事务一在更新数据的时候，会对该行数据增加排他锁，知道事务结束才会释放锁，所以，在事务二没有提交之前，事务一都能不对数据增加共享锁进行数据的读取。所以，提交读可以解决脏读的现象）</p>
 <h3 id="223-举例">2.2.3 举例</h3>
 <p>
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/70-20230731201832049.png" alt="img">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/70-20230731201832049.png" alt="img">
 
 </p>
 <p>在提交读隔离级别中，在事务二提交之前，事务一不能读取数据。只有在事务二提交之后，事务一才能读数据。</p>
@@ -310,13 +310,13 @@ if (!doNotTrack) {
 <p>事务1更新某行记录时，事务2不能对这行记录做更新，直到事务1结束。（事务一在更新数据的时候，会对该行数据增加排他锁，知道事务结束才会释放锁，所以，在事务二没有提交之前，事务一都能不对数据增加共享锁进行数据的读取。所以，提交读可以解决脏读的现象）</p>
 <h3 id="233-举例">2.3.3 举例</h3>
 <p>
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/70-20230731201840461.png" alt="img">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/70-20230731201840461.png" alt="img">
 
 </p>
 <p>在上面的例子中，只有在事务一提交之后，事务二才能更改该行数据。所以，只要在事务一从开始到结束的这段时间内，无论他读取该行数据多少次，结果都是一样的。</p>
 <p>从上面的例子中我们可以得到结论：可重复读隔离级别可以解决不可重复读的读现象。但是可重复读这种隔离级别中，还有另外一种读现象他解决不了，那就是幻读。看下面的例子：</p>
 <p>
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/70-20230731201847425.png" alt="img">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/70-20230731201847425.png" alt="img">
 
 </p>
 <p>上面的两个事务执行情况及现象如下：</p>
@@ -618,7 +618,7 @@ if (!doNotTrack) {
 		            
                     
                     <li>
-                        <a target="_blank" href="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/IMG_8285.JPG">
+                        <a target="_blank" href="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/IMG_8285.JPG">
                             <span class="fa-stack fa-lg">
                                 <i class="fas fa-circle fa-stack-2x"></i>
                                 <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
@@ -693,7 +693,7 @@ if (!doNotTrack) {
 
 
 <script>
-    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+    loadAsync("https://gcore.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
         var $nav = document.querySelector("nav");
         if($nav) FastClick.attach($nav);
     })

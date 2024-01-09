@@ -10,8 +10,8 @@
     <meta property="og:type" content="article">
 
     
-    <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg">
-    <meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg" />
+    <meta property="og:image" content="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg">
+    <meta property="twitter:image" content="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg" />
     
 
     
@@ -174,7 +174,7 @@ if (!doNotTrack) {
 
 <style type="text/css">
     header.intro-header {
-        background-image: url('https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg')
+        background-image: url('https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg')
     }
 </style>
 
@@ -262,7 +262,7 @@ if (!doNotTrack) {
 <p>在 Java 中 <strong>synchronized</strong> 和在 <strong>lock、unlock</strong> 和一些concurrent包下提供了一些<strong>原子类</strong>（AtomicInteger、AtomicLong、AtomicReference等）中操作保证原子性。</p>
 <h4 id="二可见性">二、可见性</h4>
 <p>JMM规定多线程之间的共享变量存储在主存中，每个线程单独拥有一个本地内存（逻辑概念），本地内存存储线程操作的共享变量副本； 
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjIxOTkx,size_16,color_FFFFFF,t_70.jpeg" alt="img">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjIxOTkx,size_16,color_FFFFFF,t_70.jpeg" alt="img">
 
  可见性，是指线程之间的可见性，一个线程修改的状态对另一个线程是可见的。也就是一个线程修改的结果。另一个线程马上就能看到。当线程1对共享变量A进行修改之后，线程2的工作内存中A可能还不是最新的值。这时候线程1的操作对线程2就不具有可见性。</p>
 <h5 id="缓存导致的可见性问题">缓存导致的可见性问题</h5>
@@ -340,19 +340,19 @@ if (!doNotTrack) {
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
 </span></span></code></pre></div><p>上面程序的意思是：让线程1先执行然后主（main）线程修改标志看是否能让子线程跳出循环。执行程序后发现程序并没有执行完，而是在等待线程1执行完毕。这就说明主线程修改stop变量并不对线程1可见，所以普通变量是不保证可见性的。 
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjIxOTkx,size_16,color_FFFFFF,t_70-20230731201519399.png" alt="img">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjIxOTkx,size_16,color_FFFFFF,t_70-20230731201519399.png" alt="img">
 
  当你把变量stop用volatile修饰时，主线程修改stop变量会立马对线程1可见并终止程序，这就证明volatile变量是具有可见性特性的。下面修改后的结果。 
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjIxOTkx,size_16,color_FFFFFF,t_70-20230731201525269.png" alt="img">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjIxOTkx,size_16,color_FFFFFF,t_70-20230731201525269.png" alt="img">
 
  当写一个 volatile 变量时，JMM 会把该线程对应的本地内存中的共享变量值刷新到主内存。</p>
 <p>当读一个 volatile 变量时，JMM 会把该线程对应的本地内存置为无效。线程接下来将从主内存中读取共享变量。</p>
 <p>以上面VolatileExample程序为例进行简单说明，当主线程对stop进行修改后且子线程尚未对stop进行读时，主线程已经把stop的值刷新到了主内存。其示意图如下：</p>
 <p>
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjIxOTkx,size_16,color_FFFFFF,t_70-20230731201530298.png" alt="img">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjIxOTkx,size_16,color_FFFFFF,t_70-20230731201530298.png" alt="img">
 
  当子线程进行读取时，会把本地内存置为无效直接去主内存中读取。（这里的主线程和子线程可以了解为两个普通线程没有父子关系）其示意图如下： 
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjIxOTkx,size_16,color_FFFFFF,t_70-20230731201534954.png" alt="img">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjIxOTkx,size_16,color_FFFFFF,t_70-20230731201534954.png" alt="img">
 
 </p>
 <h4 id="2synchronized加各种锁实现可见性">2.synchronized（加各种锁）实现可见性</h4>
@@ -700,7 +700,7 @@ if (!doNotTrack) {
 		            
                     
                     <li>
-                        <a target="_blank" href="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/IMG_8285.JPG">
+                        <a target="_blank" href="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/IMG_8285.JPG">
                             <span class="fa-stack fa-lg">
                                 <i class="fas fa-circle fa-stack-2x"></i>
                                 <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
@@ -775,7 +775,7 @@ if (!doNotTrack) {
 
 
 <script>
-    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+    loadAsync("https://gcore.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
         var $nav = document.querySelector("nav");
         if($nav) FastClick.attach($nav);
     })

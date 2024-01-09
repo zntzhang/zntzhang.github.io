@@ -10,8 +10,8 @@
     <meta property="og:type" content="article">
 
     
-    <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg">
-    <meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg" />
+    <meta property="og:image" content="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg">
+    <meta property="twitter:image" content="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg" />
     
 
     
@@ -174,7 +174,7 @@ if (!doNotTrack) {
 
 <style type="text/css">
     header.intro-header {
-        background-image: url('https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg')
+        background-image: url('https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg')
     }
 </style>
 
@@ -232,7 +232,7 @@ if (!doNotTrack) {
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>passwd zntzhang  设置密码
 </span></span></code></pre></div><p>
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/20190213104724702.png" alt="img">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/20190213104724702.png" alt="img">
 
  这里有一篇文章写的很好，我就只写发链接了  <a href="http://www.cnblogs.com/woshimrf/p/5906084.html">在centos7中添加一个新用户，并授权</a></p>
 <h2 id="2授权">2.授权</h2>
@@ -240,12 +240,12 @@ if (!doNotTrack) {
 <p>新创建的用户并不能使用sudo命令，需要给他添加授权。 sudo命令的授权管理是在sudoers文件里的。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>visudo  修改sudo文件<span style="color:#ff79c6">,</span>
 </span></span></code></pre></div><p>在 root ALL=(ALL) ALL 后添加 
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjIxOTkx,size_16,color_FFFFFF,t_70-20230731201739785.png" alt="img">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MjIxOTkx,size_16,color_FFFFFF,t_70-20230731201739785.png" alt="img">
 
  最后 wq! 保存退出</p>
 <h2 id="3关于权限">3.关于权限</h2>
 <p>当我们使用自己创建的用户时碰到权限不够的问题， 首先我们该考虑是不是文件的权限不够， 
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/20190212172511970.png" alt="img">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/20190212172511970.png" alt="img">
 
  我们可以使用chmod来提高文件的访问权限 chmod可以用数字来表示权限如 chmod 777 file 语法为：chmod abc file 其中a,b,c各为一个数字，分别表示User、Group、及Other的权限。 r=4，w=2，x=1 若要rwx属性则4+2+1=7； 若要rw-属性则4+2=6； 若要r-x属性则4+1=5。</p>
 <p>如果我们不想修改文件权限就像操作文件，那么我们就可以使用su或sudo+指令来切换root用户进行操作 这两个有什么区别呢？  <a href="https://www.cnblogs.com/slgkaifa/p/6852884.html">linux权限之su和sudo的差别</a></p>
@@ -529,7 +529,7 @@ if (!doNotTrack) {
 		            
                     
                     <li>
-                        <a target="_blank" href="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/IMG_8285.JPG">
+                        <a target="_blank" href="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/IMG_8285.JPG">
                             <span class="fa-stack fa-lg">
                                 <i class="fas fa-circle fa-stack-2x"></i>
                                 <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
@@ -604,7 +604,7 @@ if (!doNotTrack) {
 
 
 <script>
-    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+    loadAsync("https://gcore.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
         var $nav = document.querySelector("nav");
         if($nav) FastClick.attach($nav);
     })

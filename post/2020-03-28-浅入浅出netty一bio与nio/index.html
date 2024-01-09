@@ -10,8 +10,8 @@
     <meta property="og:type" content="article">
 
     
-    <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg">
-    <meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg" />
+    <meta property="og:image" content="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg">
+    <meta property="twitter:image" content="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg" />
     
 
     
@@ -174,7 +174,7 @@ if (!doNotTrack) {
 
 <style type="text/css">
     header.intro-header {
-        background-image: url('https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg')
+        background-image: url('https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg')
     }
 </style>
 
@@ -329,7 +329,7 @@ if (!doNotTrack) {
 <p>上面的 demo，从服务端代码中我们可以看到，在传统的 IO 模型中，每个连接创建成功之后都需要一个线程来维护。因为目前我们每个客户端都为其分配了一个线程去运行，如果有一万个客户端进来，我们就要分配一万个线程给客户端使用，这样的资源消耗是十分巨大的。</p>
 <p>于是JDK 在 1.4 之后提出了 NIO，在 NIO 模型中，一条连接来了之后，直接把这条连接注册到 <strong>selector</strong> 上，然后，通过检查这个 selector，就可以批量监测出有数据可读的连接，进而读取数据</p>
 <p>
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/format,png-20230731201418791.png" alt="img">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/format,png-20230731201418791.png" alt="img">
 
 </p>
 <p>另外IO 读写是面向流的，一次性只能从流中读取一个或者多个字节，并且读完之后流无法再读取，你需要自己缓存数据。 而 NIO 的读写是面向 Buffer 的，你可以随意读取里面任何一个字节数据，不需要你自己缓存数据，这一切只需要移动读写指针即可。</p>
@@ -366,12 +366,12 @@ if (!doNotTrack) {
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
 </span></span></code></pre></div><p>对于传统IO和NIO，网上有一对图片表达的非常好：</p>
 <p>
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/format,png-20230731201425004.png" alt="img">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/format,png-20230731201425004.png" alt="img">
 
  我们的系统就相当于一个餐厅，大门相当于ServerSocket，客人相当于socket客户端，服务员相当于每个socket客户端的处理线程。当在多线程的情况下处理客户端的时候，就相当于餐厅每一个客人都配备了一个专门的服务员，这不管对系统还是餐厅，都是很大的开销。</p>
 <p>而对于NIO：</p>
 <p>
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/format,png-20230731201429364.png" alt="img">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/format,png-20230731201429364.png" alt="img">
 
 </p>
 <p>这里也是将系统比喻为一个餐厅，大门相当于serverChannel.socket().bind(new InetSocketAddress(10010))，客人相当于SocketChannel客户端，服务员相当于线程和selector，只需要一个服务员就可以服务所有的客人了，这对于系统或餐厅来说都是一个低开销的事情。</p>
@@ -656,7 +656,7 @@ if (!doNotTrack) {
 		            
                     
                     <li>
-                        <a target="_blank" href="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/IMG_8285.JPG">
+                        <a target="_blank" href="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/IMG_8285.JPG">
                             <span class="fa-stack fa-lg">
                                 <i class="fas fa-circle fa-stack-2x"></i>
                                 <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
@@ -731,7 +731,7 @@ if (!doNotTrack) {
 
 
 <script>
-    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+    loadAsync("https://gcore.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
         var $nav = document.querySelector("nav");
         if($nav) FastClick.attach($nav);
     })

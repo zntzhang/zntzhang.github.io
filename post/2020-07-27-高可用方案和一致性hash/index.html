@@ -10,8 +10,8 @@
     <meta property="og:type" content="article">
 
     
-    <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg">
-    <meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg" />
+    <meta property="og:image" content="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg">
+    <meta property="twitter:image" content="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg" />
     
 
     
@@ -174,7 +174,7 @@ if (!doNotTrack) {
 
 <style type="text/css">
     header.intro-header {
-        background-image: url('https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg')
+        background-image: url('https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg')
     }
 </style>
 
@@ -235,7 +235,7 @@ if (!doNotTrack) {
 <p>一般能保证CP，既强一致性</p>
 <p>缺点：master挂了正在选主，或者半数机器挂了，就会无法获取数据</p>
 <p>
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/format,png-20230731201235673.png" alt="img">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/format,png-20230731201235673.png" alt="img">
 
 </p>
 <p>常见场景：redis主从、哨兵，mysql，zk</p>
@@ -243,7 +243,7 @@ if (!doNotTrack) {
 <p>节点之间互相平等，部分挂掉也不会影响，即使只有一台存活</p>
 <p>缺点：可能会出现数据的不一致</p>
 <p>
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/format,png-20230731201240610.png" alt="img">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/format,png-20230731201240610.png" alt="img">
 
 </p>
 <p>一般能保证AP，高可用性</p>
@@ -263,7 +263,7 @@ if (!doNotTrack) {
 <p>我需要通过hash值算出在哪台机器，常用的方法就<strong>hash值对服务器的数量取模</strong> hashCode % servers.size()这种算法的好处就是，会有粘性，我下次进来还是会进同一台。</p>
 <p>但是这样会有一个问题，比如服务器增加了一台或者减少了一台，那么所有取值都会变化。</p>
 <p>于是我们改成对2^32取模，这些节点会<strong>落在一个圆</strong>上。当我们请求过来时， 根据 hashCode % 2^32取值，然后顺时针找到最近的节点，就是我们要访问的机子。 
-  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/format,png-20230731201246632.png" alt="img">
+  <img src="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/format,png-20230731201246632.png" alt="img">
 
 </p>
 <p>如果服务器的数量很少，那么这些节点在这个圆上可能不是那么均匀，大量数据可能会集中在一个节点上，这时候引入了虚拟节点的概念，多了几个虚拟节点后就不会显得那么不均匀了</p>
@@ -548,7 +548,7 @@ if (!doNotTrack) {
 		            
                     
                     <li>
-                        <a target="_blank" href="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/IMG_8285.JPG">
+                        <a target="_blank" href="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/IMG_8285.JPG">
                             <span class="fa-stack fa-lg">
                                 <i class="fas fa-circle fa-stack-2x"></i>
                                 <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
@@ -623,7 +623,7 @@ if (!doNotTrack) {
 
 
 <script>
-    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+    loadAsync("https://gcore.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
         var $nav = document.querySelector("nav");
         if($nav) FastClick.attach($nav);
     })
