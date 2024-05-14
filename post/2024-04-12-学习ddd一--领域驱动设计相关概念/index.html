@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="zhangtao&#39;s Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg">
+    <meta property="twitter:image" content="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg" />
+    
+
+    
+    <meta name="title" content="模板模式实现分布式锁实战" />
+    <meta property="og:title" content="模板模式实现分布式锁实战" />
+    <meta property="twitter:title" content="模板模式实现分布式锁实战" />
+    
+
+    
+    <meta name="description" content="">
+    <meta property="og:description" content="" />
+    <meta property="twitter:description" content="" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="">
+    <meta name="google-site-verification" content="K8yZVd7oQY5zziuYgoxVtDwSFu_rnMWkzP5I1XY4qpI" />
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>模板模式实现分布式锁实战 | 张涛的博客 | zhangtao Blog</title>
+
+    <link rel="canonical" href="/post/2024-04-12-%E5%AD%A6%E4%B9%A0ddd%E4%B8%80--%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    
+    
+
+    
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">zhangtao&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                   
+                    
+                        
+                        <li>
+                            <a href="/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/">技术博客</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/%E7%94%9F%E6%B4%BB/">生活</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/archive//">归档</a></li>
+                    
+                        <li><a href="/notes//">知识整理</a></li>
+                    
+                        <li><a href="/about//">关于我</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/ddd" title="ddd">
+                            ddd
+                        </a>
+                        
+                        <a class="tag" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F" title="设计模式">
+                            设计模式
+                        </a>
+                        
+                    </div>
+                    <h1>模板模式实现分布式锁实战</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                zhangtao
+                             
+                            on 
+                            Friday, April 12, 2024
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <p><em>我之前一直对领域驱动设计（DDD）相关的知识有零散的认识，没有系统性地学习过。最近抽空系统地学习了一下，发现这块知识比较抽象，很难读懂。加上我自己的理解，我整理了一些知识，希望能够分享给大家</em></p>
+<p>第一期先讲些了DDD的一些基础概念</p>
+<h1 id="充血模型">充血模型</h1>
+<p>在我们以往的开发模式中，Model 对象通常只包含属性变量和 get/set 方法，这种模式被称为“贫血模型”。举个例子，比如订单的作废方法，在传统的做法中，我们会在 Service 层编写业务逻辑，如下所示：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>@Data
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Order</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">private</span> Long id<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">private</span> Date cancelDate<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">private</span> Integer Status<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>@Service
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">OrderService</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 传统写法，service臃肿
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">cancel</span><span style="color:#ff79c6">(</span>Long id<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>            Order order <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Order<span style="color:#ff79c6">(</span>id<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>            order<span style="color:#ff79c6">.</span><span style="color:#50fa7b">setCancelTime</span><span style="color:#ff79c6">(</span><span style="color:#ff79c6">new</span> Date<span style="color:#ff79c6">());</span>
+</span></span><span style="display:flex;"><span>            order<span style="color:#ff79c6">.</span><span style="color:#50fa7b">setStatus</span><span style="color:#ff79c6">(</span>StatusEnum<span style="color:#ff79c6">.</span><span style="color:#50fa7b">CANCELED</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">getCode</span><span style="color:#ff79c6">());</span>
+</span></span><span style="display:flex;"><span>            orderDAO<span style="color:#ff79c6">.</span><span style="color:#50fa7b">update</span><span style="color:#ff79c6">(</span>order<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span></code></pre></div><p>如果我们使用充血模型进行改造</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>@Data
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Order</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">private</span> Long id<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">private</span> Date cancelDate<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">private</span> Integer Status<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  cancelOrder<span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#ff79c6">this</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">setCancelTime</span><span style="color:#ff79c6">(</span><span style="color:#ff79c6">new</span> Date<span style="color:#ff79c6">());</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#ff79c6">this</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">setStatus</span><span style="color:#ff79c6">(</span>StatusEnum<span style="color:#ff79c6">.</span><span style="color:#50fa7b">CANCELED</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">getCode</span><span style="color:#ff79c6">());</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>@Service
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">OrderService</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">cancel</span><span style="color:#ff79c6">(</span>Long id<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>            Order order <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Order<span style="color:#ff79c6">(</span>id<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>            order<span style="color:#ff79c6">.</span><span style="color:#50fa7b">cancelOrder</span><span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span>            orderDAO<span style="color:#ff79c6">.</span><span style="color:#50fa7b">update</span><span style="color:#ff79c6">(</span>order<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span></code></pre></div><p>通过这个例子可以看出，原本在 OrderService 中执行的业务逻辑被移到了 Order 对象中，使得 Order 成为一个充血模型。</p>
+<p>这样的设计有什么好处呢？首先，对于简单项目来说，贫血模型也许没什么问题。但一旦项目复杂起来，大量操作都涉及对 Order 进行取消，如果取消逻辑需要修改，那么代码将无法统一维护，容易出现 bug。
+其次，将 Service 中的行为移到 Model 中，使对象除了属性外还具备行为。这样一来，Service 的代码会更加简洁，而 Model 中的行为则成为领域对象的核心逻辑，而不是零散的业务代码，更易于理解业务。</p>
+<h1 id="实体与值对象">实体与值对象</h1>
+<p>在领域驱动设计中，有两个重要概念：实体（Entities）与值对象（Value Objects）。如何区分实体与值对象呢？一般来说，实体是具有唯一标识符（ID）的对象，对应着业务概念，拥有属性和行为；而值对象则是没有唯一标识符的对象，通常是多个属性的集合，用来描述实体的状态和特征。</p>
+<p>值对象的一个重要优点是可复用性，比如 ItemInfo 值对象可以被多个实体所使用。另一个优点是，值对象内部的属性是一个整体，如果将这些字段拆分到实体中，会导致属性的零散分布，而值对象则能更清晰地将相关属性组织在一起。</p>
+<p>对于值对象的持久化，我们可以使用数据库的 JSON 字段来存储。
+例如</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#6272a4">// 实体
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">OrderDetail</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> Long id<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> Integer number<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> Long itemId<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> ItemInfo itemInfo<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// 值对象
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">ItemInfo</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> String name<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> String description<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> String brand<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> String price<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span></code></pre></div><h1 id="聚合聚合根边界上下文">聚合、聚合根、边界上下文</h1>
+<p>在 DDD 中，聚合（Aggregates）、聚合根（Aggregate Roots）和边界上下文（Bounded Context）是非常重要的概念。</p>
+<p>聚合是一组相关的实体和值对象的集合，它们之间有着紧密的关联，并且具有相同的生命周期，一起创建一起销毁。比如电商系统中的订单、订单地址、订单明细、商品信息等对象构成一个聚合。当订单被删除时，相关的订单地址、订单明细、商品信息等也会一起被删除。</p>
+<p>聚合根则是聚合的根节点，比如在上述例子中，订单可以作为聚合根。我们只能通过聚合根来操作聚合内的对象，这样的好处是当聚合内部的逻辑变更时，只需要修改聚合根内部的逻辑即可，无需影响到外部。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#6272a4">// 聚合根
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Order</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">private</span> Long id<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">private</span> List<span style="color:#ff79c6">&lt;</span>OrderDetail<span style="color:#ff79c6">&gt;</span> details<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">private</span> OrderAddress orderAddress<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span></code></pre></div><p>上下文边界这个概念由两个单词组成。一些紧密联系业务的聚合组成边界，在这个边界里有着相同的语义。以电商供应链 ERP 系统为例，订单在销售上下文中称为销售订单，在仓储上下文中称为销售出库单，在售后上下文中称为售后单。这样的设计使得每个上下文都可以尽可能少地调用外部上下文的交互，形成高内聚、低耦合的特性，为日后的系统拆分提供了便利。</p>
+<h1 id="资源库">资源库</h1>
+<p>资源库（Repository）的概念和之前讲到的聚合根的概念紧密相连。当我们需要对数据库进行访问时，往常我们对通过DAO访问，但这种是针对单个实体。而Repository是针对聚合根的访问，例如针对Order聚合根的OrderRepository</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>@Repository
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">OrderRepository</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>    @Autowired
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> OrderDao orderDao<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>    @Autowired
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> OrderDetailDao orderDetailDao<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> Order <span style="color:#50fa7b">getOrderById</span><span style="color:#ff79c6">(</span><span style="color:#8be9fd">int</span> id<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>        Order order <span style="color:#ff79c6">=</span> orderDao<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getById</span><span style="color:#ff79c6">(</span>id<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span><span style="color:#ff79c6">(</span>Order <span style="color:#ff79c6">==</span> <span style="color:#ff79c6">null</span><span style="color:#ff79c6">){</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> order<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>        List<span style="color:#ff79c6">&lt;</span>OrderDetail<span style="color:#ff79c6">&gt;</span> list <span style="color:#ff79c6">=</span> orderDetailDao<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getByMainId</span><span style="color:#ff79c6">(</span>id<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>        order<span style="color:#ff79c6">.</span><span style="color:#50fa7b">setDetails</span><span style="color:#ff79c6">(</span>list<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> order<span style="color:#ff79c6">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>   
+</span></span></code></pre></div><p>同时，如果是其他非数据库访问的资源，比如缓存的方式，也可以放在资源库中访问。资源库的好处就是实现了业务跟技术的隔离，双方的职责更加清晰</p>
+<h1 id="防腐层">防腐层</h1>
+<p>防腐层（Anti-Corruption Layer）是用来干什么的？我们项目中常常会碰到调用外部接口的情况，无论是http api还是dubbo调用，我们都需要处理传入参数和返回值，当我们不想在业务代码中耦合这些逻辑时，我们可以引入防腐层，把调用的逻辑挪到这里来做，将我们的业务参数转换成外部接口参数，以及将返回值转换成我们项目中的对象。</p>
+<p>举个例子,原先的代码调用的是orderService.update(order);</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>@Service
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">OrderService</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">cancel</span><span style="color:#ff79c6">(</span>Order order<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>        order<span style="color:#ff79c6">.</span><span style="color:#50fa7b">setStatus</span><span style="color:#ff79c6">(</span>StatusEnum<span style="color:#ff79c6">.</span><span style="color:#50fa7b">CANCELED</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">getCode</span><span style="color:#ff79c6">());</span>
+</span></span><span style="display:flex;"><span>        orderService<span style="color:#ff79c6">.</span><span style="color:#50fa7b">update</span><span style="color:#ff79c6">(</span>order<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span></code></pre></div><p>后续需求改动orderService.update(order)方法需要换成orderDubboService.update(orderRequest),我们可以加入防腐层。这样就实现了业务逻辑和外部调用逻辑的隔离，防止外部接口代码调整导致业务代码改动，这种思想跟我们设计模式中的门面模式或者适配器模式相似</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>@Service
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">OrderService</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">cancel</span><span style="color:#ff79c6">(</span>Order order<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>        order<span style="color:#ff79c6">.</span><span style="color:#50fa7b">setStatus</span><span style="color:#ff79c6">(</span>StatusEnum<span style="color:#ff79c6">.</span><span style="color:#50fa7b">CANCELED</span><span style="color:#ff79c6">.</span><span style="color:#50fa7b">getCode</span><span style="color:#ff79c6">());</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 引入适配器，代码无入侵
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        orderFacade<span style="color:#ff79c6">.</span><span style="color:#50fa7b">update</span><span style="color:#ff79c6">(</span>order<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// 防腐层
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>@Service
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">OrderFacade</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">update</span><span style="color:#ff79c6">(</span>Order order<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>      OrderRequest request <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> OrderRequest<span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span>      request<span style="color:#ff79c6">.</span><span style="color:#50fa7b">setId</span><span style="color:#ff79c6">(</span>order<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getId</span><span style="color:#ff79c6">());</span>
+</span></span><span style="display:flex;"><span>      request<span style="color:#ff79c6">.</span><span style="color:#50fa7b">setStatus</span><span style="color:#ff79c6">(</span>order<span style="color:#ff79c6">.</span><span style="color:#50fa7b">getStatus</span><span style="color:#ff79c6">());</span>
+</span></span><span style="display:flex;"><span>      orderDubboService<span style="color:#ff79c6">.</span><span style="color:#50fa7b">update</span><span style="color:#ff79c6">(</span>orderRequest<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span></code></pre></div><h1 id="领域事件">领域事件</h1>
+<p>领域事件指的是业务中某些事情发生后会影响到下一步业务流程的事件。以电商系统为例，订单审核通过后会触发 WMS 生成销售出库单，订单作废时对应的销售出库单也会作废。在开发中，除了直接接口调用外，通常还会使用消息队列（MQ）进行异步调用，尤其是在涉及到领域事件时，使用 MQ 更为合适。MQ 的发布订阅模型天生适配领域事件，而且相比同步调用，异步调用的耦合度更低，能够切断领域之间的依赖关系。</p>
+<p>同时，采用 MQ 发送事件时需要考虑一致性问题。可以通过使用事务消息或本地消息表等方式来保障系统的一致性。</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/image-2.png" alt="Alt text">
+
+</p>
+<p><em>希望这些基础概念的分享能够对大家有所帮助！后面会做一篇代码实战给大家</em></p>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/2024-01-04-%E6%A8%A1%E6%9D%BF%E6%A8%A1%E5%BC%8F%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%AE%9E%E6%88%98/" data-toggle="tooltip" data-placement="top" title="模板模式实现分布式锁实战">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+                
+
+                
+
+
+<script src="https://giscus.app/client.js"
+        data-repo="zntzhang/zntzhang.github.io"
+        data-repo-id="R_kgDOKAsvPA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOKAsvPM4CYSZK"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/elasticsearch" title="elasticsearch">
+                            elasticsearch
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/es" title="es">
+                            es
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/java" title="java">
+                            java
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/jquery/js" title="jquery/js">
+                            jquery/js
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/linux" title="linux">
+                            linux
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/mq" title="mq">
+                            mq
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/mysql" title="mysql">
+                            mysql
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/netty" title="netty">
+                            netty
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/redis" title="redis">
+                            redis
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/spring" title="spring">
+                            spring
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E4%BC%98%E5%8C%96" title="优化">
+                            优化
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E5%B9%B6%E5%8F%91" title="并发">
+                            并发
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93" title="数据库">
+                            数据库
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8" title="服务器">
+                            服务器
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F" title="设计模式">
+                            设计模式
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E9%94%81" title="锁">
+                            锁
+                        </a>
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="https://blog.csdn.net/qq_37221991">装睡的小5郎</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:zt931634776@163.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    <li>
+                        <a target="_blank" href="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/IMG_8285.JPG">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/zntzhang">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; zhangtao&#39;s Blog 2024
+                   
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>
