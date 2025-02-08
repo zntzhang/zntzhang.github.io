@@ -6,7 +6,16 @@
     <description>Recent content in 技术博客 on zhangtao&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 12 Apr 2024 10:56:17 +0000</lastBuildDate><atom:link href="https://zhangtaoblog.cn/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 08 Nov 2024 10:56:17 +0000</lastBuildDate><atom:link href="https://zhangtaoblog.cn/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>家庭宽带如何开启公网ipv4和ipv6</title>
+      <link>https://zhangtaoblog.cn/post/2024-11-08-%E5%AE%B6%E5%BA%AD%E5%AE%BD%E5%B8%A6%E5%A6%82%E4%BD%95%E5%BC%80%E5%90%AF%E5%85%AC%E7%BD%91ipv4%E5%92%8Cipv6/</link>
+      <pubDate>Fri, 08 Nov 2024 10:56:17 +0000</pubDate>
+      
+      <guid>https://zhangtaoblog.cn/post/2024-11-08-%E5%AE%B6%E5%BA%AD%E5%AE%BD%E5%B8%A6%E5%A6%82%E4%BD%95%E5%BC%80%E5%90%AF%E5%85%AC%E7%BD%91ipv4%E5%92%8Cipv6/</guid>
+      <description>好久没更新了，最近在家里折腾nas。一来自己有下电影的习惯，二来手机的icloud容量也不够了。所以买了群晖的423+,但是nas要想用的畅</description>
+    </item>
+    
     <item>
       <title>学习ddd（一）--领域驱动设计相关概念</title>
       <link>https://zhangtaoblog.cn/post/2024-04-12-%E5%AD%A6%E4%B9%A0ddd%E4%B8%80--%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/</link>
