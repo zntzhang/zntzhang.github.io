@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="zhangtao&#39;s Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg">
+    <meta property="twitter:image" content="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg" />
+    
+
+    
+    <meta name="title" content="一次奇怪的空指针问题分析：事务、死锁与隐式回滚" />
+    <meta property="og:title" content="一次奇怪的空指针问题分析：事务、死锁与隐式回滚" />
+    <meta property="twitter:title" content="一次奇怪的空指针问题分析：事务、死锁与隐式回滚" />
+    
+
+    
+    <meta name="description" content="">
+    <meta property="og:description" content="" />
+    <meta property="twitter:description" content="" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="">
+    <meta name="google-site-verification" content="K8yZVd7oQY5zziuYgoxVtDwSFu_rnMWkzP5I1XY4qpI" />
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>一次奇怪的空指针问题分析：事务、死锁与隐式回滚 | 张涛的博客 | zhangtao Blog</title>
+
+    <link rel="canonical" href="/post/2025-02-07-%E4%B8%80%E6%AC%A1%E5%A5%87%E6%80%AA%E7%9A%84%E7%A9%BA%E6%8C%87%E9%92%88%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90%E4%BA%8B%E5%8A%A1%E6%AD%BB%E9%94%81%E4%B8%8E%E9%9A%90%E5%BC%8F%E5%9B%9E%E6%BB%9A/">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    
+    
+
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">zhangtao&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                   
+                    
+                        
+                        <li>
+                            <a href="/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/">技术博客</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/%E7%94%9F%E6%B4%BB/">生活</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/archive//">归档</a></li>
+                    
+                        <li><a href="/notes//">知识整理</a></li>
+                    
+                        <li><a href="/about//">关于我</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/post-bg-unix-linux.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F" title="分布式">
+                            分布式
+                        </a>
+                        
+                        <a class="tag" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93" title="数据库">
+                            数据库
+                        </a>
+                        
+                        <a class="tag" href="/tags/java" title="java">
+                            java
+                        </a>
+                        
+                    </div>
+                    <h1>一次奇怪的空指针问题分析：事务、死锁与隐式回滚</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                zhangtao
+                             
+                            on 
+                            Friday, February 7, 2025
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <p>最近我们在排查一个诡异的 <strong>空指针异常</strong>，整个分析过程可以说是跌宕起伏，最终的结论也颇具隐蔽性。今天就把这个问题分享出来，希望对大家有所帮助。</p>
+<h2 id="问题现象"><strong>问题现象</strong></h2>
+<p>在系统中，我们有 <strong>单据 B</strong>，它通过一个 <code>关联 ID</code> 字段与 <strong>上级单据 A</strong> 关联。</p>
+<p>但在某次操作中，我们发现：</p>
+<ol>
+<li><strong>单据 B 存在，并且存储了 A 的 ID</strong>。</li>
+<li><strong>但查询 A 时，却查不到数据，导致后续代码调用 A 的 <code>get</code> 方法时报空指针异常</strong>。</li>
+</ol>
+<p>理论上，<strong>B 既然存储了 A 的 ID，A 就应该存在</strong>，否则 A 的 ID 是怎么来的？</p>
+<p><strong>难道 A 被删除了？</strong>
+然而，<strong>代码中并没有删除 A 的逻辑</strong>，而且 DBA 查询了数据库日志，确认 <strong>A 从未被删除</strong>。那么，这就只剩下一种可能：<strong>A 从未生成</strong>。</p>
+<h2 id="代码分析"><strong>代码分析</strong></h2>
+<p>我们回溯代码，A 和 B 是在同一个事务内生成的，具体逻辑如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>@Transactional
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">createA</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>    DB生成单据A<span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span>    执行业务方法C<span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span>    DB生成单据B<span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span></code></pre></div><p>代码逻辑很简单：</p>
+<ol>
+<li><strong>第一步</strong> 生成 A。</li>
+<li><strong>第二步</strong> 执行 <strong>业务方法 C</strong>。</li>
+<li><strong>第三步</strong> 生成 B，并存储 A 的 ID。</li>
+</ol>
+<p>由于 B 存储了 A 的 ID，说明 <code>DB生成单据A</code> 代码应该成功执行了。但为什么 A 最终没有出现在数据库中？</p>
+<p><strong>难道是 <code>createA()</code> 过程中发生了异常，导致 A 没有生成？</strong>
+我们查询当时的日志，发现 <strong>业务方法 C</strong> 在执行时发生了 <strong>死锁异常</strong>！</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/image-20250207224000545.png" alt="image-20250207224000545">
+
+</p>
+<p>业务方法 C 的代码如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>@Transactional
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">doC</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">try</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>        DB生成C<span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span> <span style="color:#ff79c6">catch</span> <span style="color:#ff79c6">(</span>Exception e<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">//        输出异常日志;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span></code></pre></div><p>在 <code>DB生成C</code> 这一步时，<strong>数据库发生了死锁异常</strong>，但代码使用了 <code>try-catch</code>，所以<strong>理论上不会影响事务的执行</strong>，A 和 C 都应该正常生成。</p>
+<p>那么问题来了，<strong>A 为什么消失了？</strong></p>
+<h2 id="问题的根本原因mysql-隐式回滚"><strong>问题的根本原因：MySQL 隐式回滚</strong></h2>
+<p>最终，DBA 通过查询数据库的日志，发现了问题的真正原因——<strong>MySQL 发生了“隐式回滚”</strong>。</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/image-20250207224130444.png" alt="image-20250207224130444">
+
+</p>
+<p><strong>MySQL 死锁处理机制</strong>
+在 MySQL 中，当多个事务发生死锁时，数据库会<strong>自动选择一个代价较低的事务进行回滚，以解除死锁</strong>。这一行为是 <strong>数据库层面的自动回滚</strong>，<strong>不会受到 <code>try-catch</code> 代码的影响</strong>。</p>
+<p>在本例中，事务执行时发生了死锁，MySQL <strong>自动回滚了整个事务 <code>createA()</code></strong>，导致 A 被回滚，实际上根本没被写入数据库。</p>
+<p>但由于 <code>doC()</code> 代码中使用了 <code>try-catch</code>，异常并没有往上抛，导致事务继续执行到了 <code>DB生成单据B;</code>。由于 <strong>B 在一个新的事务中生成</strong>，它最终成功入库，并存储了 <strong>已被回滚的 A 的 ID</strong>，从而导致数据不一致的问题。</p>
+<p><strong>完整过程如下：</strong></p>
+<ol>
+<li><strong><code>DB生成单据A;</code></strong> → <strong>执行成功（暂时）</strong></li>
+<li><strong><code>DB生成C;</code></strong> → <strong>发生死锁，MySQL 选择回滚事务 <code>createA()</code>，A 被回滚</strong></li>
+<li><strong>由于 <code>try-catch</code> 捕获了异常，事务继续执行</strong></li>
+<li><strong><code>DB生成单据B;</code></strong> → <strong>B 在新的事务中成功插入，并存储了已回滚的 A 的 ID</strong></li>
+</ol>
+<p>最终，导致 <strong>B 关联了一个不存在的 A，后续调用 A 的 <code>get</code> 方法时报空指针异常</strong>。</p>
+<h2 id="如何避免类似问题"><strong>如何避免类似问题？</strong></h2>
+<p>通过这次分析，我们可以总结出几点避免类似问题的经验：</p>
+<ol>
+<li><strong>避免在事务中吞掉异常</strong></li>
+</ol>
+<ul>
+<li>
+<p><code>try-catch</code> 不能仅仅记录日志，如果异常影响了事务的完整性，应该<strong>显式回滚整个事务</strong>。</p>
+</li>
+<li>
+<p>改进 doC()方法：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>@Transactional
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">doC</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">try</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>        DB生成C<span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">}</span> <span style="color:#ff79c6">catch</span> <span style="color:#ff79c6">(</span>Exception e<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>        log<span style="color:#ff79c6">.</span><span style="color:#50fa7b">error</span><span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#34;生成 C 失败&#34;</span><span style="color:#ff79c6">,</span> e<span style="color:#ff79c6">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">throw</span> e<span style="color:#ff79c6">;</span> <span style="color:#6272a4">// 让事务感知异常，避免错误继续执行
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span></code></pre></div></li>
+</ul>
+<ol start="2">
+<li><strong>尽量控制事务粒度，避免长时间持有锁</strong></li>
+</ol>
+<ul>
+<li>
+<p><code>业务方法 C</code> 的执行时间过长，可能加剧死锁风险。</p>
+</li>
+<li>
+<p><strong>可以考虑将 <code>业务方法 C</code> 放到事务外部执行</strong>，避免影响 <code>A</code> 和 <code>B</code> 的创建：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>@Transactional
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">createA</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>    DB生成单据A<span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span>    DB生成单据B<span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">doC</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>    DB生成C<span style="color:#ff79c6">();</span>  <span style="color:#6272a4">// 独立事务，避免影响 A、B
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">}</span>
+</span></span></code></pre></div></li>
+</ul>
+<ol start="3">
+<li>
+<p><strong>调整执行顺序，将c方法挪至最后</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>@Transactional
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">createA</span><span style="color:#ff79c6">()</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>    DB生成单据A<span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span>    DB生成单据B<span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span>  	执行业务方法C<span style="color:#ff79c6">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span></code></pre></div></li>
+</ol>
+<p>因为B方法的trycatch逻辑因为业务原因没法改，所以我这边采用了3的方法，并且同时优化了B方法，降低了死锁发生的概率。希望这次排查经历，能给大家一些启发！🚀🚀🚀</p>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/2024-11-08-%E5%AE%B6%E5%BA%AD%E5%AE%BD%E5%B8%A6%E5%A6%82%E4%BD%95%E5%BC%80%E5%90%AF%E5%85%AC%E7%BD%91ipv4%E5%92%8Cipv6/" data-toggle="tooltip" data-placement="top" title="家庭宽带如何开启公网ipv4和ipv6">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+                
+
+                
+
+
+<script src="https://giscus.app/client.js"
+        data-repo="zntzhang/zntzhang.github.io"
+        data-repo-id="R_kgDOKAsvPA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOKAsvPM4CYSZK"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/elasticsearch" title="elasticsearch">
+                            elasticsearch
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/es" title="es">
+                            es
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/java" title="java">
+                            java
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/jquery/js" title="jquery/js">
+                            jquery/js
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/linux" title="linux">
+                            linux
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/mq" title="mq">
+                            mq
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/mysql" title="mysql">
+                            mysql
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/netty" title="netty">
+                            netty
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/redis" title="redis">
+                            redis
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/spring" title="spring">
+                            spring
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E4%BC%98%E5%8C%96" title="优化">
+                            优化
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F" title="分布式">
+                            分布式
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E5%B9%B6%E5%8F%91" title="并发">
+                            并发
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93" title="数据库">
+                            数据库
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8" title="服务器">
+                            服务器
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F" title="设计模式">
+                            设计模式
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E9%94%81" title="锁">
+                            锁
+                        </a>
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="https://blog.csdn.net/qq_37221991">装睡的小5郎</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:zt931634776@163.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    <li>
+                        <a target="_blank" href="https://gcore.jsdelivr.net/gh/zntzhang/imageBed@main/uPic/IMG_8285.JPG">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/zntzhang">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; zhangtao&#39;s Blog 2025
+                   
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>
