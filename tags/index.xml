@@ -6,7 +6,34 @@
     <description>Recent content in Tags on zhangtao&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 08 Nov 2024 10:56:17 +0000</lastBuildDate><atom:link href="https://zhangtaoblog.cn/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 07 Feb 2025 10:56:17 +0000</lastBuildDate><atom:link href="https://zhangtaoblog.cn/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>java</title>
+      <link>https://zhangtaoblog.cn/tags/java/</link>
+      <pubDate>Fri, 07 Feb 2025 10:56:17 +0000</pubDate>
+      
+      <guid>https://zhangtaoblog.cn/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>分布式</title>
+      <link>https://zhangtaoblog.cn/tags/%E5%88%86%E5%B8%83%E5%BC%8F/</link>
+      <pubDate>Fri, 07 Feb 2025 10:56:17 +0000</pubDate>
+      
+      <guid>https://zhangtaoblog.cn/tags/%E5%88%86%E5%B8%83%E5%BC%8F/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>数据库</title>
+      <link>https://zhangtaoblog.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+      <pubDate>Fri, 07 Feb 2025 10:56:17 +0000</pubDate>
+      
+      <guid>https://zhangtaoblog.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>网络</title>
       <link>https://zhangtaoblog.cn/tags/%E7%BD%91%E7%BB%9C/</link>
@@ -49,15 +76,6 @@
       <pubDate>Thu, 04 Jan 2024 10:56:17 +0000</pubDate>
       
       <guid>https://zhangtaoblog.cn/tags/%E9%94%81/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>java</title>
-      <link>https://zhangtaoblog.cn/tags/java/</link>
-      <pubDate>Tue, 31 Oct 2023 10:56:17 +0000</pubDate>
-      
-      <guid>https://zhangtaoblog.cn/tags/java/</guid>
       <description></description>
     </item>
     
@@ -143,15 +161,6 @@
     </item>
     
     <item>
-      <title>数据库</title>
-      <link>https://zhangtaoblog.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
-      <pubDate>Fri, 23 Dec 2022 17:56:17 +0000</pubDate>
-      
-      <guid>https://zhangtaoblog.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>kafka</title>
       <link>https://zhangtaoblog.cn/tags/kafka/</link>
       <pubDate>Tue, 01 Nov 2022 21:04:38 +0000</pubDate>
@@ -175,15 +184,6 @@
       <pubDate>Tue, 01 Nov 2022 21:04:38 +0000</pubDate>
       
       <guid>https://zhangtaoblog.cn/tags/rabbitmq/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>分布式</title>
-      <link>https://zhangtaoblog.cn/tags/%E5%88%86%E5%B8%83%E5%BC%8F/</link>
-      <pubDate>Tue, 01 Nov 2022 21:04:38 +0000</pubDate>
-      
-      <guid>https://zhangtaoblog.cn/tags/%E5%88%86%E5%B8%83%E5%BC%8F/</guid>
       <description></description>
     </item>
     
